@@ -10,7 +10,17 @@ function RouteComponent() {
   return (
     <AuthLayout>
       <AuthHoverCard>
-        <h2>Hello, auth !</h2>
+        {/* Fixeroni icon */}
+        <img  
+          src="/images/branding/logo.png"
+          className='w-40'
+        />
+
+        {/* Section text */}
+        <article className="flex flex-col gap-2 justify-center items-center text-center">
+          <h2 className='text-2xl font-medium'>Welcome to Fixeroni</h2>
+          <p className="text-gray-secondary text-lg">Let us get things running smoothly <br /> and keep the world in working order.</p>
+        </article>
       </AuthHoverCard>
     </AuthLayout>
   )
