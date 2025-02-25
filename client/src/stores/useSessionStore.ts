@@ -1,8 +1,8 @@
 import { create } from "zustand";
 import { Session } from "../types";
 
-export const useSessionStore = create((set) => ({
+export const useSession = create((set) => ({
     session: null,
-    login: () => set((state: Session) => ({ session: state })),
+    login: (session: Session) => set(() => ({ session })),
     logout: () => set(() => ({ session: null })),
 }));
