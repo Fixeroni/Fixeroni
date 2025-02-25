@@ -3,5 +3,6 @@ import { Session } from "../types";
 
 export const useSessionStore = create((set) => ({
     session: null,
-    login: () => set((state: Session) => ({ session: state }))
+    login: () => set((state: Session) => ({ session: state })),
+    logout: () => set(() => ({ session: null })),
 }));
