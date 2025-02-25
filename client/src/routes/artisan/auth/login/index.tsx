@@ -27,7 +27,7 @@ function RouteComponent() {
 
         {/* Login / Register switch */}
         <Switch 
-          login={LoginContent}
+          login={<LoginContent />}
           register={<RegisterContent />}
         />
       </AuthHoverCard>
