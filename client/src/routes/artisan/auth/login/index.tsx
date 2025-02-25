@@ -8,7 +8,7 @@ export const Route = createFileRoute('/artisan/auth/login/')({
 
 function RouteComponent() {
   return (
-    <AuthLayout>white
+    <AuthLayout>
       <AuthHoverCard>
         <h2>Hello, auth !</h2>
       </AuthHoverCard>
