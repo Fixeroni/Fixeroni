@@ -12,4 +12,5 @@ export type User = {
     linkToPortfolio: string,
     governmentIdLink: string,
     profilePicture: string,
+    accountType: string
 }
