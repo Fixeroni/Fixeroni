@@ -12,12 +12,26 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as ArtisanDashboardIndexImport } from './routes/artisan/dashboard/index'
+import { Route as ArtisanAuthLoginIndexImport } from './routes/artisan/auth/login/index'
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ArtisanDashboardIndexRoute = ArtisanDashboardIndexImport.update({
+  id: '/artisan/dashboard/',
+  path: '/artisan/dashboard/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ArtisanAuthLoginIndexRoute = ArtisanAuthLoginIndexImport.update({
+  id: '/artisan/auth/login/',
+  path: '/artisan/auth/login/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -32,6 +46,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/artisan/dashboard/': {
+      id: '/artisan/dashboard/'
+      path: '/artisan/dashboard'
+      fullPath: '/artisan/dashboard'
+      preLoaderRoute: typeof ArtisanDashboardIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/artisan/auth/login/': {
+      id: '/artisan/auth/login/'
+      path: '/artisan/auth/login'
+      fullPath: '/artisan/auth/login'
+      preLoaderRoute: typeof ArtisanAuthLoginIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/artisan/dashboard': typeof ArtisanDashboardIndexRoute
+  '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/artisan/dashboard': typeof ArtisanDashboardIndexRoute
+  '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/artisan/dashboard/': typeof ArtisanDashboardIndexRoute
+  '/artisan/auth/login/': typeof ArtisanAuthLoginIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/artisan/dashboard' | '/artisan/auth/login'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/artisan/dashboard' | '/artisan/auth/login'
+  id: '__root__' | '/' | '/artisan/dashboard/' | '/artisan/auth/login/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ArtisanDashboardIndexRoute: typeof ArtisanDashboardIndexRoute
+  ArtisanAuthLoginIndexRoute: typeof ArtisanAuthLoginIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ArtisanDashboardIndexRoute: ArtisanDashboardIndexRoute,
+  ArtisanAuthLoginIndexRoute: ArtisanAuthLoginIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +115,19 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/artisan/dashboard/",
+        "/artisan/auth/login/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/artisan/dashboard/": {
+      "filePath": "artisan/dashboard/index.tsx"
+    },
+    "/artisan/auth/login/": {
+      "filePath": "artisan/auth/login/index.tsx"
     }
   }
 }
