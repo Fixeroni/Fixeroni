@@ -1,4 +1,5 @@
 import React, { ReactNode, useState } from "react";
+import AnimateEntranceFromBottom from "../../animated/AnimateEntranceFromBottom";
 
 function Switch({
   login,
@@ -22,7 +23,14 @@ function Switch({
       </article>
 
       {
-        content === "login" ? login : register
+        content === "login" ? 
+        <AnimateEntranceFromBottom>
+          {login}
+        </AnimateEntranceFromBottom>
+        : 
+        <AnimateEntranceFromBottom>
+          {register}
+        </AnimateEntranceFromBottom>
       }
     </article>
   )
