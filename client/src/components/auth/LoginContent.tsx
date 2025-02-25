@@ -11,7 +11,11 @@ function LoginContent() {
         Login in with Google
       </button>
 
-      <article className="flex gap-2 items-center justify-center"></article>
+      <article className="flex gap-2 items-center justify-center my-4 text-gray-primary">
+        <article className="w-[75px] h-[1px] bg-gray-primary"></article>
+          Or continue with email
+        <article className="w-[75px] h-[1px] bg-gray-primary"></article>
+      </article>
     </article>
   )
 }
