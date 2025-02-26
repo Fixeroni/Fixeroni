@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { ReactNode } from "react";
 
 function Input(props: any) {
   return (
-    <article className='bg-white rounded-lg shadow-md p-4 text-primary-light flex gap-4 items-center'>
+    <article className="bg-white rounded-xl p-2 text-primary-light flex gap-2 items-center">
+      {props.startContent}
+
       <input
-      className='placeholder:text-[#616161] bg-transparent w-full focus:outline-none'
+        className="placeholder:text-[#616161] bg-transparent w-full focus:outline-none"
         {...props}
       />
     </article>
-  )
+  );
 }
 
-export default Input
+export default Input;

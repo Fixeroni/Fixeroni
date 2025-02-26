@@ -26,10 +26,7 @@ function RouteComponent() {
         </article>
 
         {/* Login / Register switch */}
-        <Switch 
-          login={<LoginContent />}
-          register={<RegisterContent />}
-        />
+        <Switch login={<LoginContent />} register={<RegisterContent />} />
       </AuthHoverCard>
     </AuthLayout>
   );
