@@ -1,8 +1,11 @@
-import React from "react";
+import { useState } from "react";
 import Input from "./Input";
-import { Mail } from "lucide-react";
+import { Eye, EyeOff, Mail } from "lucide-react";
 
 function LoginContent() {
+  // Track whether the password is shown or not
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+
   return (
     <article>
       <button
@@ -22,8 +25,14 @@ function LoginContent() {
       <form className="flex flex-col gap-8">
         <Input
           type="email"
-          startContent={<Mail size={30} strokeWidth={2} />}
+          startContent={<Mail className="text-primary-light" size={30} strokeWidth={2} />}
           placeholder="Enter email address"
+        />
+
+        <Input
+          type={showPassword ? "text" : "password"}
+          startContent={showPassword ? <EyeOff className="text-primary-light" size={30} strokeWidth={2} onClick={() => setShowPassword((prev) => !prev)} /> : <Eye className="text-primary-light" size={30} strokeWidth={2} onClick={() => setShowPassword((prev) => !prev)} />}
+          placeholder="Enter password"
         />
       </form>
     </article>
