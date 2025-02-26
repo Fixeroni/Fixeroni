@@ -14,3 +14,9 @@ export type User = {
   profilePicture: string;
   accountType: string;
 };
+
+export type Feature = {
+  image: string,
+  title: string,
+  description: string
+}
