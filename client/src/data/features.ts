@@ -7,7 +7,7 @@ const features: Feature[] = [
         description: "Need a pro? Fixeroni connects you with skilled artisans for any job big or small. Post your task, get offers, and hire with confidence.",
         ctaText: "Find an Artisan",
         side: "left",
-        cta: "/auth/client/register"
+        cta: "client/auth/register"
     },
     {
         image: "/images/assets/feature-2.png",
