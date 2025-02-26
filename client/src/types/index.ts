@@ -18,5 +18,6 @@ export type User = {
 export type Feature = {
   image: string,
   title: string,
-  description: string
+  description: string,
+  sid: "left" | "right"
 }
