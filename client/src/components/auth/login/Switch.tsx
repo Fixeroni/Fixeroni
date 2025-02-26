@@ -15,13 +15,13 @@ function Switch({
     <article className="w-full flex flex-col justify-center items-center">
       <article className="flex gap-4 items-center mb-4 w-full justify-center items-center">
         <article
-          className={`${content === "login" && "border-b-2 border-primary"} cursor-pointer p-2 text-lg min-w-[120px] text-center`}
+          className={`${content === "login" && "border-b-2 border-primary"} cursor-pointer p-2 text-lg min-w-[120px] text-center hover:cursor-pointer`}
           onClick={() => setContent("login")}
         >
           Login
         </article>
         <article
-          className={`${content === "register" && "border-b-2 border-primary"} cursor-pointer p-2 text-lg min-w-[120px] text-center`}
+          className={`${content === "register" && "border-b-2 border-primary"} cursor-pointer p-2 text-lg min-w-[120px] text-center hover:cursor-pointer`}
           onClick={() => setContent("register")}
         >
           Register
