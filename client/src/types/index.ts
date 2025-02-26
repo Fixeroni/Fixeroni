@@ -20,5 +20,6 @@ export type Feature = {
   title: string,
   description: string,
   side: "left" | "right",
-  ctaText: string
+  ctaText: string,
+  cta: string
 }
