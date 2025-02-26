@@ -32,7 +32,7 @@ function LoginContent() {
 
         <Input
           type={showPassword ? "text" : "password"}
-          startContent={showPassword ? <EyeOff className="text-primary-light" size={30} strokeWidth={2} onClick={() => setShowPassword((prev) => !prev)} /> : <Eye className="text-primary-light" size={30} strokeWidth={2} onClick={() => setShowPassword((prev) => !prev)} />}
+          startContent={showPassword ? <EyeOff className="text-primary-light hover:cursor-pointer" size={30} strokeWidth={2} onClick={() => setShowPassword((prev) => !prev)} /> : <Eye className="text-primary-light hover:cursor-pointer" size={30} strokeWidth={2} onClick={() => setShowPassword((prev) => !prev)} />}
           placeholder="Enter password"
         />
 
