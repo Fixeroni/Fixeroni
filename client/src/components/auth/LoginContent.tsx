@@ -37,8 +37,12 @@ function LoginContent() {
         />
 
         <Link className="text-[#616161]" to="/artisan/auth/forgot-password">
-          Forgot password?
+          Forgot password ?
         </Link>
+
+        <button className="font-semibold text-white bg-primary shadow-sm hover:shadow-md transition duration-300 p-2 hover:cursor-pointer rounded-lg" type="submit">
+          Login
+        </button>
       </form>
     </article>
   );
