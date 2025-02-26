@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Input from "./Input";
 import { Eye, EyeOff, Mail } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 function LoginContent() {
   // Track whether the password is shown or not
@@ -34,6 +35,10 @@ function LoginContent() {
           startContent={showPassword ? <EyeOff className="text-primary-light" size={30} strokeWidth={2} onClick={() => setShowPassword((prev) => !prev)} /> : <Eye className="text-primary-light" size={30} strokeWidth={2} onClick={() => setShowPassword((prev) => !prev)} />}
           placeholder="Enter password"
         />
+
+        <Link className="text-[#616161]" to="/artisan/auth/forgot-password">
+          Forgot password?
+        </Link>
       </form>
     </article>
   );
