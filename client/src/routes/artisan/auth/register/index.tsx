@@ -10,6 +10,7 @@ import LoginContent from "../../../../components/auth/LoginContent";
 import { fields } from "../../../../data/register";
 import Input from "../../../../components/auth/Input";
 import { Upload } from "lucide-react";
+import { useState } from "react";
 
 export const Route = createFileRoute("/artisan/auth/register/")({
   component: RouteComponent,
@@ -70,15 +71,54 @@ function Register() {
 }
 
 function PersonalDetails() {
+  const [workPortfolio, setWorkPortfolio] = useState<File | null>(null);
+
+  const handleWorkPortfolio = (open = true) => {
+    if (open) {
+      document.getElementById("work_portfolio")?.click();
+    }
+
+    console.log(workPortfolio)
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setWorkPortfolio(file);
+    }
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget as HTMLFormElement);
+
+    if (workPortfolio) {
+      formData.append("work_portfolio", workPortfolio);
+    }
+
+    // Submit form data (e.g., to an API)
+    fetch("/upload-endpoint", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   return (
     <article className="flex flex-col gap-8 items-center">
       <h2 className="text-2xl font-medium">Personal Details</h2>
 
-      <form action="" className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <select
           name="service_category"
-          title="Category of Service"
-          className="bg-white rounded-xl px-4 py-2 placeholder:text-sm text-[#616161] md:max-w-[400px] md:min-w-[400px] flex gap-2 items-center focus:outline-none"
+          className="bg-white rounded-xl px-4 py-2 md:max-w-[400px] md:min-w-[400px]"
         >
           <option value="" disabled selected>
             Category of Service
@@ -92,33 +132,46 @@ function PersonalDetails() {
 
         <select
           name="years_of_experience"
-          title="Years of Experience"
-          className="bg-white rounded-xl px-4 py-2 placeholder:text-sm text-[#616161] md:max-w-[400px] md:min-w-[400px] flex gap-2 items-center focus:outline-none"
+          className="bg-white rounded-xl px-4 py-2 md:max-w-[400px] md:min-w-[400px]"
         >
           <option value="" disabled selected>
             Years of Experience
           </option>
-          <option value="1">1 year</option>
-          <option value="2">2 years</option>
-          <option value="3">3 years</option>
-          <option value="4">4 years</option>
-          <option value="5">5 years</option>
-          <option value="6">6 years</option>
-          <option value="7">7 years</option>
-          <option value="8">8 years</option>
-          <option value="9">9 years</option>
-          <option value="10">10+</option>
+          {[...Array(10)].map((_, i) => (
+            <option key={i} value={i + 1}>
+              {i + 1} year{i !== 0 ? "s" : ""}
+            </option>
+          ))}
         </select>
 
-        <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between">
-          Work Portfolio
+        {workPortfolio ? (
+          <article className="flex gap-4 items-center">
+            <Upload className="text-primary" size={24} />
+            <p>{workPortfolio.name}</p>
+          </article>
+        ) : (
+          <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between">
+            Work Portfolio
+            <Upload
+              onClick={() => handleWorkPortfolio(true)}
+              size={20}
+              className="text-primary cursor-pointer"
+            />
+          </article>
+        )}
 
-          <Upload size={20} className="text-primary" />
-        </article>
+        {/* Hidden File Input */}
+        <input
+          type="file"
+          name="work_portfolio"
+          id="work_portfolio"
+          className="hidden"
+          onChange={handleFileChange}
+        />
 
         <button
-          className="font-semibold text-white bg-primary shadow-sm hover:shadow-md transition duration-300 p-2 hover:cursor-pointer rounded-lg md:min-w-[400px] md:max-w-[400px]"
           type="submit"
+          className="font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px]"
         >
           Next
         </button>
