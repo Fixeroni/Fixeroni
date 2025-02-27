@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import AuthLayout from '../../../../components/shared/AuthLayout'
 import AuthHoverCard from '../../../../components/shared/AuthHoverCard'
 import features from '../../../../data/features'
@@ -17,12 +17,24 @@ export const Route = createFileRoute('/artisan/auth/register/')({
 function Register () {
 
   return (
-    <article className="flex flex-col gap-2">
-      {
-        fields.map((field: { name: string, placeholder: string, type: string, required: boolean }, index: number) => (
-          <Input name={field.name} key={index} placeholder={field.placeholder} />
-        ))
-      }
+    <article className="flex flex-col gap-8">
+      <article className="flex flex-col gap-4">
+        {
+          fields.map((field: { name: string, placeholder: string, type: string, required: boolean }, index: number) => (
+            <Input name={field.name} key={index} placeholder={field.placeholder} />
+          ))
+        }
+      </article>
+
+      <article className="flex gap-4 items-center">
+        <input 
+          type="checkbox" 
+          name="agreed"
+          className='md:w-6 md:h-6'
+        />
+
+        <p className='text-[#535353]'>By signing up, you agree to Fixeroni's <br /> <Link className="underline text-primary" to="/artisan/auth/forgot-password">Terms of Service</Link> and <Link className="underline text-primary" to="/artisan/auth/forgot-password">Privacy Policy</Link></p>
+      </article>
     </article>
   )
 }
