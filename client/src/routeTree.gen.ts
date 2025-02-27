@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
 import { Route as ArtisanDashboardIndexImport } from './routes/artisan/dashboard/index'
+import { Route as ClientAuthRegisterIndexImport } from './routes/client/auth/register/index'
 import { Route as ArtisanAuthRegisterIndexImport } from './routes/artisan/auth/register/index'
 import { Route as ArtisanAuthLoginIndexImport } from './routes/artisan/auth/login/index'
 import { Route as ArtisanAuthForgotPasswordIndexImport } from './routes/artisan/auth/forgot-password/index'
@@ -28,6 +29,12 @@ const IndexRoute = IndexImport.update({
 const ArtisanDashboardIndexRoute = ArtisanDashboardIndexImport.update({
   id: '/artisan/dashboard/',
   path: '/artisan/dashboard/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ClientAuthRegisterIndexRoute = ClientAuthRegisterIndexImport.update({
+  id: '/client/auth/register/',
+  path: '/client/auth/register/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -89,6 +96,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtisanAuthRegisterIndexImport
       parentRoute: typeof rootRoute
     }
+    '/client/auth/register/': {
+      id: '/client/auth/register/'
+      path: '/client/auth/register'
+      fullPath: '/client/auth/register'
+      preLoaderRoute: typeof ClientAuthRegisterIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -100,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/artisan/auth/forgot-password': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
   '/artisan/auth/register': typeof ArtisanAuthRegisterIndexRoute
+  '/client/auth/register': typeof ClientAuthRegisterIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -108,6 +123,7 @@ export interface FileRoutesByTo {
   '/artisan/auth/forgot-password': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
   '/artisan/auth/register': typeof ArtisanAuthRegisterIndexRoute
+  '/client/auth/register': typeof ClientAuthRegisterIndexRoute
 }
 
 export interface FileRoutesById {
@@ -117,6 +133,7 @@ export interface FileRoutesById {
   '/artisan/auth/forgot-password/': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login/': typeof ArtisanAuthLoginIndexRoute
   '/artisan/auth/register/': typeof ArtisanAuthRegisterIndexRoute
+  '/client/auth/register/': typeof ClientAuthRegisterIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -127,6 +144,7 @@ export interface FileRouteTypes {
     | '/artisan/auth/forgot-password'
     | '/artisan/auth/login'
     | '/artisan/auth/register'
+    | '/client/auth/register'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -134,6 +152,7 @@ export interface FileRouteTypes {
     | '/artisan/auth/forgot-password'
     | '/artisan/auth/login'
     | '/artisan/auth/register'
+    | '/client/auth/register'
   id:
     | '__root__'
     | '/'
@@ -141,6 +160,7 @@ export interface FileRouteTypes {
     | '/artisan/auth/forgot-password/'
     | '/artisan/auth/login/'
     | '/artisan/auth/register/'
+    | '/client/auth/register/'
   fileRoutesById: FileRoutesById
 }
 
@@ -150,6 +170,7 @@ export interface RootRouteChildren {
   ArtisanAuthForgotPasswordIndexRoute: typeof ArtisanAuthForgotPasswordIndexRoute
   ArtisanAuthLoginIndexRoute: typeof ArtisanAuthLoginIndexRoute
   ArtisanAuthRegisterIndexRoute: typeof ArtisanAuthRegisterIndexRoute
+  ClientAuthRegisterIndexRoute: typeof ClientAuthRegisterIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -158,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArtisanAuthForgotPasswordIndexRoute: ArtisanAuthForgotPasswordIndexRoute,
   ArtisanAuthLoginIndexRoute: ArtisanAuthLoginIndexRoute,
   ArtisanAuthRegisterIndexRoute: ArtisanAuthRegisterIndexRoute,
+  ClientAuthRegisterIndexRoute: ClientAuthRegisterIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -174,7 +196,8 @@ export const routeTree = rootRoute
         "/artisan/dashboard/",
         "/artisan/auth/forgot-password/",
         "/artisan/auth/login/",
-        "/artisan/auth/register/"
+        "/artisan/auth/register/",
+        "/client/auth/register/"
       ]
     },
     "/": {
@@ -191,6 +214,9 @@ export const routeTree = rootRoute
     },
     "/artisan/auth/register/": {
       "filePath": "artisan/auth/register/index.tsx"
+    },
+    "/client/auth/register/": {
+      "filePath": "client/auth/register/index.tsx"
     }
   }
 }
