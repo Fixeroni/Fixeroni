@@ -5,12 +5,12 @@
 import { create } from "zustand";
 
 type State = {
-    showVerification: boolean;
-}
+  showVerification: boolean;
+};
 
 type Action = {
-    setShowVerification: (value: boolean) => void;
-}
+  setShowVerification: (value: boolean) => void;
+};
 
 export const useVerificationStore = create<State & Action>((set) => ({
   showVerification: false,

@@ -12,6 +12,7 @@ import Input from "../../../../components/auth/Input";
 import { Upload } from "lucide-react";
 import { useState } from "react";
 import { useVerificationStore } from "../../../../stores/auth/useVerificationStore";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 export const Route = createFileRoute("/artisan/auth/register/")({
   component: RouteComponent,
@@ -265,36 +266,55 @@ function VerificationAndSecurity() {
   );
 }
 
-function VerificationConfirmation () {
-
+function VerificationConfirmation() {
   return (
     <article className="flex flex-col gap-8">
       <article className="flex gap-4 items-center justify-center">
-        {
-          Array.from({ length: 4 }).map((_, index) => (
-            <input 
-              className="w-[75px] h-[75px] border border-primary focus:outline-none text-2xl font-bold flex flex-col justify-center items-center"
-              name
-              type="text"
-              maxLength={1}
-            />
-          ))
-        }
+        {Array.from({ length: 4 }).map((_, index) => (
+          <input
+            className="w-[75px] h-[75px] border border-primary focus:outline-none text-2xl font-bold flex flex-col justify-center items-center"
+            name={`code-${index}`}
+            type="text"
+            maxLength={1}
+          />
+        ))}
+      </article>
+
+      <article className="flex flex-col w-full justify-center items-center">
+        <CountdownCircleTimer
+          isPlaying
+          duration={300} // 60 seconds
+          colors={["#0F9067", "#F7B801", "#A30000", "#A30000"]}
+          colorsTime={[40, 20, 10, 0]} // Change color as time progresses
+          size={120} // Adjust size
+          strokeWidth={4} // Adjust thickness
+        >
+          {({ remainingTime }) => (
+            <div className="font-semibold text-primary flex flex-col gap-2 justify-center items-center text-xl">
+              <span className="text-sm text-gray-500">Remaining</span>
+
+              {remainingTime}
+
+              <span className="text-sm text-gray-500">seconds</span>
+            </div>
+          )}
+        </CountdownCircleTimer>
       </article>
     </article>
-  )
+  );
 }
 
-function VerificationContent () {
+function VerificationContent() {
   return (
     <article className="flex flex-col gap-4 text-center justify-center items-center">
-      <h2 className="text-2xl font-semibold">
-        Enter Verification code
-      </h2>
+      <h2 className="text-2xl font-semibold">Enter Verification code</h2>
 
-      <p className="text-[#535353] text-lg">We sent a verification code to <span className="font-bold text-black">me#gmail.com</span></p>
+      <p className="text-[#535353] text-lg">
+        We sent a verification code to{" "}
+        <span className="font-bold text-black">me#gmail.com</span>
+      </p>
     </article>
-  )
+  );
 }
 
 function RouteComponent() {
@@ -308,30 +328,30 @@ function RouteComponent() {
         <img src="/images/branding/logo.png" className="w-40" />
 
         {/* Section text */}
-        {
-          showVerification ?
-          <VerificationContent /> :
+        {showVerification ? (
+          <VerificationContent />
+        ) : (
           <article className="flex flex-col gap-2 justify-center items-center text-center">
-          <h2 className="text-2xl font-medium">Welcome to Fixeroni</h2>
-          <p className="text-gray-secondary text-md">
-            Let us get things running smoothly and <br /> keep the world in
-            working order.
-          </p>
-        </article>
-        }
+            <h2 className="text-2xl font-medium">Welcome to Fixeroni</h2>
+            <p className="text-gray-secondary text-md">
+              Let us get things running smoothly and <br /> keep the world in
+              working order.
+            </p>
+          </article>
+        )}
 
         {/* Login / Register switch */}
-        {
-          showVerification ?
+        {showVerification ? (
           <Switch
             login={<LoginContent />}
             register={<VerificationConfirmation />}
-          /> :
+          />
+        ) : (
           <Switch
             login={<LoginContent />}
             register={<VerificationAndSecurity />}
           />
-        }
+        )}
       </AuthHoverCard>
     </AuthLayout>
   );
