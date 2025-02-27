@@ -7,16 +7,23 @@ import type { Feature as FeatureType } from '../../../../types'
 import Switch from '../../../../components/auth/login/Switch'
 import RegisterContent from '../../../../components/auth/RegisterContent'
 import LoginContent from '../../../../components/auth/LoginContent'
+import { fields } from '../../../../data/register'
+import Input from '../../../../components/auth/Input'
 
 export const Route = createFileRoute('/artisan/auth/register/')({
   component: RouteComponent,
 })
 
 function Register () {
-  
 
   return (
-    <h2>Hello</h2>
+    <article className="flex flex-col gap-2">
+      {
+        fields.map((field: { name: string, placeholder: string, type: string, required: boolean }, index: number) => (
+          <Input name={field.name} key={index} placeholder={field.placeholder} />
+        ))
+      }
+    </article>
   )
 }
 
