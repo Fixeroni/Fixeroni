@@ -4,7 +4,15 @@
 
 import { create } from "zustand";
 
-const useVerificationStore = create((set) => ({
+type State = {
+    showVerification: boolean;
+}
+
+type Action = {
+    setShowVerification: (value: boolean) => void;
+}
+
+export const useVerificationStore = create<State & Action>((set) => ({
   showVerification: false,
   setShowVerification: (value: boolean) => set({ showVerification: value }),
 }));
