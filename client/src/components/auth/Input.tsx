@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 
 function Input(props: any) {
   return (
-    <article className="bg-white rounded-xl p-2 text-[#616161] md:max-w-[400px] md:min-w-[400px] flex gap-2 items-center">
+    <article className="bg-white rounded-xl px-4 py-2 placeholder:text-sm text-[#616161] md:max-w-[400px] md:min-w-[400px] flex gap-2 items-center">
       {props.startContent}
 
       <input
