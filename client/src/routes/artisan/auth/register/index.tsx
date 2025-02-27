@@ -78,7 +78,7 @@ function PersonalDetails() {
       document.getElementById("work_portfolio")?.click();
     }
 
-    console.log(workPortfolio)
+    console.log(workPortfolio);
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -180,6 +180,90 @@ function PersonalDetails() {
   );
 }
 
+function VerificationAndSecurity() {
+  // Track the governmentId and profilePicture
+  const [governmentId, setGovernmentId] = useState<File | null>(null);
+  const [profilePicture, setProfilePicture] = useState<File | null>(null);
+
+  // Hand the upload of the governmentId
+  const handleGovernmentId = (open = true) => {
+    if (open) {
+      document.getElementById("governmentId")?.click();
+    }
+  };
+
+  const handleProfilePicture = (open = true) => {
+    if (open) {
+      document.getElementById("profilePicture")?.click();
+    }
+  };
+
+  return (
+    <article className="flex flex-col gap-8 items-center">
+      <h2 className="text-2xl font-medium">Verification and Security</h2>
+
+      <form action="" className="flex flex-col gap-4">
+        {governmentId ? (
+          <article className="flex gap-4 items-center">
+            <Upload className="text-primary" size={24} />
+            <p>{governmentId.name}</p>
+          </article>
+        ) : (
+          <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between">
+            Government Id
+            <Upload
+              onClick={() => handleGovernmentId(true)}
+              size={20}
+              className="text-primary cursor-pointer"
+            />
+          </article>
+        )}
+
+        {/* Hidden File Input */}
+        <input
+          type="file"
+          name="governmentId"
+          id="governmentId"
+          className="hidden"
+          onChange={() => handleGovernmentId(false)}
+        />
+
+        {profilePicture ? (
+          <article className="flex gap-4 items-center">
+            <Upload className="text-primary" size={24} />
+            <p>{profilePicture.name}</p>
+          </article>
+        ) : (
+          <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between">
+            Profile Picture
+            <Upload
+              onClick={() => handleProfilePicture(true)}
+              size={20}
+              className="text-primary cursor-pointer"
+            />
+          </article>
+        )}
+
+        {/* Hidden File Input */}
+        <input
+          type="file"
+          name="profilePicture"
+          id="profilePicture"
+          className="hidden"
+          onChange={() => handleProfilePicture(false)}
+        />
+
+        <button
+          type="submit"
+          className="font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px]"
+        >
+          Next
+        </button>
+      </form>
+    </article>
+  );
+}
+
 function RouteComponent() {
   return (
     <AuthLayout>
@@ -197,7 +281,10 @@ function RouteComponent() {
         </article>
 
         {/* Login / Register switch */}
-        <Switch login={<LoginContent />} register={<PersonalDetails />} />
+        <Switch
+          login={<LoginContent />}
+          register={<VerificationAndSecurity />}
+        />
       </AuthHoverCard>
     </AuthLayout>
   );
