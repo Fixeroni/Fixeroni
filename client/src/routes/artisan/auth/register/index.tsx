@@ -257,14 +257,23 @@ function VerificationAndSecurity() {
           type="submit"
           className="font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px]"
         >
-          Next
+          Submit
         </button>
       </form>
     </article>
   );
 }
 
+function VerificationCode () {
+  return (
+    <article className="flex flex-col gap-8">
+
+    </article>
+  )
+}
+
 function RouteComponent() {
+
   return (
     <AuthLayout>
       <AuthHoverCard>
