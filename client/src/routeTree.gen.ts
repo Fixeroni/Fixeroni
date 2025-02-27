@@ -10,167 +10,167 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as ArtisanDashboardIndexImport } from './routes/artisan/dashboard/index'
-import { Route as ClientAuthRegisterIndexImport } from './routes/client/auth/register/index'
-import { Route as ArtisanAuthRegisterIndexImport } from './routes/artisan/auth/register/index'
-import { Route as ArtisanAuthLoginIndexImport } from './routes/artisan/auth/login/index'
-import { Route as ArtisanAuthForgotPasswordIndexImport } from './routes/artisan/auth/forgot-password/index'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as IndexImport } from "./routes/index";
+import { Route as ArtisanDashboardIndexImport } from "./routes/artisan/dashboard/index";
+import { Route as ClientAuthRegisterIndexImport } from "./routes/client/auth/register/index";
+import { Route as ArtisanAuthRegisterIndexImport } from "./routes/artisan/auth/register/index";
+import { Route as ArtisanAuthLoginIndexImport } from "./routes/artisan/auth/login/index";
+import { Route as ArtisanAuthForgotPasswordIndexImport } from "./routes/artisan/auth/forgot-password/index";
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ArtisanDashboardIndexRoute = ArtisanDashboardIndexImport.update({
-  id: '/artisan/dashboard/',
-  path: '/artisan/dashboard/',
+  id: "/artisan/dashboard/",
+  path: "/artisan/dashboard/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ClientAuthRegisterIndexRoute = ClientAuthRegisterIndexImport.update({
-  id: '/client/auth/register/',
-  path: '/client/auth/register/',
+  id: "/client/auth/register/",
+  path: "/client/auth/register/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ArtisanAuthRegisterIndexRoute = ArtisanAuthRegisterIndexImport.update({
-  id: '/artisan/auth/register/',
-  path: '/artisan/auth/register/',
+  id: "/artisan/auth/register/",
+  path: "/artisan/auth/register/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ArtisanAuthLoginIndexRoute = ArtisanAuthLoginIndexImport.update({
-  id: '/artisan/auth/login/',
-  path: '/artisan/auth/login/',
+  id: "/artisan/auth/login/",
+  path: "/artisan/auth/login/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ArtisanAuthForgotPasswordIndexRoute =
   ArtisanAuthForgotPasswordIndexImport.update({
-    id: '/artisan/auth/forgot-password/',
-    path: '/artisan/auth/forgot-password/',
+    id: "/artisan/auth/forgot-password/",
+    path: "/artisan/auth/forgot-password/",
     getParentRoute: () => rootRoute,
-  } as any)
+  } as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/artisan/dashboard/': {
-      id: '/artisan/dashboard/'
-      path: '/artisan/dashboard'
-      fullPath: '/artisan/dashboard'
-      preLoaderRoute: typeof ArtisanDashboardIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/artisan/auth/forgot-password/': {
-      id: '/artisan/auth/forgot-password/'
-      path: '/artisan/auth/forgot-password'
-      fullPath: '/artisan/auth/forgot-password'
-      preLoaderRoute: typeof ArtisanAuthForgotPasswordIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/artisan/auth/login/': {
-      id: '/artisan/auth/login/'
-      path: '/artisan/auth/login'
-      fullPath: '/artisan/auth/login'
-      preLoaderRoute: typeof ArtisanAuthLoginIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/artisan/auth/register/': {
-      id: '/artisan/auth/register/'
-      path: '/artisan/auth/register'
-      fullPath: '/artisan/auth/register'
-      preLoaderRoute: typeof ArtisanAuthRegisterIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/client/auth/register/': {
-      id: '/client/auth/register/'
-      path: '/client/auth/register'
-      fullPath: '/client/auth/register'
-      preLoaderRoute: typeof ClientAuthRegisterIndexImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/artisan/dashboard/": {
+      id: "/artisan/dashboard/";
+      path: "/artisan/dashboard";
+      fullPath: "/artisan/dashboard";
+      preLoaderRoute: typeof ArtisanDashboardIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/artisan/auth/forgot-password/": {
+      id: "/artisan/auth/forgot-password/";
+      path: "/artisan/auth/forgot-password";
+      fullPath: "/artisan/auth/forgot-password";
+      preLoaderRoute: typeof ArtisanAuthForgotPasswordIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/artisan/auth/login/": {
+      id: "/artisan/auth/login/";
+      path: "/artisan/auth/login";
+      fullPath: "/artisan/auth/login";
+      preLoaderRoute: typeof ArtisanAuthLoginIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/artisan/auth/register/": {
+      id: "/artisan/auth/register/";
+      path: "/artisan/auth/register";
+      fullPath: "/artisan/auth/register";
+      preLoaderRoute: typeof ArtisanAuthRegisterIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/client/auth/register/": {
+      id: "/client/auth/register/";
+      path: "/client/auth/register";
+      fullPath: "/client/auth/register";
+      preLoaderRoute: typeof ClientAuthRegisterIndexImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/artisan/dashboard': typeof ArtisanDashboardIndexRoute
-  '/artisan/auth/forgot-password': typeof ArtisanAuthForgotPasswordIndexRoute
-  '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
-  '/artisan/auth/register': typeof ArtisanAuthRegisterIndexRoute
-  '/client/auth/register': typeof ClientAuthRegisterIndexRoute
+  "/": typeof IndexRoute;
+  "/artisan/dashboard": typeof ArtisanDashboardIndexRoute;
+  "/artisan/auth/forgot-password": typeof ArtisanAuthForgotPasswordIndexRoute;
+  "/artisan/auth/login": typeof ArtisanAuthLoginIndexRoute;
+  "/artisan/auth/register": typeof ArtisanAuthRegisterIndexRoute;
+  "/client/auth/register": typeof ClientAuthRegisterIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/artisan/dashboard': typeof ArtisanDashboardIndexRoute
-  '/artisan/auth/forgot-password': typeof ArtisanAuthForgotPasswordIndexRoute
-  '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
-  '/artisan/auth/register': typeof ArtisanAuthRegisterIndexRoute
-  '/client/auth/register': typeof ClientAuthRegisterIndexRoute
+  "/": typeof IndexRoute;
+  "/artisan/dashboard": typeof ArtisanDashboardIndexRoute;
+  "/artisan/auth/forgot-password": typeof ArtisanAuthForgotPasswordIndexRoute;
+  "/artisan/auth/login": typeof ArtisanAuthLoginIndexRoute;
+  "/artisan/auth/register": typeof ArtisanAuthRegisterIndexRoute;
+  "/client/auth/register": typeof ClientAuthRegisterIndexRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/artisan/dashboard/': typeof ArtisanDashboardIndexRoute
-  '/artisan/auth/forgot-password/': typeof ArtisanAuthForgotPasswordIndexRoute
-  '/artisan/auth/login/': typeof ArtisanAuthLoginIndexRoute
-  '/artisan/auth/register/': typeof ArtisanAuthRegisterIndexRoute
-  '/client/auth/register/': typeof ClientAuthRegisterIndexRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/artisan/dashboard/": typeof ArtisanDashboardIndexRoute;
+  "/artisan/auth/forgot-password/": typeof ArtisanAuthForgotPasswordIndexRoute;
+  "/artisan/auth/login/": typeof ArtisanAuthLoginIndexRoute;
+  "/artisan/auth/register/": typeof ArtisanAuthRegisterIndexRoute;
+  "/client/auth/register/": typeof ClientAuthRegisterIndexRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | '/artisan/dashboard'
-    | '/artisan/auth/forgot-password'
-    | '/artisan/auth/login'
-    | '/artisan/auth/register'
-    | '/client/auth/register'
-  fileRoutesByTo: FileRoutesByTo
+    | "/"
+    | "/artisan/dashboard"
+    | "/artisan/auth/forgot-password"
+    | "/artisan/auth/login"
+    | "/artisan/auth/register"
+    | "/client/auth/register";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/'
-    | '/artisan/dashboard'
-    | '/artisan/auth/forgot-password'
-    | '/artisan/auth/login'
-    | '/artisan/auth/register'
-    | '/client/auth/register'
+    | "/"
+    | "/artisan/dashboard"
+    | "/artisan/auth/forgot-password"
+    | "/artisan/auth/login"
+    | "/artisan/auth/register"
+    | "/client/auth/register";
   id:
-    | '__root__'
-    | '/'
-    | '/artisan/dashboard/'
-    | '/artisan/auth/forgot-password/'
-    | '/artisan/auth/login/'
-    | '/artisan/auth/register/'
-    | '/client/auth/register/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/artisan/dashboard/"
+    | "/artisan/auth/forgot-password/"
+    | "/artisan/auth/login/"
+    | "/artisan/auth/register/"
+    | "/client/auth/register/";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ArtisanDashboardIndexRoute: typeof ArtisanDashboardIndexRoute
-  ArtisanAuthForgotPasswordIndexRoute: typeof ArtisanAuthForgotPasswordIndexRoute
-  ArtisanAuthLoginIndexRoute: typeof ArtisanAuthLoginIndexRoute
-  ArtisanAuthRegisterIndexRoute: typeof ArtisanAuthRegisterIndexRoute
-  ClientAuthRegisterIndexRoute: typeof ClientAuthRegisterIndexRoute
+  IndexRoute: typeof IndexRoute;
+  ArtisanDashboardIndexRoute: typeof ArtisanDashboardIndexRoute;
+  ArtisanAuthForgotPasswordIndexRoute: typeof ArtisanAuthForgotPasswordIndexRoute;
+  ArtisanAuthLoginIndexRoute: typeof ArtisanAuthLoginIndexRoute;
+  ArtisanAuthRegisterIndexRoute: typeof ArtisanAuthRegisterIndexRoute;
+  ClientAuthRegisterIndexRoute: typeof ClientAuthRegisterIndexRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -180,11 +180,11 @@ const rootRouteChildren: RootRouteChildren = {
   ArtisanAuthLoginIndexRoute: ArtisanAuthLoginIndexRoute,
   ArtisanAuthRegisterIndexRoute: ArtisanAuthRegisterIndexRoute,
   ClientAuthRegisterIndexRoute: ClientAuthRegisterIndexRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {

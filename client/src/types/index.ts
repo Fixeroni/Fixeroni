@@ -16,10 +16,10 @@ export type User = {
 };
 
 export type Feature = {
-  image: string,
-  title: string,
-  description: string,
-  side: "left" | "right",
-  ctaText: string,
-  cta: string
-}
+  image: string;
+  title: string;
+  description: string;
+  side: "left" | "right";
+  ctaText: string;
+  cta: string;
+};

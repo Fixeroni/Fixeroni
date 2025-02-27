@@ -26,13 +26,31 @@ function LoginContent() {
       <form className="flex flex-col gap-8 justify-center items-center">
         <Input
           type="email"
-          startContent={<Mail className="text-primary-light" size={30} strokeWidth={2} />}
+          startContent={
+            <Mail className="text-primary-light" size={30} strokeWidth={2} />
+          }
           placeholder="Enter email address"
         />
 
         <Input
           type={showPassword ? "text" : "password"}
-          startContent={showPassword ? <EyeOff className="text-primary-light hover:cursor-pointer" size={30} strokeWidth={2} onClick={() => setShowPassword((prev) => !prev)} /> : <Eye className="text-primary-light hover:cursor-pointer" size={30} strokeWidth={2} onClick={() => setShowPassword((prev) => !prev)} />}
+          startContent={
+            showPassword ? (
+              <EyeOff
+                className="text-primary-light hover:cursor-pointer"
+                size={30}
+                strokeWidth={2}
+                onClick={() => setShowPassword((prev) => !prev)}
+              />
+            ) : (
+              <Eye
+                className="text-primary-light hover:cursor-pointer"
+                size={30}
+                strokeWidth={2}
+                onClick={() => setShowPassword((prev) => !prev)}
+              />
+            )
+          }
           placeholder="Enter password"
         />
 
@@ -40,12 +58,22 @@ function LoginContent() {
           Forgot password ?
         </Link>
 
-        <button className="font-semibold text-white bg-primary shadow-sm hover:shadow-md transition duration-300 p-2 hover:cursor-pointer rounded-lg md:min-w-[400px] md:max-w-[400px]" type="submit">
+        <button
+          className="font-semibold text-white bg-primary shadow-sm hover:shadow-md transition duration-300 p-2 hover:cursor-pointer rounded-lg md:min-w-[400px] md:max-w-[400px]"
+          type="submit"
+        >
           Login
         </button>
 
         <article className="flex gap-2 items-center text-center justify-center">
-          By signing up, you agree to the Fixeroni <Link to="/" className="text-primary underline">Terms of Service</Link> and <Link to="/" className="text-primary underline">Privacy Policy</Link>
+          By signing up, you agree to the Fixeroni{" "}
+          <Link to="/" className="text-primary underline">
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link to="/" className="text-primary underline">
+            Privacy Policy
+          </Link>
         </article>
       </form>
     </article>

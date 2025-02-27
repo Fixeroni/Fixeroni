@@ -6,16 +6,12 @@ import Feature from "./register/Feature";
 
 function RegisterContent() {
   return (
-
-        <article className="flex flex-col gap-4 items-center justify-cente">
-          {
-            features.map((feature: FeatureType, index: number) => (
-              <Feature key={index} {...feature} />
-            ))
-          }
-        </article>
-
-  )
+    <article className="flex flex-col gap-4 items-center justify-cente">
+      {features.map((feature: FeatureType, index: number) => (
+        <Feature key={index} {...feature} />
+      ))}
+    </article>
+  );
 }
 
 export default RegisterContent;
