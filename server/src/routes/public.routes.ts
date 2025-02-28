@@ -286,14 +286,14 @@ router.post('/artisan/signin', authLimiter, async (req, res) => {
 router.post(
   '/artisan/update/personal-details', 
   authLimiter, 
-  upload.single('workPortfolio'), // This needs to come before the route handler
+  upload.single('workPortfolio'),
   async (req, res) => {
     try {
       console.log('Request body:', req.body);
       
       const serviceCategory = req.body.serviceCategory;
       const yearsOfExperience = req.body.yearsOfExperience;
-      const workPortfolio = req.file; // Changed from req.files to req.file
+      const workPortfolio = req.file; // This contains the uploaded file
       const artisanId = req.body.artisanId;
 
       console.log('Parsed values:', {
@@ -320,21 +320,26 @@ router.post(
         return res.status(401).json({ message: 'Unauthorized' });
       }
 
-      // Handle file upload first if there's a file
-      let workPortfolioUrl = '';
+      // Prepare the update data
+      const updateData: any = {
+        serviceCategory,
+        yearsOfExperience: yearsOfExperienceInt,
+      };
+
+      // Add work portfolio fields if a file was uploaded
       if (workPortfolio) {
-        // TODO: Upload file to storage service
-        workPortfolioUrl = 'temporary_url'; // Replace with actual upload logic
+        // TODO: In production, upload file to cloud storage (S3, etc)
+        // For now, we'll store some metadata about the file
+        updateData.workPortfolio = `uploads/${workPortfolio.filename}`;  // Replace with actual upload URL
+        updateData.workPortfolioName = workPortfolio.originalname;
+        updateData.workPortfolioSize = workPortfolio.size;
+        updateData.workPortfolioType = workPortfolio.mimetype;
       }
 
       // Update artisan
       const updatedArtisan = await prisma.artisan.update({
         where: { id: artisanId },
-        data: {
-          serviceCategory,
-          workPortfolio: workPortfolioUrl || undefined,
-          yearsOfExperience: yearsOfExperienceInt
-        }
+        data: updateData
       });
 
       res.json({

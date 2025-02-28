@@ -11,14 +11,16 @@ model Artisan {
   id                String            @id @default(uuid())
   email             String            @unique
   password          String? // Made optional to support social auth
-  fixeroniTag      String            @unique
+  fixeroniTag       String            @unique
   yearsOfExperience Int?
   category          String?
   firstName         String?
-  linkToPortfolio   String?
   address           String?
-  categoryOfService String?
-  serviceCategory   String?
+  workPortfolio     String?          // Store the URL/path to the work portfolio file
+  workPortfolioName String?          // Store the original filename
+  workPortfolioSize Int?             // Store file size in bytes
+  workPortfolioType String?          // Store the MIME type
+  serviceCategory   String?          // Keep only one service category field
   governmentIdLink  String?
   profilePicture    String?
   confirmationCode  ConfirmationCode?
