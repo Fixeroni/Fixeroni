@@ -1,5 +1,3 @@
-// This is your Prisma schema file
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -7,6 +5,37 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+}
+
+model Artisan {
+  id                String            @id @default(uuid())
+  email             String            @unique
+  password          String? // Made optional to support social auth
+  fixeroni_tag      String            @unique
+  yearsOfExperience Int
+  category          String
+  linkToPortfolio   String
+  address           String
+  categoryOfService String
+  governmentIdLink  String
+  profilePicture    String
+  confirmationCode  ConfirmationCode?
+  accountType       String
+  provider          AuthProvider      @default(local) // Added provider field
+  providerId        String? // Added providerId for social auth
+  refreshTokens     RefreshToken[] // Added refresh tokens relation
+  createdAt         DateTime          @default(now()) // Added audit fields
+  updatedAt         DateTime          @updatedAt
+
+  @@index([provider, providerId]) // Added index for social auth lookups
+}
+
+model ConfirmationCode {
+  id        String   @id @default(uuid())
+  expires   DateTime
+  code      String
+  artisan   Artisan  @relation(fields: [artisanId], references: [id])
+  artisanId String   @unique
 }
 
 model User {
@@ -25,13 +54,15 @@ model User {
 }
 
 model RefreshToken {
-  id        String   @id @default(uuid())
-  token     String   @unique
+  id        String    @id @default(uuid())
+  token     String    @unique
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
   expiresAt DateTime
   revokedAt DateTime?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
+  Artisan   Artisan?  @relation(fields: [artisanId], references: [id])
+  artisanId String?
 
   @@index([userId])
 }
