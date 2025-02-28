@@ -265,14 +265,14 @@ router.post('/artisan/signin', authLimiter, async (req, res) => {
 
 router.post('/artisan/update/personal-details', authLimiter, async (req, res) => {
   try {
-    const { categoryOfService, workPortfolio, yearsOfExperience } = req.body;
+    const { categoryOfService, workPortfolio, yearsOfExperience, artisan_id } = req.body;
 
     if(!categoryOfService || !workPortfolio || !yearsOfExperience) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
     const artisan = await prisma.artisan.findUnique({
-      where: { id: req.user.id }
+      where: { id: artisan_id }
     });
 
     if(!artisan) {

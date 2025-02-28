@@ -68,10 +68,13 @@ function Register() {
           fixeroniTag: values.fixeroniTag
         });
         
-        // Handle successful registration
-        incrementStep();
-
+        // Store the tokens
+        localStorage.setItem('accessToken', res.data.accessToken);
+        localStorage.setItem('refreshToken', res.data.refreshToken);
+        
+        // Update session with user data
         login(res.data.artisan);
+        incrementStep();
       } catch (error: any) {
         // Handle error
         setStatus(error.response?.data?.message || 'Registration failed');
@@ -203,15 +206,18 @@ function PersonalDetails() {
         if (workPortfolio) {
           formData.append('work_portfolio', workPortfolio);
         }
+        formData.append('artisan_id', artisan?.id || '');
 
-        // Attach the artisan's id to the form data
-        formData.append('artisan_id', artisan?.id);
-        // Submit form data
-        const response = await axios.post(`${urls.backend}/api/artisan/personal-details`, 
+        // Get token from localStorage
+        const token = localStorage.getItem('accessToken');
+        
+        const response = await axios.post(
+          `${urls.backend}/api/artisan/update/personal-details`, 
           formData,
           {
             headers: {
               'Content-Type': 'multipart/form-data',
+              'Authorization': `Bearer ${token}` // Add the token to headers
             },
           }
         );
@@ -220,7 +226,11 @@ function PersonalDetails() {
         incrementStep();
         
       } catch (error: any) {
-        setStatus(error.response?.data?.message || 'Failed to update personal details');
+        if (error.response?.status === 401) {
+          setStatus('Session expired. Please login again.');
+        } else {
+          setStatus(error.response?.data?.message || 'Failed to update personal details');
+        }
         console.error('Error:', error);
       } finally {
         setSubmitting(false);
