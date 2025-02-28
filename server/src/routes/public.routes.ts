@@ -2,7 +2,7 @@ import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { UserCredentials } from '../types/auth.types';
-import { verifyGoogleToken, verifyFacebookToken, verifyAppleToken } from '../controllers/social-auth.controller';
+import { verifyGoogleToken, verifyFacebookToken, verifyAppleToken, verifyArtisanGoogleToken } from '../controllers/social-auth.controller';
 import prisma from '../lib/prisma';
 import { TokenService } from '../services/token.service';
 import { authLimiter } from '../middleware/rate-limit.middleware';
@@ -152,5 +152,123 @@ router.post('/logout', async (req, res) => {
 router.post('/auth/google/verify', authLimiter, verifyGoogleToken);
 router.post('/auth/facebook/verify', authLimiter, verifyFacebookToken);
 router.post('/auth/apple/verify', authLimiter, verifyAppleToken);
+
+// Artisan signup route
+router.post('/artisan/signup', authLimiter, async (req, res) => {
+  try {
+    const { 
+      fixeroni_tag, 
+      email, 
+      password,
+      yearsOfExperience,
+      category,
+      linkToPortfolio,
+      address,
+      categoryOfService,
+      governmentIdLink,
+      profilePicture
+    } = req.body;
+
+    // Validate required fields
+    if (!fixeroni_tag || !email || !password) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+
+    // Check if artisan already exists
+    const existingArtisan = await prisma.artisan.findFirst({
+      where: {
+        OR: [
+          { fixeroni_tag },
+          { email }
+        ]
+      }
+    });
+
+    if (existingArtisan) {
+      return res.status(400).json({ 
+        message: 'Artisan already exists with this fixeroni_tag or email' 
+      });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create new artisan
+    const newArtisan = await prisma.artisan.create({
+      data: {
+        fixeroni_tag,
+        email,
+        password: hashedPassword,
+        yearsOfExperience: yearsOfExperience || 0,
+        category: category || 'uncategorized',
+        linkToPortfolio: linkToPortfolio || '',
+        address: address || '',
+        categoryOfService: categoryOfService || 'uncategorized',
+        governmentIdLink: governmentIdLink || '',
+        profilePicture: profilePicture || '',
+        accountType: 'artisan',
+        provider: 'local'
+      }
+    });
+
+    // Generate tokens
+    const tokens = await TokenService.generateAuthTokens(newArtisan.id);
+
+    // Remove password from response
+    const { password: _, ...artisanWithoutPassword } = newArtisan;
+
+    res.status(201).json({
+      message: 'Artisan created successfully',
+      ...tokens,
+      artisan: artisanWithoutPassword
+    });
+  } catch (error) {
+    console.error('Artisan signup error:', error);
+    res.status(500).json({ message: 'Error creating artisan' });
+  }
+});
+
+// Artisan signin route
+router.post('/artisan/signin', authLimiter, async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+
+    // Find artisan
+    const artisan = await prisma.artisan.findUnique({
+      where: { email }
+    });
+
+    if (!artisan || !artisan.password) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(password, artisan.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid credentials' });
+    }
+
+    // Generate tokens
+    const tokens = await TokenService.generateAuthTokens(artisan.id);
+
+    const { password: _, ...artisanWithoutPassword } = artisan;
+
+    res.json({
+      message: 'Authentication successful',
+      ...tokens,
+      artisan: artisanWithoutPassword
+    });
+  } catch (error) {
+    console.error('Artisan signin error:', error);
+    res.status(500).json({ message: 'Error during sign in' });
+  }
+});
+
+// Add artisan Google auth route
+router.post('/artisan/auth/google/verify', authLimiter, verifyArtisanGoogleToken);
 
 export default router;

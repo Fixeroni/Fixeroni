@@ -173,3 +173,68 @@ export const verifyAppleToken = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Error verifying Apple token' });
   }
 };
+
+export const verifyArtisanGoogleToken = async (req: Request, res: Response) => {
+  try {
+    const { credential } = req.body;
+
+    if (!credential) {
+      return res.status(400).json({ message: 'Google token is required' });
+    }
+
+    // Verify the Google token
+    const ticket = await googleClient.verifyIdToken({
+      idToken: credential,
+      audience: process.env.GOOGLE_CLIENT_ID
+    });
+
+    const payload = ticket.getPayload();
+    
+    if (!payload) {
+      return res.status(400).json({ message: 'Invalid token' });
+    }
+
+    // Check if artisan exists
+    let artisan = await prisma.artisan.findFirst({
+      where: {
+        AND: [
+          { provider: 'google' as AuthProvider },
+          { providerId: payload.sub }
+        ]
+      }
+    });
+
+    if (!artisan) {
+      // Create new artisan with required fields
+      artisan = await prisma.artisan.create({
+        data: {
+          fixeroni_tag: `artisan_${payload.sub}`,
+          email: payload.email!,
+          provider: 'google',
+          providerId: payload.sub,
+          // Set default values for required fields
+          yearsOfExperience: 0,
+          category: 'uncategorized',
+          linkToPortfolio: '',
+          address: '',
+          categoryOfService: 'uncategorized',
+          governmentIdLink: '',
+          profilePicture: payload.picture || '',
+          accountType: 'artisan'
+        }
+      });
+    }
+
+    // Generate tokens
+    const tokens = await TokenService.generateAuthTokens(artisan.id);
+    const { password: _, ...artisanWithoutPassword } = artisan;
+
+    res.json({
+      ...tokens,
+      artisan: artisanWithoutPassword
+    });
+  } catch (error) {
+    console.error('Google verification error:', error);
+    res.status(500).json({ message: 'Error verifying Google token' });
+  }
+};
