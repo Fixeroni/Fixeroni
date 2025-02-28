@@ -722,6 +722,7 @@ function VerificationConfirmation() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
+  const [tokenExpired, setTokenExpired] = useState(false);
 
   const {
     otp,
@@ -735,6 +736,9 @@ function VerificationConfirmation() {
     if (timeLeft > 0) {
       const timer = setTimeout(() => setTimeLeft(t => t - 1), 1000);
       return () => clearTimeout(timer);
+    } else {
+      setTokenExpired(true);
+      setError('Your verification code has expired. Please request a new one.');
     }
   }, [timeLeft]);
 
@@ -745,6 +749,9 @@ function VerificationConfirmation() {
 
   const sendVerificationCode = async () => {
     try {
+      setTokenExpired(false); // Reset expired state
+      setError(null);
+      
       const token = localStorage.getItem('accessToken');
       await axios.post(
         `${urls.backend}/api/artisan/send-verification`,
@@ -761,14 +768,20 @@ function VerificationConfirmation() {
       if (process.env.NODE_ENV === 'development') {
         setError('Check the server console for the OTP (development mode only)');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending verification code:', error);
-      setError('Failed to send verification code');
+      setError(error.response?.data?.message || 'Failed to send verification code');
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (tokenExpired) {
+      setError('This code has expired. Please request a new one.');
+      return;
+    }
+
     setIsSubmitting(true);
     setError(null);
     
@@ -786,7 +799,13 @@ function VerificationConfirmation() {
       
       incrementStep();
     } catch (error: any) {
-      setError(error.response?.data?.message || 'Verification failed');
+      const errorMessage = error.response?.data?.message || 'Verification failed';
+      setError(errorMessage);
+      
+      // Handle expired token specifically
+      if (errorMessage.toLowerCase().includes('expired')) {
+        setTokenExpired(true);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -816,7 +835,9 @@ function VerificationConfirmation() {
           <p className={`text-sm ${
             error.includes('Check the server console') 
               ? 'text-blue-500' 
-              : 'text-red-500'
+              : error.includes('expired')
+                ? 'text-orange-500'
+                : 'text-red-500'
           }`}>
             {error}
           </p>
@@ -830,7 +851,10 @@ function VerificationConfirmation() {
             colorsTime={[300, 150, 30, 0]}
             size={120}
             strokeWidth={4}
-            onComplete={() => ({ shouldRepeat: false })}
+            onComplete={() => {
+              setTokenExpired(true);
+              return { shouldRepeat: false };
+            }}
           >
             {({ remainingTime }) => (
               <div className="font-semibold text-primary flex flex-col gap-2 justify-center items-center text-xl">
@@ -840,22 +864,22 @@ function VerificationConfirmation() {
             )}
           </CountdownCircleTimer>
 
-          {timeLeft === 0 && (
+          {tokenExpired && (
             <button
               onClick={sendVerificationCode}
               className="text-primary hover:underline"
               type="button"
             >
-              Resend Code
+              Request New Code
             </button>
           )}
         </div>
 
         <button
           onClick={handleSubmit}
-          disabled={isSubmitting || otp.length !== 6 || timeLeft === 0}
+          disabled={isSubmitting || otp.length !== 6 || tokenExpired}
           className={`font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px] ${
-            isSubmitting || otp.length !== 6 || timeLeft === 0
+            isSubmitting || otp.length !== 6 || tokenExpired
               ? 'opacity-50 cursor-not-allowed'
               : 'hover:cursor-pointer hover:bg-primary/90'
           }`}
