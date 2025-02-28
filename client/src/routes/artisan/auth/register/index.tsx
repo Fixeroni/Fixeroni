@@ -318,8 +318,29 @@ function VerificationContent() {
 }
 
 function RouteComponent() {
-  // const showVerification = useVerificationStore(state => state.showVerification);
-  const showVerification = true;
+  const showVerification = useVerificationStore(state => state.showVerification);
+
+  // Track the current step
+  const 
+
+  const steps = [
+    {
+      id: 1,
+      component: <Register />
+    },
+    {
+      id: 2,
+      component: <PersonalDetails />
+    },
+    {
+      id: 3,
+      component: <VerificationAndSecurity />
+    },
+    {
+      id: 2,
+      component: <VerificationConfirmation />
+    }
+  ]
 
   return (
     <AuthLayout>
