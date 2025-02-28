@@ -1,32 +1,32 @@
 export const fields = [
   {
-    name: "firstName",
-    placeholder: "First Name",
-    type: "text",
-    required: true,
-  },
-  {
-    name: "emailAddress",
-    placeholder: "Email address",
+    name: "email",
+    placeholder: "Enter email address",
     type: "email",
-    required: true,
-  },
-  {
-    name: "fixeroniTag",
-    placeholder: "Fixeroni tag",
-    type: "text",
-    required: true,
+    required: true
   },
   {
     name: "password",
-    placeholder: "Password",
+    placeholder: "Enter password",
     type: "password",
-    required: true,
+    required: true
   },
   {
     name: "confirmPassword",
     placeholder: "Confirm password",
     type: "password",
-    required: true,
+    required: true
   },
+  {
+    name: "firstName",
+    placeholder: "Enter first name",
+    type: "text",
+    required: true
+  },
+  {
+    name: "fixeroniTag",
+    placeholder: "Enter Fixeroni tag",
+    type: "text",
+    required: true
+  }
 ];

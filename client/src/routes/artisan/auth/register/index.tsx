@@ -14,31 +14,70 @@ import { useState, FormEvent } from "react";
 import { useVerificationStore } from "../../../../stores/auth/useVerificationStore";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useSteps } from "../../../../stores/auth/useSteps";
+import axios from "axios";
+import { urls } from "../../../../utils/urls";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 export const Route = createFileRoute("/artisan/auth/register/")({
   component: RouteComponent,
 });
 
-function Register() {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordError, setPasswordError] = useState<string | null>(null);
+// Define validation schema
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('Email is required'),
+  password: Yup.string()
+    .min(8, 'Password must be at least 8 characters')
+    .required('Password is required'),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref('password')], 'Passwords must match')
+    .required('Please confirm your password'),
+  firstName: Yup.string()
+    .required('First name is required'),
+  fixeroniTag: Yup.string()
+    .required('Fixeroni tag is required'),
+  agreed: Yup.boolean()
+    .oneOf([true], 'You must accept the terms and conditions')
+});
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      setPasswordError("Passwords do not match");
-      return;
-    }
-    // Continue with form submission
-    setPasswordError(null);
-    
-    
-    
-  };
+function Register() {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+      firstName: '',
+      fixeroniTag: '',
+      agreed: false
+    },
+    validationSchema,
+    onSubmit: async (values, { setSubmitting, setStatus }) => {
+      try {
+        const res = await axios.post(`${urls.backend}/artisan/register`, {
+          email: values.email,
+          password: values.password,
+          confirmPassword: values.confirmPassword,
+          firstName: values.firstName,
+          fixeroniTag: values.fixeroniTag
+        });
+        
+        // Handle successful registration
+        console.log('Registration successful:', res.data);
+        
+      } catch (error: any) {
+        // Handle error
+        setStatus(error.response?.data?.message || 'Registration failed');
+        console.error('Registration error:', error);
+      } finally {
+        setSubmitting(false);
+      }
+    },
+  });
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+    <form onSubmit={formik.handleSubmit} className="flex flex-col gap-8">
       <article className="flex flex-col gap-4">
         {fields.map(
           (
@@ -49,48 +88,37 @@ function Register() {
               required: boolean;
             },
             index: number,
-          ) => {
-            if (field.name === 'password') {
-              return (
-                <Input
-                  key={index}
-                  name={field.name}
-                  type="password"
-                  placeholder={field.placeholder}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required={field.required}
-                />
-              );
-            }
-            if (field.name === 'confirmPassword') {
-              return (
-                <Input
-                  key={index}
-                  name={field.name}
-                  type="password"
-                  placeholder={field.placeholder}
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required={field.required}
-                />
-              );
-            }
-            return (
+          ) => (
+            <div key={index}>
               <Input
-                key={index}
                 name={field.name}
-                placeholder={field.placeholder}
                 type={field.type}
+                placeholder={field.placeholder}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values[field.name as keyof typeof formik.values]}
                 required={field.required}
               />
-            );
-          },
+              {formik.touched[field.name as keyof typeof formik.touched] && 
+               formik.errors[field.name as keyof typeof formik.errors] && (
+                <div className="text-red-500 text-sm mt-1">
+                  {formik.errors[field.name as keyof typeof formik.errors]}
+                </div>
+              )}
+            </div>
+          ),
         )}
       </article>
 
       <article className="flex gap-4 items-center">
-        <input type="checkbox" name="agreed" className="md:w-6 md:h-6" required />
+        <input
+          type="checkbox"
+          name="agreed"
+          className="md:w-6 md:h-6"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          checked={formik.values.agreed}
+        />
         <p className="text-[#535353]">
           By signing up, you agree to Fixeroni's <br />{" "}
           <Link
@@ -109,15 +137,18 @@ function Register() {
         </p>
       </article>
 
-      {passwordError && (
-        <p className="text-red-500 text-sm text-center">{passwordError}</p>
+      {formik.status && (
+        <p className="text-red-500 text-sm text-center">{formik.status}</p>
       )}
 
       <button
-        className="font-semibold text-white bg-primary shadow-sm hover:shadow-md transition duration-300 p-2 hover:cursor-pointer rounded-lg md:min-w-[400px] md:max-w-[400px]"
         type="submit"
+        disabled={formik.isSubmitting || !formik.isValid}
+        className={`font-semibold text-white bg-primary shadow-sm hover:shadow-md transition duration-300 p-2 rounded-lg md:min-w-[400px] md:max-w-[400px] ${
+          (formik.isSubmitting || !formik.isValid) ? 'opacity-50 cursor-not-allowed' : 'hover:cursor-pointer'
+        }`}
       >
-        Register
+        {formik.isSubmitting ? 'Registering...' : 'Register'}
       </button>
     </form>
   );
