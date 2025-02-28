@@ -55,7 +55,7 @@ function Register() {
     validationSchema,
     onSubmit: async (values, { setSubmitting, setStatus }) => {
       try {
-        const res = await axios.post(`${urls.backend}/artisan/register`, {
+        const res = await axios.post(`${urls.backend}/api/artisan/signup`, {
           email: values.email,
           password: values.password,
           confirmPassword: values.confirmPassword,
