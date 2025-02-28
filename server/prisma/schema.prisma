@@ -11,14 +11,15 @@ model Artisan {
   id                String            @id @default(uuid())
   email             String            @unique
   password          String? // Made optional to support social auth
-  fixeroni_tag      String            @unique
-  yearsOfExperience Int
-  category          String
-  linkToPortfolio   String
-  address           String
-  categoryOfService String
-  governmentIdLink  String
-  profilePicture    String
+  fixeroniTag      String            @unique
+  yearsOfExperience Int?
+  category          String?
+  firstName         String?
+  linkToPortfolio   String?
+  address           String?
+  categoryOfService String?
+  governmentIdLink  String?
+  profilePicture    String?
   confirmationCode  ConfirmationCode?
   accountType       String
   provider          AuthProvider      @default(local) // Added provider field

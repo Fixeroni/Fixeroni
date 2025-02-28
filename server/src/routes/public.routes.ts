@@ -17,9 +17,9 @@ router.get('/health', (req, res) => {
 // Sign up route
 router.post('/signup', authLimiter, async (req, res) => {
   try {
-    const { fixeroni_tag, email, first_name, password } = req.body as UserCredentials;
+    const { fixeroniTag, email, first_name, password } = req.body as UserCredentials;
 
-    if (!fixeroni_tag || !email || !first_name || !password) {
+    if (!fixeroniTag || !email || !first_name || !password) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
@@ -33,7 +33,7 @@ router.post('/signup', authLimiter, async (req, res) => {
     const existingUser = await prisma.user.findFirst({
       where: {
         OR: [
-          { fixeroni_tag },
+          { fixeroniTag },
           { email }
         ]
       }
@@ -41,7 +41,7 @@ router.post('/signup', authLimiter, async (req, res) => {
 
     if (existingUser) {
       return res.status(400).json({ 
-        message: 'User already exists with this fixeroni_tag or email' 
+        message: 'User already exists with this fixeroniTag or email' 
       });
     }
 
@@ -51,7 +51,7 @@ router.post('/signup', authLimiter, async (req, res) => {
     // Create new user
     const newUser = await prisma.user.create({
       data: {
-        fixeroni_tag,
+        fixeroniTag,
         email,
         first_name,
         password: hashedPassword,
@@ -79,7 +79,7 @@ router.post('/signup', authLimiter, async (req, res) => {
 // Sign in route
 router.post('/signin', authLimiter, async (req, res) => {
   try {
-    const { fixeroni_tag, password } = req.body as UserCredentials;
+    const { fixeroniTag, password } = req.body as UserCredentials;
 
     if (!fixeroni_tag || !password) {
       return res.status(400).json({ message: 'Missing required fields' });
@@ -157,20 +157,14 @@ router.post('/auth/apple/verify', authLimiter, verifyAppleToken);
 router.post('/artisan/signup', authLimiter, async (req, res) => {
   try {
     const { 
-      fixeroni_tag, 
+      fixeroniTag, 
       email, 
       password,
-      yearsOfExperience,
-      category,
-      linkToPortfolio,
-      address,
-      categoryOfService,
-      governmentIdLink,
-      profilePicture
+      firstName
     } = req.body;
 
     // Validate required fields
-    if (!fixeroni_tag || !email || !password) {
+    if (!fixeroniTag || !email || !password) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
@@ -178,7 +172,7 @@ router.post('/artisan/signup', authLimiter, async (req, res) => {
     const existingArtisan = await prisma.artisan.findFirst({
       where: {
         OR: [
-          { fixeroni_tag },
+          { fixeroniTag },
           { email }
         ]
       }
@@ -186,7 +180,7 @@ router.post('/artisan/signup', authLimiter, async (req, res) => {
 
     if (existingArtisan) {
       return res.status(400).json({ 
-        message: 'Artisan already exists with this fixeroni_tag or email' 
+        message: 'Artisan already exists with this fixeroniTag or email' 
       });
     }
 
@@ -196,16 +190,10 @@ router.post('/artisan/signup', authLimiter, async (req, res) => {
     // Create new artisan
     const newArtisan = await prisma.artisan.create({
       data: {
-        fixeroni_tag,
+        fixeroniTag,
         email,
         password: hashedPassword,
-        yearsOfExperience: yearsOfExperience || 0,
-        category: category || 'uncategorized',
-        linkToPortfolio: linkToPortfolio || '',
-        address: address || '',
-        categoryOfService: categoryOfService || 'uncategorized',
-        governmentIdLink: governmentIdLink || '',
-        profilePicture: profilePicture || '',
+        firstName,
         accountType: 'artisan',
         provider: 'local'
       }

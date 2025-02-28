@@ -3,9 +3,9 @@ import { User as PrismaUser } from '@prisma/client';
 export type AuthProvider = 'local' | 'google' | 'facebook' | 'apple';
 
 export type UserCredentials = {
-  fixeroni_tag: string;
+  fixeroniTag: string;
   email: string;
-  first_name: string;
+  firstName: string;
   password: string;
 };
 
