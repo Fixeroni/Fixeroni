@@ -9,7 +9,7 @@ import RegisterContent from "../../../../components/auth/RegisterContent";
 import LoginContent from "../../../../components/auth/LoginContent";
 import { fields } from "../../../../data/register";
 import Input from "../../../../components/auth/Input";
-import { Upload } from "lucide-react";
+import { Upload, Loader2 } from "lucide-react";
 import { useState, FormEvent } from "react";
 import { useVerificationStore } from "../../../../stores/auth/useVerificationStore";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
@@ -148,7 +148,14 @@ function Register() {
           (formik.isSubmitting || !formik.isValid) ? 'opacity-50 cursor-not-allowed' : 'hover:cursor-pointer'
         }`}
       >
-        {formik.isSubmitting ? 'Registering...' : 'Register'}
+        {formik.isSubmitting ? (
+          <div className="flex items-center justify-center gap-2">
+            <Loader2 className="animate-spin" size={20} />
+            Registering...
+          </div>
+        ) : (
+          'Register'
+        )}
       </button>
     </form>
   );
@@ -156,6 +163,7 @@ function Register() {
 
 function PersonalDetails() {
   const [workPortfolio, setWorkPortfolio] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleWorkPortfolio = (open = true) => {
     if (open) {
@@ -172,27 +180,27 @@ function PersonalDetails() {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      const formData = new FormData(event.currentTarget as HTMLFormElement);
+      if (workPortfolio) {
+        formData.append("work_portfolio", workPortfolio);
+      }
 
-    const formData = new FormData(event.currentTarget as HTMLFormElement);
-
-    if (workPortfolio) {
-      formData.append("work_portfolio", workPortfolio);
-    }
-
-    // Submit form data (e.g., to an API)
-    fetch("/upload-endpoint", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+      // Submit form data
+      await fetch("/upload-endpoint", {
+        method: "POST",
+        body: formData,
       });
+      
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -255,9 +263,19 @@ function PersonalDetails() {
 
         <button
           type="submit"
-          className="font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px]"
+          disabled={isSubmitting}
+          className={`font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px] ${
+            isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:cursor-pointer'
+          }`}
         >
-          Next
+          {isSubmitting ? (
+            <div className="flex items-center justify-center gap-2">
+              <Loader2 className="animate-spin" size={20} />
+              Submitting...
+            </div>
+          ) : (
+            'Next'
+          )}
         </button>
       </form>
     </article>
@@ -268,6 +286,7 @@ function VerificationAndSecurity() {
   // Track the governmentId and profilePicture
   const [governmentId, setGovernmentId] = useState<File | null>(null);
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Hand the upload of the governmentId
   const handleGovernmentId = (open = true) => {
@@ -282,11 +301,25 @@ function VerificationAndSecurity() {
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      // Your submission logic here
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Remove this in production
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <article className="flex flex-col gap-8 items-center">
       <h2 className="text-2xl font-medium">Verification and Security</h2>
 
-      <form action="" className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         {governmentId ? (
           <article className="flex gap-4 items-center">
             <Upload className="text-primary" size={24} />
@@ -339,9 +372,19 @@ function VerificationAndSecurity() {
 
         <button
           type="submit"
-          className="font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px]"
+          disabled={isSubmitting}
+          className={`font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px] ${
+            isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:cursor-pointer'
+          }`}
         >
-          Submit
+          {isSubmitting ? (
+            <div className="flex items-center justify-center gap-2">
+              <Loader2 className="animate-spin" size={20} />
+              Submitting...
+            </div>
+          ) : (
+            'Submit'
+          )}
         </button>
       </form>
     </article>
