@@ -15,106 +15,106 @@ router.get('/health', (req, res) => {
 });
 
 // Sign up route
-router.post('/signup', authLimiter, async (req, res) => {
-  try {
-    const { fixeroniTag, email, first_name, password } = req.body as UserCredentials;
+// router.post('/signup', authLimiter, async (req, res) => {
+//   try {
+//     const { fixeroniTag, email, first_name, password } = req.body as UserCredentials;
 
-    if (!fixeroniTag || !email || !first_name || !password) {
-      return res.status(400).json({ message: 'Missing required fields' });
-    }
+//     if (!fixeroniTag || !email || !first_name || !password) {
+//       return res.status(400).json({ message: 'Missing required fields' });
+//     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({ message: 'Invalid email format' });
-    }
+//     // Validate email format
+//     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     if (!emailRegex.test(email)) {
+//       return res.status(400).json({ message: 'Invalid email format' });
+//     }
 
-    // Check if user already exists
-    const existingUser = await prisma.user.findFirst({
-      where: {
-        OR: [
-          { fixeroniTag },
-          { email }
-        ]
-      }
-    });
+//     // Check if user already exists
+//     const existingUser = await prisma.user.findFirst({
+//       where: {
+//         OR: [
+//           { fixeroniTag },
+//           { email }
+//         ]
+//       }
+//     });
 
-    if (existingUser) {
-      return res.status(400).json({ 
-        message: 'User already exists with this fixeroniTag or email' 
-      });
-    }
+//     if (existingUser) {
+//       return res.status(400).json({ 
+//         message: 'User already exists with this fixeroniTag or email' 
+//       });
+//     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+//     // Hash password
+//     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create new user
-    const newUser = await prisma.user.create({
-      data: {
-        fixeroniTag,
-        email,
-        first_name,
-        password: hashedPassword,
-        provider: 'local'
-      }
-    });
+//     // Create new user
+//     const newUser = await prisma.user.create({
+//       data: {
+//         fixeroniTag,
+//         email,
+//         first_name,
+//         password: hashedPassword,
+//         provider: 'local'
+//       }
+//     });
 
-    // Generate tokens
-    const tokens = await TokenService.generateAuthTokens(newUser.id);
+//     // Generate tokens
+//     const tokens = await TokenService.generateAuthTokens(newUser.id);
 
-    // Remove password from response
-    const { password: _, ...userWithoutPassword } = newUser;
+//     // Remove password from response
+//     const { password: _, ...userWithoutPassword } = newUser;
 
-    res.status(201).json({
-      message: 'User created successfully',
-      ...tokens,
-      user: userWithoutPassword
-    });
-  } catch (error) {
-    console.error('Signup error:', error);
-    res.status(500).json({ message: 'Error creating user' });
-  }
-});
+//     res.status(201).json({
+//       message: 'User created successfully',
+//       ...tokens,
+//       user: userWithoutPassword
+//     });
+//   } catch (error) {
+//     console.error('Signup error:', error);
+//     res.status(500).json({ message: 'Error creating user' });
+//   }
+// });
 
-// Sign in route
-router.post('/signin', authLimiter, async (req, res) => {
-  try {
-    const { fixeroniTag, password } = req.body as UserCredentials;
+// // Sign in route
+// router.post('/signin', authLimiter, async (req, res) => {
+//   try {
+//     const { fixeroniTag, password } = req.body as UserCredentials;
 
-    if (!fixeroni_tag || !password) {
-      return res.status(400).json({ message: 'Missing required fields' });
-    }
+//     if (!fixeroniTag || !password) {
+//       return res.status(400).json({ message: 'Missing required fields' });
+//     }
 
-    // Find user
-    const user = await prisma.user.findUnique({
-      where: { fixeroni_tag }
-    });
+//     // Find user
+//     const user = await prisma.user.findUnique({
+//       where: { fixeroniTag }
+//     });
 
-    if (!user || !user.password) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
+//     if (!user || !user.password) {
+//       return res.status(401).json({ message: 'Invalid credentials' });
+//     }
 
-    // Check password
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
+//     // Check password
+//     const isMatch = await bcrypt.compare(password, user.password);
+//     if (!isMatch) {
+//       return res.status(401).json({ message: 'Invalid credentials' });
+//     }
 
-    // Generate tokens
-    const tokens = await TokenService.generateAuthTokens(user.id);
+//     // Generate tokens
+//     const tokens = await TokenService.generateAuthTokens(user.id);
 
-    const { password: _, ...userWithoutPassword } = user;
+//     const { password: _, ...userWithoutPassword } = user;
 
-    res.json({
-      message: 'Authentication successful',
-      ...tokens,
-      user: userWithoutPassword
-    });
-  } catch (error) {
-    console.error('Signin error:', error);
-    res.status(500).json({ message: 'Error during sign in' });
-  }
-});
+//     res.json({
+//       message: 'Authentication successful',
+//       ...tokens,
+//       user: userWithoutPassword
+//     });
+//   } catch (error) {
+//     console.error('Signin error:', error);
+//     res.status(500).json({ message: 'Error during sign in' });
+//   }
+// });
 
 // Refresh token route
 router.post('/refresh-token', async (req, res) => {
