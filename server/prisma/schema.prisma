@@ -18,6 +18,7 @@ model Artisan {
   linkToPortfolio   String?
   address           String?
   categoryOfService String?
+  serviceCategory   String?
   governmentIdLink  String?
   profilePicture    String?
   confirmationCode  ConfirmationCode?

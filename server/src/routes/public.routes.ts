@@ -6,8 +6,27 @@ import { verifyGoogleToken, verifyFacebookToken, verifyAppleToken, verifyArtisan
 import prisma from '../lib/prisma';
 import { TokenService } from '../services/token.service';
 import { authLimiter } from '../middleware/rate-limit.middleware';
+import multer from 'multer';
 
 const router = Router();
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+  },
+  fileFilter: (req, file, cb) => {
+    // Accept only specific file types
+    if (file.mimetype === 'application/pdf' || 
+        file.mimetype === 'application/msword' || 
+        file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error('Only .pdf, .doc and .docx files are allowed!'));
+    }
+  }
+});
 
 // Health check route
 router.get('/health', (req, res) => {
@@ -263,49 +282,72 @@ router.post('/artisan/signin', authLimiter, async (req, res) => {
   }
 });
 
-router.post('/artisan/update/personal-details', authLimiter, async (req, res) => {
-  try {
-    const { 
-      serviceCategory,
-      workPortfolio,
-      yearsOfExperience,
-      artisanId
-    } = req.body;
+// Apply multer middleware directly to the route
+router.post(
+  '/artisan/update/personal-details', 
+  authLimiter, 
+  upload.single('workPortfolio'), // This needs to come before the route handler
+  async (req, res) => {
+    try {
+      console.log('Request body:', req.body);
+      
+      const serviceCategory = req.body.serviceCategory;
+      const yearsOfExperience = req.body.yearsOfExperience;
+      const workPortfolio = req.file; // Changed from req.files to req.file
+      const artisanId = req.body.artisanId;
 
-    const yearsOfExperienceInt = parseInt(yearsOfExperience);
-    
-    if(!serviceCategory || !workPortfolio || !yearsOfExperienceInt) {
-      return res.status(400).json({ message: 'Missing required fields' });
-    }
-
-    const artisan = await prisma.artisan.findUnique({
-      where: { id: artisanId }
-    });
-
-    if(!artisan) {
-      return res.status(401).json({ message: 'Unauthorized' });
-    }
-
-    // Update artisan
-    const updatedArtisan = await prisma.artisan.update({
-      where: { id: artisanId },
-      data: {
+      console.log('Parsed values:', {
         serviceCategory,
+        yearsOfExperience,
         workPortfolio,
-        yearsOfExperience: parseInt(yearsOfExperience)
-      }
-    });
+        artisanId
+      });
 
-    res.json({
-      message: 'Personal details updated successfully',
-      artisan: updatedArtisan
-    });
-    
-  } catch (error) {
-    console.error('Artisan update personal details error:', error);
-    res.status(500).json({ message: 'Error updating personal details' });
+      if(!serviceCategory || !yearsOfExperience || !artisanId) {
+        return res.status(400).json({ message: 'Missing required fields' });
+      }
+
+      const yearsOfExperienceInt = parseInt(yearsOfExperience);
+      if (isNaN(yearsOfExperienceInt)) {
+        return res.status(400).json({ message: 'Years of experience must be a number' });
+      }
+
+      const artisan = await prisma.artisan.findUnique({
+        where: { id: artisanId }
+      });
+
+      if(!artisan) {
+        return res.status(401).json({ message: 'Unauthorized' });
+      }
+
+      // Handle file upload first if there's a file
+      let workPortfolioUrl = '';
+      if (workPortfolio) {
+        // TODO: Upload file to storage service
+        workPortfolioUrl = 'temporary_url'; // Replace with actual upload logic
+      }
+
+      // Update artisan
+      const updatedArtisan = await prisma.artisan.update({
+        where: { id: artisanId },
+        data: {
+          serviceCategory,
+          workPortfolio: workPortfolioUrl || undefined,
+          yearsOfExperience: yearsOfExperienceInt
+        }
+      });
+
+      res.json({
+        message: 'Personal details updated successfully',
+        artisan: updatedArtisan
+      });
+      
+    } catch (error) {
+      console.error('Artisan update personal details error:', error);
+      res.status(500).json({ message: 'Error updating personal details' });
+    }
   }
-});
+);
 
 // Add artisan Google auth route
 router.post('/artisan/auth/google/verify', authLimiter, verifyArtisanGoogleToken);

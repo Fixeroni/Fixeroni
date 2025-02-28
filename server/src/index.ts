@@ -3,6 +3,7 @@ import { authMiddleware } from './middleware/auth.middleware';
 import publicRoutes from './routes/public.routes';
 import protectedRoutes from './routes/protected.routes';
 import morgan from 'morgan';
+
 const app = express();
 const port = process.env.PORT || 3000;
 

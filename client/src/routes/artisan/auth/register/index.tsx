@@ -201,34 +201,27 @@ function PersonalDetails() {
     onSubmit: async (values, { setSubmitting, setStatus }) => {
       try {
         const formData = new FormData();
-
+        
+        // Append text fields
         formData.append('serviceCategory', values.serviceCategory);
-
         formData.append('yearsOfExperience', values.yearsOfExperience);
+        formData.append('artisanId', artisan?.id || '');
 
+        // Append file if it exists
         if (workPortfolio) {
           formData.append('workPortfolio', workPortfolio);
         }
 
-        formData.append('artisanId', artisan?.id || '');
-
-        // Get token from localStorage
         const token = localStorage.getItem('accessToken');
 
-        console.log("Artisan: ", artisan);
-
-        for(let entry of formData.entries()) {
-          console.log(entry);
-        }
-        
         const response = await axios.post(
           `${urls.backend}/api/artisan/update/personal-details`, 
           formData,
           {
             headers: {
               'Content-Type': 'multipart/form-data',
-              'Authorization': `Bearer ${token}` // Add the token to headers
-            },
+              'Authorization': `Bearer ${token}`
+            }
           }
         );
 
@@ -257,6 +250,19 @@ function PersonalDetails() {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      // Check file type
+      const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!validTypes.includes(file.type)) {
+        formik.setFieldError('workPortfolio', 'Only PDF and Word documents are allowed');
+        return;
+      }
+      
+      // Check file size (5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        formik.setFieldError('workPortfolio', 'File size must be less than 5MB');
+        return;
+      }
+
       setWorkPortfolio(file);
       formik.setFieldValue('workPortfolio', file);
     }
@@ -353,7 +359,7 @@ function PersonalDetails() {
           id="workPortfolio"
           className="hidden"
           onChange={handleFileChange}
-          accept=".pdf,.doc,.docx"
+          accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
         />
 
         {formik.status && (
