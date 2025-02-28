@@ -30,6 +30,8 @@ model Artisan {
   refreshTokens     RefreshToken[] // Added refresh tokens relation
   createdAt         DateTime          @default(now()) // Added audit fields
   updatedAt         DateTime          @updatedAt
+  isVerified        Boolean           @default(false)
+  verificationCodes VerificationCode[]
 
   @@index([provider, providerId]) // Added index for social auth lookups
 }
@@ -53,6 +55,20 @@ model RefreshToken {
   artisanId String?
 
   @@index([userId])
+}
+
+model VerificationCode {
+  id        String   @id @default(uuid())
+  code      String
+  email     String
+  expiresAt DateTime
+  artisanId String
+  artisan   Artisan  @relation(fields: [artisanId], references: [id])
+  createdAt DateTime @default(now())
+  used      Boolean  @default(false)
+
+  @@index([code])
+  @@index([email])
 }
 
 enum AuthProvider {

@@ -9,6 +9,7 @@ import { authLimiter } from '../middleware/rate-limit.middleware';
 import multer from 'multer';
 import { authMiddleware } from '../middleware/auth.middleware';
 import { AuthRequest } from '../types/auth.types';
+import { generateOTP, sendVerificationEmail } from '../services/email.service';
 
 const router = Router();
 
@@ -441,5 +442,92 @@ router.post(
     }
   }
 );
+
+// Generate and send OTP
+router.post('/artisan/send-verification', authMiddleware, async (req: AuthRequest, res) => {
+  try {
+    const artisanId = req.user?.id;
+    if (!artisanId) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    // Get artisan
+    const artisan = await prisma.artisan.findUnique({
+      where: { id: artisanId }
+    });
+
+    if (!artisan) {
+      return res.status(404).json({ message: 'Artisan not found' });
+    }
+
+    // Generate 6-digit OTP
+    const otp = generateOTP();
+    
+    // Save OTP to database with 5-minute expiration
+    await prisma.verificationCode.create({
+      data: {
+        code: otp,
+        email: artisan.email,
+        artisanId: artisan.id,
+        expiresAt: new Date(Date.now() + 5 * 60 * 1000), // 5 minutes
+      }
+    });
+
+    // Send OTP via email
+    await sendVerificationEmail(artisan.email, otp);
+
+    res.json({ message: 'Verification code sent successfully' });
+
+  } catch (error) {
+    console.error('Send verification error:', error);
+    res.status(500).json({ message: 'Error sending verification code' });
+  }
+});
+
+// Verify OTP
+router.post('/artisan/verify-otp', authMiddleware, async (req: AuthRequest, res) => {
+  try {
+    const { otp } = req.body;
+    const artisanId = req.user?.id;
+
+    if (!artisanId) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    // Find valid OTP
+    const verificationCode = await prisma.verificationCode.findFirst({
+      where: {
+        artisanId,
+        code: otp,
+        used: false,
+        expiresAt: {
+          gt: new Date()
+        }
+      }
+    });
+
+    if (!verificationCode) {
+      return res.status(400).json({ message: 'Invalid or expired verification code' });
+    }
+
+    // Mark OTP as used
+    await prisma.verificationCode.update({
+      where: { id: verificationCode.id },
+      data: { used: true }
+    });
+
+    // Mark artisan as verified
+    await prisma.artisan.update({
+      where: { id: artisanId },
+      data: { isVerified: true }
+    });
+
+    res.json({ message: 'Verification successful' });
+
+  } catch (error) {
+    console.error('Verify OTP error:', error);
+    res.status(500).json({ message: 'Error verifying code' });
+  }
+});
 
 export default router;

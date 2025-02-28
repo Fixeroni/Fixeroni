@@ -1,16 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import AuthLayout from "../../../../components/shared/AuthLayout";
 import AuthHoverCard from "../../../../components/shared/AuthHoverCard";
-import features from "../../../../data/features";
-import Feature from "../../../../components/auth/register/Feature";
-import type { Feature as FeatureType } from "../../../../types";
 import Switch from "../../../../components/auth/login/Switch";
-import RegisterContent from "../../../../components/auth/RegisterContent";
 import LoginContent from "../../../../components/auth/LoginContent";
 import { fields } from "../../../../data/register";
 import Input from "../../../../components/auth/Input";
 import { Upload, Loader2 } from "lucide-react";
-import { useState, FormEvent } from "react";
+import { useState, useEffect } from "react";
 import { useVerificationStore } from "../../../../stores/auth/useVerificationStore";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useSteps } from "../../../../stores/auth/useSteps";
@@ -19,6 +15,7 @@ import { urls } from "../../../../utils/urls";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useSession } from "../../../../stores/useSessionStore";
+import { OTPInput } from 'input-otp';
 
 export const Route = createFileRoute("/artisan/auth/register/")({
   component: RouteComponent,
@@ -417,11 +414,11 @@ function VerificationAndSecurity() {
     governmentId: Yup.mixed()
       .required('Government ID is required')
       .test('fileSize', 'File too large', (value) => {
-        if (!value) return true;
-        return value.size <= 5000000; // 5MB
+        if (!value) return false;
+        return value.size <= 5000000;
       })
       .test('fileType', 'Invalid file type', (value) => {
-        if (!value) return true;
+        if (!value) return false;
         return (
           value.type === 'application/pdf' ||
           value.type.startsWith('image/')
@@ -430,11 +427,11 @@ function VerificationAndSecurity() {
     profilePicture: Yup.mixed()
       .required('Profile picture is required')
       .test('fileSize', 'File too large', (value) => {
-        if (!value) return true;
-        return value.size <= 5000000; // 5MB
+        if (!value) return false;
+        return value.size <= 5000000;
       })
       .test('fileType', 'Invalid file type', (value) => {
-        if (!value) return true;
+        if (!value) return false;
         return value.type.startsWith('image/');
       })
   });
@@ -444,6 +441,8 @@ function VerificationAndSecurity() {
       governmentId: null,
       profilePicture: null
     },
+    validateOnMount: true,
+    validateOnChange: true,
     validationSchema,
     onSubmit: async (values, { setSubmitting, setStatus }) => {
       try {
@@ -527,14 +526,16 @@ function VerificationAndSecurity() {
               </button>
             </article>
           ) : (
-            <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between hover:bg-gray-50 cursor-pointer"
+            <article 
+              className={`px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between hover:bg-gray-50 cursor-pointer ${
+                formik.touched.governmentId && formik.errors.governmentId 
+                  ? 'border border-red-500' 
+                  : ''
+              }`}
               onClick={handleGovernmentId}
             >
               <span>Upload Government ID</span>
-              <Upload
-                size={20}
-                className="text-primary"
-              />
+              <Upload size={20} className="text-primary" />
             </article>
           )}
           {formik.touched.governmentId && formik.errors.governmentId && (
@@ -564,14 +565,16 @@ function VerificationAndSecurity() {
               </button>
             </article>
           ) : (
-            <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between hover:bg-gray-50 cursor-pointer"
+            <article 
+              className={`px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between hover:bg-gray-50 cursor-pointer ${
+                formik.touched.profilePicture && formik.errors.profilePicture 
+                  ? 'border border-red-500' 
+                  : ''
+              }`}
               onClick={handleProfilePicture}
             >
               <span>Upload Profile Picture</span>
-              <Upload
-                size={20}
-                className="text-primary"
-              />
+              <Upload size={20} className="text-primary" />
             </article>
           )}
           {formik.touched.profilePicture && formik.errors.profilePicture && (
@@ -587,7 +590,10 @@ function VerificationAndSecurity() {
           name="governmentId"
           id="governmentId"
           className="hidden"
-          onChange={handleFileChange}
+          onChange={(e) => {
+            handleFileChange(e);
+            formik.setFieldTouched('governmentId', true, false);
+          }}
           accept="image/*,.pdf"
         />
 
@@ -596,7 +602,10 @@ function VerificationAndSecurity() {
           name="profilePicture"
           id="profilePicture"
           className="hidden"
-          onChange={handleFileChange}
+          onChange={(e) => {
+            handleFileChange(e);
+            formik.setFieldTouched('profilePicture', true, false);
+          }}
           accept="image/*"
         />
 
@@ -608,9 +617,9 @@ function VerificationAndSecurity() {
 
         <button
           type="submit"
-          disabled={formik.isSubmitting || !formik.isValid || !formik.values.governmentId || !formik.values.profilePicture}
+          disabled={formik.isSubmitting || !formik.isValid || !formik.dirty}
           className={`font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px] ${
-            formik.isSubmitting || !formik.isValid || !formik.values.governmentId || !formik.values.profilePicture
+            formik.isSubmitting || !formik.isValid || !formik.dirty
               ? 'opacity-50 cursor-not-allowed' 
               : 'hover:cursor-pointer hover:bg-primary/90'
           }`}
@@ -624,44 +633,242 @@ function VerificationAndSecurity() {
             'Next'
           )}
         </button>
+
+        {/* Add this to debug form state */}
+        {process.env.NODE_ENV === 'development' && (
+          <pre className="text-xs text-gray-500 mt-4">
+            {JSON.stringify({
+              values: formik.values,
+              errors: formik.errors,
+              touched: formik.touched,
+              isValid: formik.isValid,
+              dirty: formik.dirty
+            }, null, 2)}
+          </pre>
+        )}
       </form>
     </article>
   );
 }
 
+// Replace useOTPInput with our own implementation
+function useOTP(length: number) {
+  const [otp, setOTP] = useState<string[]>(Array(length).fill(''));
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const value = e.target.value;
+    if (value.length > 1) return; // Prevent multiple characters
+    if (!/^\d*$/.test(value)) return; // Only allow digits
+
+    setOTP(prev => {
+      const newOTP = [...prev];
+      newOTP[index] = value;
+      return newOTP;
+    });
+
+    // Auto-focus next input
+    if (value && index < length - 1) {
+      const nextInput = document.querySelector(
+        `input[name=otp-${index + 1}]`
+      ) as HTMLInputElement;
+      if (nextInput) nextInput.focus();
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => {
+    if (e.key === 'Backspace' && !otp[index] && index > 0) {
+      // Focus previous input on backspace if current input is empty
+      const prevInput = document.querySelector(
+        `input[name=otp-${index - 1}]`
+      ) as HTMLInputElement;
+      if (prevInput) {
+        prevInput.focus();
+        setOTP(prev => {
+          const newOTP = [...prev];
+          newOTP[index - 1] = '';
+          return newOTP;
+        });
+      }
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData.getData('text');
+    if (!/^\d+$/.test(pastedData)) return; // Only allow digits
+
+    const digits = pastedData.slice(0, length).split('');
+    setOTP(prev => {
+      const newOTP = [...prev];
+      digits.forEach((digit, index) => {
+        if (index < length) newOTP[index] = digit;
+      });
+      return newOTP;
+    });
+  };
+
+  return {
+    otp: otp.join(''),
+    setOTP: (value: string) => setOTP(value.split('')),
+    handleChange,
+    handleKeyDown,
+    handlePaste
+  };
+}
+
 function VerificationConfirmation() {
+  const { incrementStep } = useSteps();
+  const artisan = useSession(state => state.session?.artisan);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [timeLeft, setTimeLeft] = useState(300); // 5 minutes in seconds
+
+  const {
+    otp,
+    handleChange,
+    handleKeyDown,
+    handlePaste
+  } = useOTP(6);
+
+  // Timer effect
+  useEffect(() => {
+    if (timeLeft > 0) {
+      const timer = setTimeout(() => setTimeLeft(t => t - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [timeLeft]);
+
+  // Send initial OTP
+  useEffect(() => {
+    sendVerificationCode();
+  }, []);
+
+  const sendVerificationCode = async () => {
+    try {
+      const token = localStorage.getItem('accessToken');
+      await axios.post(
+        `${urls.backend}/api/artisan/send-verification`,
+        {},
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      );
+      setTimeLeft(300); // Reset timer
+      
+      // In development, show a message about checking the console
+      if (process.env.NODE_ENV === 'development') {
+        setError('Check the server console for the OTP (development mode only)');
+      }
+    } catch (error) {
+      console.error('Error sending verification code:', error);
+      setError('Failed to send verification code');
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
+    
+    try {
+      const token = localStorage.getItem('accessToken');
+      await axios.post(
+        `${urls.backend}/api/artisan/verify-otp`,
+        { otp },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      );
+      
+      incrementStep();
+    } catch (error: any) {
+      setError(error.response?.data?.message || 'Verification failed');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <article className="flex flex-col gap-8">
-      <article className="flex gap-4 items-center justify-center">
-        {Array.from({ length: 4 }).map((_, index) => (
-          <input
-            className="w-[75px] h-[75px] border border-primary focus:outline-none text-2xl font-bold flex flex-col justify-center items-center"
-            name={`code-${index}`}
-            type="text"
-            maxLength={1}
-          />
-        ))}
-      </article>
+      <article className="flex flex-col gap-4 items-center justify-center">
+        <div className="flex gap-4">
+          {[...Array(6)].map((_, i) => (
+            <input
+              key={i}
+              name={`otp-${i}`}
+              className="w-[75px] h-[75px] border border-primary focus:outline-none text-2xl font-bold text-center rounded-xl"
+              type="text"
+              maxLength={1}
+              value={otp[i] || ''}
+              onChange={(e) => handleChange(e, i)}
+              onKeyDown={(e) => handleKeyDown(e, i)}
+              onPaste={handlePaste}
+              autoComplete="off"
+            />
+          ))}
+        </div>
 
-      <article className="flex flex-col w-full justify-center items-center">
-        <CountdownCircleTimer
-          isPlaying
-          duration={300} // 60 seconds
-          colors={["#0F9067", "#F7B801", "#A30000", "#A30000"]}
-          colorsTime={[40, 20, 10, 0]} // Change color as time progresses
-          size={120} // Adjust size
-          strokeWidth={4} // Adjust thickness
-        >
-          {({ remainingTime }) => (
-            <div className="font-semibold text-primary flex flex-col gap-2 justify-center items-center text-xl">
-              <span className="text-sm text-gray-500">Remaining</span>
+        {error && (
+          <p className={`text-sm ${
+            error.includes('Check the server console') 
+              ? 'text-blue-500' 
+              : 'text-red-500'
+          }`}>
+            {error}
+          </p>
+        )}
 
-              {remainingTime}
+        <div className="flex flex-col items-center gap-2">
+          <CountdownCircleTimer
+            isPlaying
+            duration={300}
+            colors={["#0F9067", "#F7B801", "#A30000", "#A30000"]}
+            colorsTime={[300, 150, 30, 0]}
+            size={120}
+            strokeWidth={4}
+            onComplete={() => ({ shouldRepeat: false })}
+          >
+            {({ remainingTime }) => (
+              <div className="font-semibold text-primary flex flex-col gap-2 justify-center items-center text-xl">
+                <span className="text-sm text-gray-500">Time Left</span>
+                {Math.floor(remainingTime / 60)}:{(remainingTime % 60).toString().padStart(2, '0')}
+              </div>
+            )}
+          </CountdownCircleTimer>
 
-              <span className="text-sm text-gray-500">seconds</span>
-            </div>
+          {timeLeft === 0 && (
+            <button
+              onClick={sendVerificationCode}
+              className="text-primary hover:underline"
+              type="button"
+            >
+              Resend Code
+            </button>
           )}
-        </CountdownCircleTimer>
+        </div>
+
+        <button
+          onClick={handleSubmit}
+          disabled={isSubmitting || otp.length !== 6 || timeLeft === 0}
+          className={`font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px] ${
+            isSubmitting || otp.length !== 6 || timeLeft === 0
+              ? 'opacity-50 cursor-not-allowed'
+              : 'hover:cursor-pointer hover:bg-primary/90'
+          }`}
+        >
+          {isSubmitting ? (
+            <div className="flex items-center justify-center gap-2">
+              <Loader2 className="animate-spin" size={20} />
+              Verifying...
+            </div>
+          ) : (
+            'Verify'
+          )}
+        </button>
       </article>
     </article>
   );
