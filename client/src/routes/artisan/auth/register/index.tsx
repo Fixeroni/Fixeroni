@@ -73,7 +73,7 @@ function Register() {
         localStorage.setItem('refreshToken', res.data.refreshToken);
         
         // Update session with user data
-        login(res.data.artisan);
+        login({ artisan: res.data.artisan, expiresAt: res.data.expiresAt });
         incrementStep();
       } catch (error: any) {
         // Handle error
@@ -179,37 +179,47 @@ function PersonalDetails() {
 
   // Define validation schema
   const validationSchema = Yup.object({
-    service_category: Yup.string()
+    serviceCategory: Yup.string()
       .required('Please select a service category'),
-    years_of_experience: Yup.number()
+    yearsOfExperience: Yup.number()
       .required('Please select years of experience')
       .min(1, 'Must have at least 1 year of experience'),
-    work_portfolio: Yup.mixed()
+    workPortfolio: Yup.mixed()
       .test('fileSize', 'File too large', (value) => {
-        if (!value) return true; // Allow empty
+        if (!value) return true;
         return value.size <= 5000000; // 5MB
       })
   });
 
   const formik = useFormik({
     initialValues: {
-      service_category: '',
-      years_of_experience: '',
-      work_portfolio: null
+      serviceCategory: '',
+      yearsOfExperience: '',
+      workPortfolio: null
     },
     validationSchema,
     onSubmit: async (values, { setSubmitting, setStatus }) => {
       try {
         const formData = new FormData();
-        formData.append('service_category', values.service_category);
-        formData.append('years_of_experience', values.years_of_experience);
+
+        formData.append('serviceCategory', values.serviceCategory);
+
+        formData.append('yearsOfExperience', values.yearsOfExperience);
+
         if (workPortfolio) {
-          formData.append('work_portfolio', workPortfolio);
+          formData.append('workPortfolio', workPortfolio);
         }
-        formData.append('artisan_id', artisan?.id || '');
+
+        formData.append('artisanId', artisan?.id || '');
 
         // Get token from localStorage
         const token = localStorage.getItem('accessToken');
+
+        console.log("Artisan: ", artisan);
+
+        for(let entry of formData.entries()) {
+          console.log(entry);
+        }
         
         const response = await axios.post(
           `${urls.backend}/api/artisan/update/personal-details`, 
@@ -240,7 +250,7 @@ function PersonalDetails() {
 
   const handleWorkPortfolio = (open = true) => {
     if (open) {
-      document.getElementById("work_portfolio")?.click();
+      document.getElementById("workPortfolio")?.click();
     }
   };
 
@@ -248,7 +258,7 @@ function PersonalDetails() {
     const file = event.target.files?.[0];
     if (file) {
       setWorkPortfolio(file);
-      formik.setFieldValue('work_portfolio', file);
+      formik.setFieldValue('workPortfolio', file);
     }
   };
 
@@ -259,12 +269,12 @@ function PersonalDetails() {
       <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
         <div>
           <select
-            name="service_category"
-            value={formik.values.service_category}
+            name="serviceCategory"
+            value={formik.values.serviceCategory}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             className={`bg-white rounded-xl px-4 py-2 md:max-w-[400px] md:min-w-[400px] ${
-              formik.touched.service_category && formik.errors.service_category 
+              formik.touched.serviceCategory && formik.errors.serviceCategory 
                 ? 'border-red-500' 
                 : ''
             }`}
@@ -278,21 +288,21 @@ function PersonalDetails() {
             <option value="gardener">Gardener</option>
             <option value="cleaner">Cleaner</option>
           </select>
-          {formik.touched.service_category && formik.errors.service_category && (
+          {formik.touched.serviceCategory && formik.errors.serviceCategory && (
             <div className="text-red-500 text-sm mt-1">
-              {formik.errors.service_category}
+              {formik.errors.serviceCategory}
             </div>
           )}
         </div>
 
         <div>
           <select
-            name="years_of_experience"
-            value={formik.values.years_of_experience}
+            name="yearsOfExperience"
+            value={formik.values.yearsOfExperience}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             className={`bg-white rounded-xl px-4 py-2 md:max-w-[400px] md:min-w-[400px] ${
-              formik.touched.years_of_experience && formik.errors.years_of_experience 
+              formik.touched.yearsOfExperience && formik.errors.yearsOfExperience 
                 ? 'border-red-500' 
                 : ''
             }`}
@@ -306,9 +316,9 @@ function PersonalDetails() {
               </option>
             ))}
           </select>
-          {formik.touched.years_of_experience && formik.errors.years_of_experience && (
+          {formik.touched.yearsOfExperience && formik.errors.yearsOfExperience && (
             <div className="text-red-500 text-sm mt-1">
-              {formik.errors.years_of_experience}
+              {formik.errors.yearsOfExperience}
             </div>
           )}
         </div>
@@ -329,9 +339,9 @@ function PersonalDetails() {
               />
             </article>
           )}
-          {formik.touched.work_portfolio && formik.errors.work_portfolio && (
+          {formik.touched.workPortfolio && formik.errors.workPortfolio && (
             <div className="text-red-500 text-sm mt-1">
-              {formik.errors.work_portfolio}
+              {formik.errors.workPortfolio}
             </div>
           )}
         </div>
@@ -339,8 +349,8 @@ function PersonalDetails() {
         {/* Hidden File Input */}
         <input
           type="file"
-          name="work_portfolio"
-          id="work_portfolio"
+          name="workPortfolio"
+          id="workPortfolio"
           className="hidden"
           onChange={handleFileChange}
           accept=".pdf,.doc,.docx"

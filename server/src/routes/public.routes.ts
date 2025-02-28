@@ -255,7 +255,7 @@ router.post('/artisan/signin', authLimiter, async (req, res) => {
     res.json({
       message: 'Authentication successful',
       ...tokens,
-      artisan: artisanWithoutPassword
+      artisan: artisanWithoutPassword,
     });
   } catch (error) {
     console.error('Artisan signin error:', error);
@@ -265,26 +265,48 @@ router.post('/artisan/signin', authLimiter, async (req, res) => {
 
 router.post('/artisan/update/personal-details', authLimiter, async (req, res) => {
   try {
-    const { categoryOfService, workPortfolio, yearsOfExperience, artisan_id } = req.body;
+    const { 
+      serviceCategory,
+      workPortfolio,
+      yearsOfExperience,
+      artisanId
+    } = req.body;
 
-    if(!categoryOfService || !workPortfolio || !yearsOfExperience) {
+    const yearsOfExperienceInt = parseInt(yearsOfExperience);
+    
+    if(!serviceCategory || !workPortfolio || !yearsOfExperienceInt) {
       return res.status(400).json({ message: 'Missing required fields' });
     }
 
     const artisan = await prisma.artisan.findUnique({
-      where: { id: artisan_id }
+      where: { id: artisanId }
     });
 
     if(!artisan) {
       return res.status(401).json({ message: 'Unauthorized' });
     }
-    
+
+    // Update artisan
+    const updatedArtisan = await prisma.artisan.update({
+      where: { id: artisanId },
+      data: {
+        serviceCategory,
+        workPortfolio,
+        yearsOfExperience: parseInt(yearsOfExperience)
+      }
+    });
+
+    res.json({
+      message: 'Personal details updated successfully',
+      artisan: updatedArtisan
+    });
     
   } catch (error) {
     console.error('Artisan update personal details error:', error);
     res.status(500).json({ message: 'Error updating personal details' });
   }
 });
+
 // Add artisan Google auth route
 router.post('/artisan/auth/google/verify', authLimiter, verifyArtisanGoogleToken);
 
