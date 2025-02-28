@@ -4,6 +4,7 @@ export type Session = {
 };
 
 export type Artisan = {
+  id: string;
   email: string;
   password: string;
   fixeroni_tag: string;

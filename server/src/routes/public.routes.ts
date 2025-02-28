@@ -263,6 +263,28 @@ router.post('/artisan/signin', authLimiter, async (req, res) => {
   }
 });
 
+router.post('/artisan/update/personal-details', authLimiter, async (req, res) => {
+  try {
+    const { categoryOfService, workPortfolio, yearsOfExperience } = req.body;
+
+    if(!categoryOfService || !workPortfolio || !yearsOfExperience) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+
+    const artisan = await prisma.artisan.findUnique({
+      where: { id: req.user.id }
+    });
+
+    if(!artisan) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    
+    
+  } catch (error) {
+    console.error('Artisan update personal details error:', error);
+    res.status(500).json({ message: 'Error updating personal details' });
+  }
+});
 // Add artisan Google auth route
 router.post('/artisan/auth/google/verify', authLimiter, verifyArtisanGoogleToken);
 

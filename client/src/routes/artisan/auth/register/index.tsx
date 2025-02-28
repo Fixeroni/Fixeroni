@@ -18,6 +18,7 @@ import axios from "axios";
 import { urls } from "../../../../utils/urls";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useSession } from "../../../../stores/useSessionStore";
 
 export const Route = createFileRoute("/artisan/auth/register/")({
   component: RouteComponent,
@@ -44,6 +45,8 @@ const validationSchema = Yup.object({
 
 function Register() {
   const { incrementStep } = useSteps();
+
+  const login = useSession(state => state.login);
   
   const formik = useFormik({
     initialValues: {
@@ -66,9 +69,9 @@ function Register() {
         });
         
         // Handle successful registration
-        console.log('Registration successful:', res.data);
         incrementStep();
-        
+
+        login(res.data.artisan);
       } catch (error: any) {
         // Handle error
         setStatus(error.response?.data?.message || 'Registration failed');
@@ -167,45 +170,75 @@ function Register() {
 function PersonalDetails() {
   const { incrementStep } = useSteps();
   const [workPortfolio, setWorkPortfolio] = useState<File | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Get the artisan from the session
+  const artisan = useSession(state => state.session?.artisan);
+
+  // Define validation schema
+  const validationSchema = Yup.object({
+    service_category: Yup.string()
+      .required('Please select a service category'),
+    years_of_experience: Yup.number()
+      .required('Please select years of experience')
+      .min(1, 'Must have at least 1 year of experience'),
+    work_portfolio: Yup.mixed()
+      .test('fileSize', 'File too large', (value) => {
+        if (!value) return true; // Allow empty
+        return value.size <= 5000000; // 5MB
+      })
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      service_category: '',
+      years_of_experience: '',
+      work_portfolio: null
+    },
+    validationSchema,
+    onSubmit: async (values, { setSubmitting, setStatus }) => {
+      try {
+        const formData = new FormData();
+        formData.append('service_category', values.service_category);
+        formData.append('years_of_experience', values.years_of_experience);
+        if (workPortfolio) {
+          formData.append('work_portfolio', workPortfolio);
+        }
+
+        // Attach the artisan's id to the form data
+        formData.append('artisan_id', artisan?.id);
+        // Submit form data
+        const response = await axios.post(`${urls.backend}/api/artisan/personal-details`, 
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        );
+
+        console.log('Personal details updated:', response.data);
+        incrementStep();
+        
+      } catch (error: any) {
+        setStatus(error.response?.data?.message || 'Failed to update personal details');
+        console.error('Error:', error);
+      } finally {
+        setSubmitting(false);
+      }
+    },
+  });
 
   const handleWorkPortfolio = (open = true) => {
     if (open) {
       document.getElementById("work_portfolio")?.click();
     }
-
-    console.log(workPortfolio);
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       setWorkPortfolio(file);
-    }
-  };
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const formData = new FormData(event.currentTarget as HTMLFormElement);
-      if (workPortfolio) {
-        formData.append("work_portfolio", workPortfolio);
-      }
-
-      // Submit form data
-      await fetch("/upload-endpoint", {
-        method: "POST",
-        body: formData,
-      });
-      
-      incrementStep();
-      
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setIsSubmitting(false);
+      formik.setFieldValue('work_portfolio', file);
     }
   };
 
@@ -213,50 +246,85 @@ function PersonalDetails() {
     <article className="flex flex-col gap-8 items-center">
       <h2 className="text-2xl font-medium">Personal Details</h2>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <select
-          name="service_category"
-          className="bg-white rounded-xl px-4 py-2 md:max-w-[400px] md:min-w-[400px]"
-        >
-          <option value="" disabled selected>
-            Category of Service
-          </option>
-          <option value="plumber">Plumber</option>
-          <option value="electrician">Electrician</option>
-          <option value="mechanic">Mechanic</option>
-          <option value="gardener">Gardener</option>
-          <option value="cleaner">Cleaner</option>
-        </select>
-
-        <select
-          name="years_of_experience"
-          className="bg-white rounded-xl px-4 py-2 md:max-w-[400px] md:min-w-[400px]"
-        >
-          <option value="" disabled selected>
-            Years of Experience
-          </option>
-          {[...Array(10)].map((_, i) => (
-            <option key={i} value={i + 1}>
-              {i + 1} year{i !== 0 ? "s" : ""}
+      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+        <div>
+          <select
+            name="service_category"
+            value={formik.values.service_category}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className={`bg-white rounded-xl px-4 py-2 md:max-w-[400px] md:min-w-[400px] ${
+              formik.touched.service_category && formik.errors.service_category 
+                ? 'border-red-500' 
+                : ''
+            }`}
+          >
+            <option value="" disabled>
+              Category of Service
             </option>
-          ))}
-        </select>
+            <option value="plumber">Plumber</option>
+            <option value="electrician">Electrician</option>
+            <option value="mechanic">Mechanic</option>
+            <option value="gardener">Gardener</option>
+            <option value="cleaner">Cleaner</option>
+          </select>
+          {formik.touched.service_category && formik.errors.service_category && (
+            <div className="text-red-500 text-sm mt-1">
+              {formik.errors.service_category}
+            </div>
+          )}
+        </div>
 
-        {workPortfolio ? (
-          <article className="flex gap-4 items-center">
-            <Upload className="text-primary" size={24} />
-            <p>{workPortfolio.name}</p>
-          </article>
-        ) : (
-          <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between">
-            Work Portfolio
-            <Upload
-              onClick={() => handleWorkPortfolio(true)}
-              size={20}
-              className="text-primary cursor-pointer"
-            />
-          </article>
-        )}
+        <div>
+          <select
+            name="years_of_experience"
+            value={formik.values.years_of_experience}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            className={`bg-white rounded-xl px-4 py-2 md:max-w-[400px] md:min-w-[400px] ${
+              formik.touched.years_of_experience && formik.errors.years_of_experience 
+                ? 'border-red-500' 
+                : ''
+            }`}
+          >
+            <option value="" disabled>
+              Years of Experience
+            </option>
+            {[...Array(10)].map((_, i) => (
+              <option key={i} value={i + 1}>
+                {i + 1} year{i !== 0 ? "s" : ""}
+              </option>
+            ))}
+          </select>
+          {formik.touched.years_of_experience && formik.errors.years_of_experience && (
+            <div className="text-red-500 text-sm mt-1">
+              {formik.errors.years_of_experience}
+            </div>
+          )}
+        </div>
+
+        <div>
+          {workPortfolio ? (
+            <article className="flex gap-4 items-center">
+              <Upload className="text-primary" size={24} />
+              <p>{workPortfolio.name}</p>
+            </article>
+          ) : (
+            <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between">
+              Work Portfolio
+              <Upload
+                onClick={() => handleWorkPortfolio(true)}
+                size={20}
+                className="text-primary cursor-pointer"
+              />
+            </article>
+          )}
+          {formik.touched.work_portfolio && formik.errors.work_portfolio && (
+            <div className="text-red-500 text-sm mt-1">
+              {formik.errors.work_portfolio}
+            </div>
+          )}
+        </div>
 
         {/* Hidden File Input */}
         <input
@@ -265,16 +333,25 @@ function PersonalDetails() {
           id="work_portfolio"
           className="hidden"
           onChange={handleFileChange}
+          accept=".pdf,.doc,.docx"
         />
+
+        {formik.status && (
+          <div className="text-red-500 text-sm text-center">
+            {formik.status}
+          </div>
+        )}
 
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={formik.isSubmitting || !formik.isValid}
           className={`font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px] ${
-            isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:cursor-pointer'
+            formik.isSubmitting || !formik.isValid 
+              ? 'opacity-50 cursor-not-allowed' 
+              : 'hover:cursor-pointer'
           }`}
         >
-          {isSubmitting ? (
+          {formik.isSubmitting ? (
             <div className="flex items-center justify-center gap-2">
               <Loader2 className="animate-spin" size={20} />
               Submitting...
