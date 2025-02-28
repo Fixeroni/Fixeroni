@@ -10,7 +10,7 @@ import LoginContent from "../../../../components/auth/LoginContent";
 import { fields } from "../../../../data/register";
 import Input from "../../../../components/auth/Input";
 import { Upload } from "lucide-react";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { useVerificationStore } from "../../../../stores/auth/useVerificationStore";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useSteps } from "../../../../stores/auth/useSteps";
@@ -20,8 +20,25 @@ export const Route = createFileRoute("/artisan/auth/register/")({
 });
 
 function Register() {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setPasswordError("Passwords do not match");
+      return;
+    }
+    // Continue with form submission
+    setPasswordError(null);
+    
+    
+    
+  };
+
   return (
-    <article className="flex flex-col gap-8">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-8">
       <article className="flex flex-col gap-4">
         {fields.map(
           (
@@ -32,19 +49,48 @@ function Register() {
               required: boolean;
             },
             index: number,
-          ) => (
-            <Input
-              name={field.name}
-              key={index}
-              placeholder={field.placeholder}
-            />
-          ),
+          ) => {
+            if (field.name === 'password') {
+              return (
+                <Input
+                  key={index}
+                  name={field.name}
+                  type="password"
+                  placeholder={field.placeholder}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required={field.required}
+                />
+              );
+            }
+            if (field.name === 'confirmPassword') {
+              return (
+                <Input
+                  key={index}
+                  name={field.name}
+                  type="password"
+                  placeholder={field.placeholder}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required={field.required}
+                />
+              );
+            }
+            return (
+              <Input
+                key={index}
+                name={field.name}
+                placeholder={field.placeholder}
+                type={field.type}
+                required={field.required}
+              />
+            );
+          },
         )}
       </article>
 
       <article className="flex gap-4 items-center">
-        <input type="checkbox" name="agreed" className="md:w-6 md:h-6" />
-
+        <input type="checkbox" name="agreed" className="md:w-6 md:h-6" required />
         <p className="text-[#535353]">
           By signing up, you agree to Fixeroni's <br />{" "}
           <Link
@@ -63,13 +109,17 @@ function Register() {
         </p>
       </article>
 
+      {passwordError && (
+        <p className="text-red-500 text-sm text-center">{passwordError}</p>
+      )}
+
       <button
         className="font-semibold text-white bg-primary shadow-sm hover:shadow-md transition duration-300 p-2 hover:cursor-pointer rounded-lg md:min-w-[400px] md:max-w-[400px]"
         type="submit"
       >
         Register
       </button>
-    </article>
+    </form>
   );
 }
 
