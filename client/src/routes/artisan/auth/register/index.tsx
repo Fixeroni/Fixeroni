@@ -13,6 +13,7 @@ import { Upload } from "lucide-react";
 import { useState } from "react";
 import { useVerificationStore } from "../../../../stores/auth/useVerificationStore";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { useSteps } from "../../../../stores/auth/useSteps";
 
 export const Route = createFileRoute("/artisan/auth/register/")({
   component: RouteComponent,
@@ -321,7 +322,7 @@ function RouteComponent() {
   const showVerification = useVerificationStore(state => state.showVerification);
 
   // Track the current step
-  const 
+  const step = useSteps(state => state.step);
 
   const steps = [
     {
@@ -362,17 +363,10 @@ function RouteComponent() {
         )}
 
         {/* Login / Register switch */}
-        {showVerification ? (
           <Switch
             login={<LoginContent />}
-            register={<VerificationConfirmation />}
+            register={steps[step].component}
           />
-        ) : (
-          <Switch
-            login={<LoginContent />}
-            register={<VerificationAndSecurity />}
-          />
-        )}
       </AuthHoverCard>
     </AuthLayout>
   );

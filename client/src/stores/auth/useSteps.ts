@@ -14,7 +14,7 @@ type Actions = {
     resetStep: () => void;
 }
 
-const useSteps = create<State & Actions>((set) => ({
+export const useSteps = create<State & Actions>((set) => ({
     step: 0,
     incrementStep: () => set((state) => ({ step: state.step + 1 })),
     decrementStep: () => set((state) => ({ step: state.step - 1 })),
