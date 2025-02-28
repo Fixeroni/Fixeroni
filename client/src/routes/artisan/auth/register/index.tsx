@@ -393,38 +393,95 @@ function PersonalDetails() {
 
 function VerificationAndSecurity() {
   const { incrementStep } = useSteps();
-  // Track the governmentId and profilePicture
-  const [governmentId, setGovernmentId] = useState<File | null>(null);
-  const [profilePicture, setProfilePicture] = useState<File | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const artisan = useSession(state => state.session?.artisan);
 
-  // Hand the upload of the governmentId
-  const handleGovernmentId = (open = true) => {
-    if (open) {
-      document.getElementById("governmentId")?.click();
+  // Define validation schema
+  const validationSchema = Yup.object({
+    governmentId: Yup.mixed()
+      .required('Government ID is required')
+      .test('fileSize', 'File too large', (value) => {
+        if (!value) return true;
+        return value.size <= 5000000; // 5MB
+      })
+      .test('fileType', 'Invalid file type', (value) => {
+        if (!value) return true;
+        return (
+          value.type === 'application/pdf' ||
+          value.type.startsWith('image/')
+        );
+      }),
+    profilePicture: Yup.mixed()
+      .required('Profile picture is required')
+      .test('fileSize', 'File too large', (value) => {
+        if (!value) return true;
+        return value.size <= 5000000; // 5MB
+      })
+      .test('fileType', 'Invalid file type', (value) => {
+        if (!value) return true;
+        return value.type.startsWith('image/');
+      })
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      governmentId: null,
+      profilePicture: null
+    },
+    validationSchema,
+    onSubmit: async (values, { setSubmitting, setStatus }) => {
+      try {
+        const formData = new FormData();
+        
+        if (values.governmentId) {
+          formData.append('governmentId', values.governmentId);
+        }
+        
+        if (values.profilePicture) {
+          formData.append('profilePicture', values.profilePicture);
+        }
+
+        const token = localStorage.getItem('accessToken');
+
+        const response = await axios.post(
+          `${urls.backend}/api/artisan/update/verification`,
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': `Bearer ${token}`
+            }
+          }
+        );
+
+        console.log('Verification documents updated:', response.data);
+        incrementStep();
+
+      } catch (error: any) {
+        if (error.response?.status === 401) {
+          setStatus('Session expired. Please login again.');
+        } else {
+          setStatus(error.response?.data?.message || 'Failed to upload verification documents');
+        }
+        console.error('Error:', error);
+      } finally {
+        setSubmitting(false);
+      }
     }
+  });
+
+  const handleGovernmentId = () => {
+    document.getElementById("governmentId")?.click();
   };
 
-  const handleProfilePicture = (open = true) => {
-    if (open) {
-      document.getElementById("profilePicture")?.click();
-    }
+  const handleProfilePicture = () => {
+    document.getElementById("profilePicture")?.click();
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      // Your submission logic here
-      await new Promise(resolve => setTimeout(resolve, 2000)); // Remove this in production
-      
-      incrementStep();
-      
-    } catch (error) {
-      console.error('Error:', error);
-    } finally {
-      setIsSubmitting(false);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const fieldName = event.target.name;
+      formik.setFieldValue(fieldName, file);
     }
   };
 
@@ -432,65 +489,43 @@ function VerificationAndSecurity() {
     <article className="flex flex-col gap-8 items-center">
       <h2 className="text-2xl font-medium">Verification and Security</h2>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        {governmentId ? (
-          <article className="flex gap-4 items-center">
-            <Upload className="text-primary" size={24} />
-            <p>{governmentId.name}</p>
-          </article>
-        ) : (
-          <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between">
-            Government Id
-            <Upload
-              onClick={() => handleGovernmentId(true)}
-              size={20}
-              className="text-primary cursor-pointer"
-            />
-          </article>
-        )}
-
-        {/* Hidden File Input */}
+      <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+        {/* ... existing UI code ... */}
+        
         <input
           type="file"
           name="governmentId"
           id="governmentId"
           className="hidden"
-          onChange={() => handleGovernmentId(false)}
+          onChange={handleFileChange}
+          accept="image/*,.pdf"
         />
 
-        {profilePicture ? (
-          <article className="flex gap-4 items-center">
-            <Upload className="text-primary" size={24} />
-            <p>{profilePicture.name}</p>
-          </article>
-        ) : (
-          <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between">
-            Profile Picture
-            <Upload
-              onClick={() => handleProfilePicture(true)}
-              size={20}
-              className="text-primary cursor-pointer"
-            />
-          </article>
-        )}
-
-        {/* Hidden File Input */}
         <input
           type="file"
           name="profilePicture"
           id="profilePicture"
           className="hidden"
-          onChange={() => handleProfilePicture(false)}
+          onChange={handleFileChange}
+          accept="image/*"
         />
+
+        {formik.status && (
+          <div className="text-red-500 text-sm text-center">
+            {formik.status}
+          </div>
+        )}
 
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={formik.isSubmitting || !formik.isValid}
           className={`font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px] ${
-            isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:cursor-pointer'
+            formik.isSubmitting || !formik.isValid 
+              ? 'opacity-50 cursor-not-allowed' 
+              : 'hover:cursor-pointer'
           }`}
         >
-          {isSubmitting ? (
+          {formik.isSubmitting ? (
             <div className="flex items-center justify-center gap-2">
               <Loader2 className="animate-spin" size={20} />
               Submitting...

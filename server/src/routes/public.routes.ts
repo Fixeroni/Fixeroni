@@ -7,6 +7,8 @@ import prisma from '../lib/prisma';
 import { TokenService } from '../services/token.service';
 import { authLimiter } from '../middleware/rate-limit.middleware';
 import multer from 'multer';
+import { authMiddleware } from '../middleware/auth.middleware';
+import { AuthRequest } from '../types/auth.types';
 
 const router = Router();
 
@@ -24,6 +26,36 @@ const upload = multer({
     } else {
       cb(null, false);
       return cb(new Error('Only .pdf, .doc and .docx files are allowed!'));
+    }
+  }
+});
+
+// Add multer config for government ID and profile picture
+const verificationUpload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5MB limit
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.fieldname === 'governmentId') {
+      // Accept only image and PDF files for government ID
+      if (
+        file.mimetype === 'application/pdf' ||
+        file.mimetype.startsWith('image/')
+      ) {
+        cb(null, true);
+      } else {
+        cb(null, false);
+        return cb(new Error('Only PDF and image files are allowed for government ID'));
+      }
+    } else if (file.fieldname === 'profilePicture') {
+      // Accept only image files for profile picture
+      if (file.mimetype.startsWith('image/')) {
+        cb(null, true);
+      } else {
+        cb(null, false);
+        return cb(new Error('Only image files are allowed for profile picture'));
+      }
     }
   }
 });
@@ -356,5 +388,58 @@ router.post(
 
 // Add artisan Google auth route
 router.post('/artisan/auth/google/verify', authLimiter, verifyArtisanGoogleToken);
+
+// Add the verification and security route
+router.post(
+  '/artisan/update/verification',
+  authLimiter,
+  authMiddleware,
+  verificationUpload.fields([
+    { name: 'governmentId', maxCount: 1 },
+    { name: 'profilePicture', maxCount: 1 }
+  ]),
+  async (req: AuthRequest, res) => {
+    try {
+      const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+      const governmentId = files?.governmentId?.[0];
+      const profilePicture = files?.profilePicture?.[0];
+
+      if (!governmentId || !profilePicture) {
+        return res.status(400).json({ 
+          message: 'Both government ID and profile picture are required' 
+        });
+      }
+
+      // Get artisan ID from auth middleware
+      const artisanId = req.user?.id;
+      
+      if (!artisanId) {
+        return res.status(401).json({ message: 'Unauthorized' });
+      }
+
+      // TODO: In production, upload files to cloud storage
+      // For now, store metadata
+      const updatedArtisan = await prisma.artisan.update({
+        where: { id: artisanId },
+        data: {
+          governmentIdLink: `uploads/${governmentId.filename}`,
+          profilePicture: `uploads/${profilePicture.filename}`,
+          // Add metadata fields if needed
+        }
+      });
+
+      res.json({
+        message: 'Verification documents uploaded successfully',
+        artisan: updatedArtisan
+      });
+
+    } catch (error) {
+      console.error('Verification update error:', error);
+      res.status(500).json({ 
+        message: 'Error updating verification documents' 
+      });
+    }
+  }
+);
 
 export default router;
