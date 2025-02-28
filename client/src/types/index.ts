@@ -1,17 +1,23 @@
 export type Session = {
-  user: any;
+  artisan: Artisan;
   expiresAt: string;
 };
 
-export type User = {
+export type Artisan = {
   email: string;
   password: string;
   fixeroni_tag: string;
   yearsOfExperience: number;
   category: string;
   linkToPortfolio: string;
+  address: string,
+  categoryOfService: string,
   governmentIdLink: string;
   profilePicture: string;
+  confirmationCode?: {
+    expires: string | Date,
+    code: string
+  }
   accountType: string;
 };
 
