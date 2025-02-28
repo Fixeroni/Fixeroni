@@ -38,26 +38,10 @@ model ConfirmationCode {
   artisanId String   @unique
 }
 
-model User {
-  id            String         @id @default(uuid())
-  fixeroni_tag  String         @unique
-  email         String         @unique
-  first_name    String
-  password      String?
-  provider      AuthProvider   @default(local)
-  providerId    String?
-  refreshTokens RefreshToken[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-
-  @@index([provider, providerId])
-}
-
 model RefreshToken {
   id        String    @id @default(uuid())
   token     String    @unique
   userId    String
-  user      User      @relation(fields: [userId], references: [id])
   expiresAt DateTime
   revokedAt DateTime?
   createdAt DateTime  @default(now())
@@ -70,6 +54,4 @@ model RefreshToken {
 enum AuthProvider {
   local
   google
-  facebook
-  apple
 }
