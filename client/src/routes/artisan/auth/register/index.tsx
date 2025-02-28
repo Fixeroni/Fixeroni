@@ -331,23 +331,40 @@ function PersonalDetails() {
 
         <div>
           {workPortfolio ? (
-            <article className="flex gap-4 items-center">
+            <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-4 items-center">
               <Upload className="text-primary" size={24} />
-              <p>{workPortfolio.name}</p>
+              <div className="flex-1">
+                <p className="font-medium">Work Portfolio</p>
+                <p className="text-sm text-gray-500 truncate">
+                  {workPortfolio.name}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setWorkPortfolio(null);
+                  formik.setFieldValue('workPortfolio', null);
+                }}
+                className="text-red-500 hover:text-red-700"
+              >
+                ×
+              </button>
             </article>
           ) : (
-            <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between">
-              Work Portfolio
+            <article 
+              className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between hover:bg-gray-50 cursor-pointer"
+              onClick={() => handleWorkPortfolio(true)}
+            >
+              <span>Upload Work Portfolio</span>
               <Upload
-                onClick={() => handleWorkPortfolio(true)}
                 size={20}
-                className="text-primary cursor-pointer"
+                className="text-primary"
               />
             </article>
           )}
           {formik.touched.workPortfolio && formik.errors.workPortfolio && (
             <div className="text-red-500 text-sm mt-1">
-              {formik.errors.workPortfolio}
+              {formik.errors.workPortfolio as string}
             </div>
           )}
         </div>
@@ -374,7 +391,7 @@ function PersonalDetails() {
           className={`font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px] ${
             formik.isSubmitting || !formik.isValid 
               ? 'opacity-50 cursor-not-allowed' 
-              : 'hover:cursor-pointer'
+              : 'hover:cursor-pointer hover:bg-primary/90'
           }`}
         >
           {formik.isSubmitting ? (
@@ -490,8 +507,81 @@ function VerificationAndSecurity() {
       <h2 className="text-2xl font-medium">Verification and Security</h2>
 
       <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
-        {/* ... existing UI code ... */}
-        
+        {/* Government ID Upload */}
+        <div>
+          {formik.values.governmentId ? (
+            <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-4 items-center">
+              <Upload className="text-primary" size={24} />
+              <div className="flex-1">
+                <p className="font-medium">Government ID</p>
+                <p className="text-sm text-gray-500 truncate">
+                  {(formik.values.governmentId as File).name}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => formik.setFieldValue('governmentId', null)}
+                className="text-red-500 hover:text-red-700"
+              >
+                ×
+              </button>
+            </article>
+          ) : (
+            <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between hover:bg-gray-50 cursor-pointer"
+              onClick={handleGovernmentId}
+            >
+              <span>Upload Government ID</span>
+              <Upload
+                size={20}
+                className="text-primary"
+              />
+            </article>
+          )}
+          {formik.touched.governmentId && formik.errors.governmentId && (
+            <div className="text-red-500 text-sm mt-1">
+              {formik.errors.governmentId as string}
+            </div>
+          )}
+        </div>
+
+        {/* Profile Picture Upload */}
+        <div>
+          {formik.values.profilePicture ? (
+            <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-4 items-center">
+              <Upload className="text-primary" size={24} />
+              <div className="flex-1">
+                <p className="font-medium">Profile Picture</p>
+                <p className="text-sm text-gray-500 truncate">
+                  {(formik.values.profilePicture as File).name}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => formik.setFieldValue('profilePicture', null)}
+                className="text-red-500 hover:text-red-700"
+              >
+                ×
+              </button>
+            </article>
+          ) : (
+            <article className="px-4 py-2 bg-white text-[#535353] rounded-xl flex gap-2 items-center justify-between hover:bg-gray-50 cursor-pointer"
+              onClick={handleProfilePicture}
+            >
+              <span>Upload Profile Picture</span>
+              <Upload
+                size={20}
+                className="text-primary"
+              />
+            </article>
+          )}
+          {formik.touched.profilePicture && formik.errors.profilePicture && (
+            <div className="text-red-500 text-sm mt-1">
+              {formik.errors.profilePicture as string}
+            </div>
+          )}
+        </div>
+
+        {/* Hidden File Inputs */}
         <input
           type="file"
           name="governmentId"
@@ -518,11 +608,11 @@ function VerificationAndSecurity() {
 
         <button
           type="submit"
-          disabled={formik.isSubmitting || !formik.isValid}
+          disabled={formik.isSubmitting || !formik.isValid || !formik.values.governmentId || !formik.values.profilePicture}
           className={`font-semibold text-white bg-primary p-2 rounded-lg md:min-w-[400px] md:max-w-[400px] ${
-            formik.isSubmitting || !formik.isValid 
+            formik.isSubmitting || !formik.isValid || !formik.values.governmentId || !formik.values.profilePicture
               ? 'opacity-50 cursor-not-allowed' 
-              : 'hover:cursor-pointer'
+              : 'hover:cursor-pointer hover:bg-primary/90'
           }`}
         >
           {formik.isSubmitting ? (
@@ -531,7 +621,7 @@ function VerificationAndSecurity() {
               Submitting...
             </div>
           ) : (
-            'Submit'
+            'Next'
           )}
         </button>
       </form>
