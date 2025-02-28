@@ -179,6 +179,13 @@ router.post('/artisan/signup', authLimiter, async (req, res) => {
     });
 
     if (existingArtisan) {
+      // Delete them TODO: Remove this in production
+      await prisma.artisan.delete({
+        where: {
+          id: existingArtisan.id
+        }
+      });
+
       return res.status(400).json({ 
         message: 'Artisan already exists with this fixeroniTag or email' 
       });

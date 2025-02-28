@@ -43,6 +43,8 @@ const validationSchema = Yup.object({
 });
 
 function Register() {
+  const { incrementStep } = useSteps();
+  
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -65,6 +67,7 @@ function Register() {
         
         // Handle successful registration
         console.log('Registration successful:', res.data);
+        incrementStep();
         
       } catch (error: any) {
         // Handle error
@@ -162,6 +165,7 @@ function Register() {
 }
 
 function PersonalDetails() {
+  const { incrementStep } = useSteps();
   const [workPortfolio, setWorkPortfolio] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -195,6 +199,8 @@ function PersonalDetails() {
         method: "POST",
         body: formData,
       });
+      
+      incrementStep();
       
     } catch (error) {
       console.error("Error:", error);
@@ -283,6 +289,7 @@ function PersonalDetails() {
 }
 
 function VerificationAndSecurity() {
+  const { incrementStep } = useSteps();
   // Track the governmentId and profilePicture
   const [governmentId, setGovernmentId] = useState<File | null>(null);
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
@@ -308,6 +315,9 @@ function VerificationAndSecurity() {
     try {
       // Your submission logic here
       await new Promise(resolve => setTimeout(resolve, 2000)); // Remove this in production
+      
+      incrementStep();
+      
     } catch (error) {
       console.error('Error:', error);
     } finally {
