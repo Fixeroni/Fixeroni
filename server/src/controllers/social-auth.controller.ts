@@ -4,6 +4,7 @@ import prisma from '../lib/prisma';
 import { AuthProvider } from '../types/auth.types';
 import { TokenService } from '../services/token.service';
 import { AppleAuthService } from '../services/apple-auth.service';
+import { Prisma,$Enums } from '@prisma/client';
 
 const googleClient = new OAuth2Client({
   clientId: process.env.GOOGLE_CLIENT_ID
@@ -26,29 +27,39 @@ export const verifyGoogleToken = async (req: Request, res: Response) => {
     const payload = ticket.getPayload();
     
     if (!payload) {
-      return res.status(400).json({ message: 'Invalid token' });
+      return res.status(400).json({ message: 'no token' });
     }
 
     // Check if user exists
-    let user = await prisma.user.findFirst({
+   // let user = await prisma.user.findFirst({
+    let user = await prisma.artisan.findFirst({
+   
       where: {
         AND: [
-          { provider: 'google' as AuthProvider },
-          { providerId: payload.sub }
+         // { provider: 'google' as AuthProvider },
+         { provider: $Enums.AuthProvider.google  },
+         { providerId: payload.sub }
         ]
       }
     });
 
     if (!user) {
       // Create new user
-      user = await prisma.user.create({
+      // user = await prisma.user.create({
+        user = await prisma.artisan.create({
         data: {
-          fixeroni_tag: `google_${payload.sub}`,
-          email: payload.email,
-          name: payload.name,
-          picture: payload.picture,
+          //fixeroni_tag: `google_${payload.sub}`,
+          fixeroniTag:`google_${payload.sub}`,
+          // email : payload.email,
+          email : payload.email ?? "",
+          //name: payload.name,
+          firstName :payload.name  ,
+          //picture: payload.picture,
+          profilePicture :payload.picture,
           provider: 'google',
-          providerId: payload.sub
+          providerId: payload.sub,
+          accountType: "artisan" 
+          // accountType added sir
         }
       });
     }
@@ -84,10 +95,11 @@ export const verifyFacebookToken = async (req: Request, res: Response) => {
     }
 
     // Check if user exists
-    let user = await prisma.user.findFirst({
+    let user = await prisma.artisan.findFirst({
       where: {
         AND: [
-          { provider: 'facebook' as AuthProvider },
+          //{ provider: 'facebook' as AuthProvider },
+          //{ provider: $Enums.AuthProvider.faceboo}
           { providerId: data.id }
         ]
       }
@@ -95,13 +107,15 @@ export const verifyFacebookToken = async (req: Request, res: Response) => {
 
     if (!user) {
       // Create new user
-      user = await prisma.user.create({
+     // user = await prisma.user.create({
+      user = await prisma.artisan.create({
         data: {
-          fixeroni_tag: `fb_${data.id}`,
+          //fixeroni_tag: `fb_${data.id}`,
+          fixeroniTag  :`fb_${data.id}`,
           email: data.email,
           name: data.name,
           picture: data.picture?.data?.url,
-          provider: 'facebook',
+          //provider: 'facebook',
           providerId: data.id
         }
       });

@@ -14,7 +14,7 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Find user by email
-    const user = await prisma.user.findUnique({
+    const user = await prisma.artisan.findUnique({
       where: { email }
     });
 
@@ -23,6 +23,10 @@ export const login = async (req: Request, res: Response) => {
         message: 'Invalid email or password' 
       });
     }
+    // Ensure user and password exist
+if (!user || !user.password) {
+  return res.status(401).json({ message: 'Invalid email or password' });
+}
 
     // Verify password
     const isValidPassword = await bcrypt.compare(password, user.password);

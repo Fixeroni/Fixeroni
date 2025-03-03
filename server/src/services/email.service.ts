@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+//import nodemailer from 'nodemailer';
 
 export const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -9,11 +9,23 @@ export const isValidOTP = (otp: string): boolean => {
   return /^\d{6}$/.test(otp);
 };
 
-export const sendVerificationEmail = async (email: string, otp: string) => {
-  // Validate OTP format before sending
-  if (!isValidOTP(otp)) {
-    throw new Error('Invalid OTP format');
+// export const sendVerificationEmail = async (email: string, otp: string) => {
+//   // Validate OTP format before sending
+//   if (!isValidOTP(otp)) {
+//     throw new Error('Invalid OTP format');
+//   }
+export const sendVerificationEmail = async (email: string, ): Promise<string> => {
+  if (!email) {
+    throw new Error("Email is required");
   }
+ 
+
+
+  const otp = generateOTP(); // OTP is generated inside the function
+
+
+
+
 
   // Simulate email sending with console logs
   console.log('\n=== VERIFICATION EMAIL ===');
@@ -26,7 +38,7 @@ export const sendVerificationEmail = async (email: string, otp: string) => {
   // Simulate network delay
   await new Promise(resolve => setTimeout(resolve, 1000));
   
-  return true;
+  return otp;
 };
 
 // Add helper function to check if a date is expired

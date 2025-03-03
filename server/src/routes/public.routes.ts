@@ -10,6 +10,7 @@ import multer from 'multer';
 import { authMiddleware } from '../middleware/auth.middleware';
 import { AuthRequest } from '../types/auth.types';
 import { generateOTP, sendVerificationEmail } from '../services/email.service';
+//import { sendVerificationEmail } from '../services/email.service';
 
 const router = Router();
 
@@ -444,7 +445,7 @@ router.post(
 );
 
 // Generate and send OTP
-router.post('/artisan/send-verification', authMiddleware, async (req: AuthRequest, res) => {
+router.post('/artisan/send-verification', async (req: AuthRequest, res) => {
   try {
     const artisanId = req.user?.id;
     if (!artisanId) {
@@ -474,7 +475,7 @@ router.post('/artisan/send-verification', authMiddleware, async (req: AuthReques
     });
 
     // Send OTP via email
-    await sendVerificationEmail(artisan.email, otp);
+    await sendVerificationEmail(artisan.email);
 
     res.json({ message: 'Verification code sent successfully' });
 
