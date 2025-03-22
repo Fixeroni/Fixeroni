@@ -1,0 +1,22 @@
+@media (max-width: 640px) {
+  .sidebar {
+    display: none;
+  }
+  .smallscreenheader{
+    display: flex;
+    padding: 10px;
+  }
+  .menutoggle{
+    margin-right: 30px;
+  }
+  .homedivsmallscreen{
+    display: block;
+  }
+ 
+}
+
+@media screen and (min-width: 1024px) {
+  .smallscreenheader{
+    display: none;
+  }
+}
