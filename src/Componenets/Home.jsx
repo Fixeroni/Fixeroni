@@ -7,6 +7,7 @@ import Header from "./Header";
 const Home = () => {
   return (
     <div>
+      {/* header */}
        <Header/>
       <div className="grid grid-cols-7 w-[100%]    homedivsmallscreen ">
         <SideNavMenu />
