@@ -7,7 +7,7 @@ export const Route = createFileRoute('/artisan/dashboard/DashBoardComponent/Dash
   component: DashboardMinPage,
 })
 
-export default function DashboardMinPage() {
+ function DashboardMinPage() {
   return (
     <div>
 
@@ -27,11 +27,7 @@ export default function DashboardMinPage() {
   )
 }
 
-// /* FIND PRO */
 
-// position: relative;
-// width: 1440px;
-// height: 900px;
 
-// background: #F8F8F8;
+export default DashboardMinPage;
 

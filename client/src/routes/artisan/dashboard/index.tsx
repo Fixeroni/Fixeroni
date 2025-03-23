@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import DashboardMinPage from "./DashBoardComponent/DashboardMainPage";
 
 
 
@@ -8,7 +9,7 @@ export const Route = createFileRoute("/artisan/dashboard/")({
 
 function RouteComponent() {
   return <div>
-    Hello "/artisan/dashboard/"!
+  <DashboardMinPage />
 
   </div>
 }
