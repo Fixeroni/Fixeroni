@@ -10,9 +10,25 @@
     margin-right: 30px;
   }
   .homedivsmallscreen{
-    display: block;
+  display:block;
+    overflow-wrap: break-word; 
+    word-break: break-word;
+   
   }
  
+}
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+  .smallscreenheader {
+      display:none; 
+  }
+  
+  
+}
+
+.center{
+  word-break: break-word; 
+  overflow-wrap: break-word;
+
 }
 
 @media screen and (min-width: 1024px) {

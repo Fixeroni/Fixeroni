@@ -21,7 +21,7 @@ const sideNavMenu = () => {
           </div>
 
           <div className="logo w-[87px]  items-center flex flex-col h-[60px] ">
-            <img className="w-[20px]  h-[20px]  " src={Vector} />
+            <img className="w-[20px]  h-[20px] pointer  " src={Vector} />
             <div className="mt-[10px]">
               {" "}
               <p className="font-[system-ui] text-[#0F9067] font-medium text-[13px]">

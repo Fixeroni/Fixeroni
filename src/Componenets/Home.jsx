@@ -6,7 +6,7 @@ import MapContainer from "./MapContainer";
 import Header from "./Header";
 const Home = () => {
   return (
-    <div>
+    <div className = "bg-[red] ">
     
        <Header/>
       <div className="grid grid-cols-7 w-[100%]    homedivsmallscreen ">
