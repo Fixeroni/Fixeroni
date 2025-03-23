@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import  { ReactNode, useState } from "react";
 import AnimateEntranceFromBottom from "../../animated/AnimateEntranceFromBottom";
 
 function Switch({
@@ -13,7 +13,7 @@ function Switch({
 
   return (
     <article className="w-full flex flex-col justify-center items-center">
-      <article className="flex gap-4 items-center mb-4 w-full justify-center items-center">
+      <article className="flex gap-4 items-center mb-4 w-full justify-center">
         <article
           className={`${content === "login" && "border-b-2 border-primary"} cursor-pointer p-2 text-lg min-w-[120px] text-center hover:cursor-pointer`}
           onClick={() => setContent("login")}

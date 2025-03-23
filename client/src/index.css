@@ -7,3 +7,14 @@
   --color-gray-secondary: #787878;
   --color-primary: #0f9067;
 }
+
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
+.scrollBar{
+  -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+  scrollbar-width: none; 
+}
+body{
+  background-color: #F8F8F8;
+}
