@@ -74,8 +74,8 @@ export const Route = createFileRoute("/artisan/dashboard/DashBoardComponent/Side
             </div>
 
             <section>
-                <div className="flex flex-col h-full ">
-                    <ul className="mt-10">
+                <div className="flex flex-col h-full">
+                    <ul className="mt-[12rem]">
                         {settingMenu.map(({name, icon})=>{
                                 return(
                                     <li key={name} className="mb-7">
