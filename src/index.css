@@ -2,37 +2,32 @@
   .sidebar {
     display: none;
   }
-  .smallscreenheader{
+  .smallscreenheader {
     display: flex;
     padding: 10px;
   }
-  .menutoggle{
+  .menutoggle {
     margin-right: 30px;
   }
-  .homedivsmallscreen{
-  display:block;
-    overflow-wrap: break-word; 
+  .homedivsmallscreen {
+    display: block;
+    overflow-wrap: break-word;
     word-break: break-word;
-   
   }
- 
 }
 @media screen and (max-width: 1024px) and (min-width: 768px) {
   .smallscreenheader {
-      display:none; 
+    display: none;
   }
-  
-  
 }
 
-.center{
-  word-break: break-word; 
+.center {
+  word-break: break-word;
   overflow-wrap: break-word;
-
 }
 
 @media screen and (min-width: 1024px) {
-  .smallscreenheader{
+  .smallscreenheader {
     display: none;
   }
 }
