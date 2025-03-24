@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Home from "./Componenets/Home";
+import Home from "./Componenets/Home.tsx";
 
 function App() {
   return (
