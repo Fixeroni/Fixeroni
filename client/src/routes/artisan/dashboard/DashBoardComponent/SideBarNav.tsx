@@ -35,7 +35,8 @@ export const Route = createFileRoute("/artisan/dashboard/DashBoardComponent/Side
 
   return (
     <div className="">
-        <div className="w-[147px] h-screen scroll-smooth overflow-y-auto scrollBar bg-[#FFFFFF]  shadow-[2px_2px_5px_rgba(0,0,0,0.05)] p-5
+        <div className="w-[147px] h-screen scroll-smooth overflow-y-auto scrollBar bg-[#FFFFFF] 
+         shadow-[2px_2px_5px_rgba(0,0,0,0.05)] p-5
         rounded-tr-[20px] rounded-br-[20px]">
             <div className="mt-4">
             <img src="/images/branding/logo.png" alt="" />
