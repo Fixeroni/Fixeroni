@@ -41,21 +41,21 @@ function DashboardPage() {
       <section>
         <h3 className='Poppins text-[#1E1E1E] text-[20px] py-3'>Featured Pro’s</h3>
 
-        <div className='h-[180px] w-full bg-[#FFFFFF] rounded-[20px] shawdow---feature p-3'>
+        <div className='h-[180px] w-full bg-[#FFFFFF] rounded-[20px] shawdow---feature p-5 flex items-center justify-between'>
           <div>
-            <div className=' flex items-center gap-2'>
+            <div className=' flex items-center gap-4'>
               <div>
                 <img src="/images/assets/feature_image_A.png" alt="feature_image_A" />
               </div>
               <div>
                 <h2 className='Poppins text-[#1E1E1E] text-[23px] font-medium'>Wade Warren</h2>
                 <div className='flex items-center gap-4 '>
-                  <span className='leading-[22px] mt-[-0.5rem]'>
+                  <span className='leading-[23px] mt-[-0.4rem]'>
                     <p className='text-[#535353] font-normal text-[14px]'>Trade</p>
                     <p className='text-[#535353] font-medium text-[14px]'>Experience</p>
                     <p className='text-[#535353] font-medium text-[14px]'> Active </p>
-                    <p>
-                    <StarRating  rating={rating} onRatingChange={setRating} />
+                    <p className='pt-1'>
+                    <StarRating  rating={rating} onRatingChange={setRating} />  
                     </p>
                     
                   </span>
@@ -78,8 +78,22 @@ function DashboardPage() {
 
           </div>
 
+          <div>
+            <div className='flex flex-col gap-1.5 '>
+              <p className='text-[#1E1E1E] text-[14px] font-medium ml-auto'>3km away</p>
+              <button type='button' className='text-[#FFFFFF] bg-[#0F9067] cursor-pointer
+             h-[35px] rounded-[17.5px] w-[151.14px]'> Book Now</button>
+            
+            <button type='button' className='text-[#0F9067] border-[#0F9067] border cursor-pointer
+             h-[35px] rounded-[17.5px] w-[151.14px]'> Book Now</button>
+            </div>
+
+
+          </div>
+
             
         </div>
+
       </section>
     </div>
   )
@@ -88,24 +102,21 @@ function DashboardPage() {
 export default DashboardPage;
 
 
-// /* Electrician */
+// /* Rectangle 88 */
 
 // position: absolute;
-// width: 67.51px;
-// height: 10px;
-// left: 255.92px;
-// top: 71px;
+// width: 151.14px;
+// height: 35px;
+// left: 616.64px;
+// top: 65px;
 
-// font-family: 'Poppins';
-// font-style: normal;
-// font-weight: 300;
-// font-size: 13px;
-// line-height: 10px;
-// /* identical to box height, or 77% */
-// display: flex;
-// align-items: center;
+// background: #0F9067;
+// border-radius: 17.5px;
 
-// color: #535353;
+
+
+
+
 
 
 

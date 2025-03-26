@@ -7,7 +7,7 @@ export const Route = createFileRoute('/artisan/dashboard/DashBoardComponent/Dash
 
 function DashBoardMap() {
   return(
-   <div className='w-[506px] h-full  bg-[#F2F1F1]'>
+   <div className='w-[406px] h-full  bg-[#F2F1F1]'>
      <div className=''>
    Map section
      </div>
