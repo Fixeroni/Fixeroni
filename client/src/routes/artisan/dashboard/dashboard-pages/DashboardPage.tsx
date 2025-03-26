@@ -41,20 +41,20 @@ function DashboardPage() {
       <section>
         <h3 className='Poppins text-[#1E1E1E] text-[20px] py-3'>Featured Pro’s</h3>
 
-        <div className='h-[180px] w-full bg-[#FFFFFF] rounded-[20px] shawdow---feature p-3'>
+        <div className='h-[180px] w-full bg-[#FFFFFF] rounded-[20px] shawdow---feature p-4'>
           <div>
-            <div className=' flex items-center gap-2'>
+            <div className=' flex items-center gap-4 '>
               <div>
                 <img src="/images/assets/feature_image_A.png" alt="feature_image_A" />
               </div>
               <div>
                 <h2 className='Poppins text-[#1E1E1E] text-[23px] font-medium'>Wade Warren</h2>
-                <div className='flex items-center gap-4 '>
-                  <span className='leading-[22px] mt-[-0.5rem]'>
+                <div className='flex items-center gap-5 '>
+                  <span className='leading-[22px] mt-[-0.4rem]'>
                     <p className='text-[#535353] font-normal text-[14px]'>Trade</p>
                     <p className='text-[#535353] font-medium text-[14px]'>Experience</p>
                     <p className='text-[#535353] font-medium text-[14px]'> Active </p>
-                    <p>
+                    <p className='pt-1.5'>
                     <StarRating  rating={rating} onRatingChange={setRating} />
                     </p>
                     
@@ -69,6 +69,10 @@ function DashboardPage() {
                 </div>
               </div>
             </div>
+
+                <div>
+                  
+                </div>
 
             <div>
 
