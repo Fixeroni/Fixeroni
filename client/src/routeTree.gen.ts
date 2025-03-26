@@ -21,6 +21,7 @@ import { Route as ArtisanDashboardDashboardPagesDashboardPageImport } from './ro
 import { Route as ArtisanDashboardDashBoardComponentStarRatingImport } from './routes/artisan/dashboard/DashBoardComponent/StarRating'
 import { Route as ArtisanDashboardDashBoardComponentSideBarNavImport } from './routes/artisan/dashboard/DashBoardComponent/SideBarNav'
 import { Route as ArtisanDashboardDashBoardComponentDashboardMainPageImport } from './routes/artisan/dashboard/DashBoardComponent/DashboardMainPage'
+import { Route as ArtisanDashboardDashBoardComponentDashboarFeaturesImport } from './routes/artisan/dashboard/DashBoardComponent/DashboarFeatures'
 import { Route as ArtisanDashboardDashBoardComponentDashBoardMapImport } from './routes/artisan/dashboard/DashBoardComponent/DashBoardMap'
 
 // Create/Update Routes
@@ -90,6 +91,13 @@ const ArtisanDashboardDashBoardComponentDashboardMainPageRoute =
     getParentRoute: () => rootRoute,
   } as any)
 
+const ArtisanDashboardDashBoardComponentDashboarFeaturesRoute =
+  ArtisanDashboardDashBoardComponentDashboarFeaturesImport.update({
+    id: '/artisan/dashboard/DashBoardComponent/DashboarFeatures',
+    path: '/artisan/dashboard/DashBoardComponent/DashboarFeatures',
+    getParentRoute: () => rootRoute,
+  } as any)
+
 const ArtisanDashboardDashBoardComponentDashBoardMapRoute =
   ArtisanDashboardDashBoardComponentDashBoardMapImport.update({
     id: '/artisan/dashboard/DashBoardComponent/DashBoardMap',
@@ -120,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/artisan/dashboard/DashBoardComponent/DashBoardMap'
       fullPath: '/artisan/dashboard/DashBoardComponent/DashBoardMap'
       preLoaderRoute: typeof ArtisanDashboardDashBoardComponentDashBoardMapImport
+      parentRoute: typeof rootRoute
+    }
+    '/artisan/dashboard/DashBoardComponent/DashboarFeatures': {
+      id: '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
+      path: '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
+      fullPath: '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
+      preLoaderRoute: typeof ArtisanDashboardDashBoardComponentDashboarFeaturesImport
       parentRoute: typeof rootRoute
     }
     '/artisan/dashboard/DashBoardComponent/DashboardMainPage': {
@@ -187,6 +202,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/artisan/dashboard': typeof ArtisanDashboardIndexRoute
   '/artisan/dashboard/DashBoardComponent/DashBoardMap': typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
+  '/artisan/dashboard/DashBoardComponent/DashboarFeatures': typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   '/artisan/dashboard/DashBoardComponent/DashboardMainPage': typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
   '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
@@ -201,6 +217,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/artisan/dashboard': typeof ArtisanDashboardIndexRoute
   '/artisan/dashboard/DashBoardComponent/DashBoardMap': typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
+  '/artisan/dashboard/DashBoardComponent/DashboarFeatures': typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   '/artisan/dashboard/DashBoardComponent/DashboardMainPage': typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
   '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
@@ -216,6 +233,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/artisan/dashboard/': typeof ArtisanDashboardIndexRoute
   '/artisan/dashboard/DashBoardComponent/DashBoardMap': typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
+  '/artisan/dashboard/DashBoardComponent/DashboarFeatures': typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   '/artisan/dashboard/DashBoardComponent/DashboardMainPage': typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
   '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
@@ -232,6 +250,7 @@ export interface FileRouteTypes {
     | '/'
     | '/artisan/dashboard'
     | '/artisan/dashboard/DashBoardComponent/DashBoardMap'
+    | '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
     | '/artisan/dashboard/DashBoardComponent/DashboardMainPage'
     | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
@@ -245,6 +264,7 @@ export interface FileRouteTypes {
     | '/'
     | '/artisan/dashboard'
     | '/artisan/dashboard/DashBoardComponent/DashBoardMap'
+    | '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
     | '/artisan/dashboard/DashBoardComponent/DashboardMainPage'
     | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
@@ -258,6 +278,7 @@ export interface FileRouteTypes {
     | '/'
     | '/artisan/dashboard/'
     | '/artisan/dashboard/DashBoardComponent/DashBoardMap'
+    | '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
     | '/artisan/dashboard/DashBoardComponent/DashboardMainPage'
     | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
@@ -273,6 +294,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArtisanDashboardIndexRoute: typeof ArtisanDashboardIndexRoute
   ArtisanDashboardDashBoardComponentDashBoardMapRoute: typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
+  ArtisanDashboardDashBoardComponentDashboarFeaturesRoute: typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   ArtisanDashboardDashBoardComponentDashboardMainPageRoute: typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
   ArtisanDashboardDashBoardComponentSideBarNavRoute: typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   ArtisanDashboardDashBoardComponentStarRatingRoute: typeof ArtisanDashboardDashBoardComponentStarRatingRoute
@@ -288,6 +310,8 @@ const rootRouteChildren: RootRouteChildren = {
   ArtisanDashboardIndexRoute: ArtisanDashboardIndexRoute,
   ArtisanDashboardDashBoardComponentDashBoardMapRoute:
     ArtisanDashboardDashBoardComponentDashBoardMapRoute,
+  ArtisanDashboardDashBoardComponentDashboarFeaturesRoute:
+    ArtisanDashboardDashBoardComponentDashboarFeaturesRoute,
   ArtisanDashboardDashBoardComponentDashboardMainPageRoute:
     ArtisanDashboardDashBoardComponentDashboardMainPageRoute,
   ArtisanDashboardDashBoardComponentSideBarNavRoute:
@@ -315,6 +339,7 @@ export const routeTree = rootRoute
         "/",
         "/artisan/dashboard/",
         "/artisan/dashboard/DashBoardComponent/DashBoardMap",
+        "/artisan/dashboard/DashBoardComponent/DashboarFeatures",
         "/artisan/dashboard/DashBoardComponent/DashboardMainPage",
         "/artisan/dashboard/DashBoardComponent/SideBarNav",
         "/artisan/dashboard/DashBoardComponent/StarRating",
@@ -333,6 +358,9 @@ export const routeTree = rootRoute
     },
     "/artisan/dashboard/DashBoardComponent/DashBoardMap": {
       "filePath": "artisan/dashboard/DashBoardComponent/DashBoardMap.tsx"
+    },
+    "/artisan/dashboard/DashBoardComponent/DashboarFeatures": {
+      "filePath": "artisan/dashboard/DashBoardComponent/DashboarFeatures.tsx"
     },
     "/artisan/dashboard/DashBoardComponent/DashboardMainPage": {
       "filePath": "artisan/dashboard/DashBoardComponent/DashboardMainPage.tsx"

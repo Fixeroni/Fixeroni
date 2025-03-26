@@ -25,8 +25,9 @@ export type Artisan = {
 export type Feature = {
   image: string;
   title: string;
-  description: string;
-  side: "left" | "right";
-  ctaText: string;
-  cta: string;
+  // description: string;
+  // side: "left" | "right";
+  // ctaText: string;
+  // cta: string;
+  Margintop: string;
 };
