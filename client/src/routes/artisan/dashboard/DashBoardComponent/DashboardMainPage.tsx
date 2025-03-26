@@ -13,7 +13,7 @@ function DashboardMinPage() {
         <SideBarNav />
       </div>
 
-      <div className="scroll-smooth overflow-y-auto scrollBar flex-grow-1">
+      <div className="scroll-smooth h-screen overflow-y-auto scrollBar flex-grow-1">
         <DashboardPage />
       </div>
     </div>

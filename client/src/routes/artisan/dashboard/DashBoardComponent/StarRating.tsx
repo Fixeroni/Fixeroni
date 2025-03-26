@@ -5,6 +5,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 
 
+
 interface StarRatingProps {
   totalStars?: number;
   rating: number;
@@ -22,7 +23,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   const [hover, setHover] = useState(0);
 
   return (
-    <div className="flex gap-1 cursor-pointer">
+    <div className="flex gap-1 cursor-pointer pt-0.5">
       {Array.from({ length: totalStars }, (_, i) => {
         const starValue = i + 1;
         return (
@@ -43,8 +44,8 @@ const StarRating: React.FC<StarRatingProps> = ({
 };
 
 export const Route = createFileRoute('/artisan/dashboard/DashBoardComponent/StarRating')({
-    component: StarRating,
-  })
+  component: StarRating,
+})
 
 export default StarRating;
 

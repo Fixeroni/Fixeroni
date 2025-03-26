@@ -1,18 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router'
-import StarRating from '../DashBoardComponent/StarRating';
-import { useState } from 'react';
+import {DashboarFeatures } from '../DashBoardComponent/DashboarFeatures';
+
 
 export const Route = createFileRoute('/artisan/dashboard/dashboard-pages/DashboardPage')({
   component: DashboardPage,
 })
 
+
+
 function DashboardPage() {
-  const [rating, setRating] = useState(4)
+
 
   return (
-    <div>
+    <div className=''>
         
-      <section>
+      <section className='sticky top-0 z-10 w-full bg-[#F8F8F8]'>
       <div className='flex'>
         <div></div>
         <div className='flex items-center ml-auto p-2.5 mt-2.5 gap-3'>
@@ -38,84 +40,22 @@ function DashboardPage() {
           </div>
       </section>
 
-      <section>
-        <h3 className='Poppins text-[#1E1E1E] text-[20px] py-3'>Featured Pro’s</h3>
+     {/* Feature Pro section begines here*/}
+     <section>
+     <h3 className='Poppins text-[#1E1E1E] text-[20px] py-3'>Featured Pro’s</h3>
 
-        <div className='h-[180px] w-full bg-[#FFFFFF] rounded-[20px] shawdow---feature p-5 flex items-center justify-between'>
-          <div>
-            <div className=' flex items-center gap-4'>
-              <div>
-                <img src="/images/assets/feature_image_A.png" alt="feature_image_A" />
-              </div>
-              <div>
-                <h2 className='Poppins text-[#1E1E1E] text-[23px] font-medium'>Wade Warren</h2>
-                <div className='flex items-center gap-4 '>
-                  <span className='leading-[23px] mt-[-0.4rem]'>
-                    <p className='text-[#535353] font-normal text-[14px]'>Trade</p>
-                    <p className='text-[#535353] font-medium text-[14px]'>Experience</p>
-                    <p className='text-[#535353] font-medium text-[14px]'> Active </p>
-                    <p className='pt-1'>
-                    <StarRating  rating={rating} onRatingChange={setRating} />  
-                    </p>
-                    
-                  </span>
-                  <span className='leading-[22px]'>
-                    <p className='text-[#535353] text-[14px] font-normal'>Electrician</p>
-                    <p className='text-[#535353] text-[14px] font-normal'>15+ Years</p>
-                    <p className='text-[#535353] text-[14px] font-normal'>Online</p>
-                    <p className='text-[#535353] text-[14px] font-normal'>reviews</p>
-
-                  </span>
-                </div>
-              </div>
-            </div>
-
-                <div>
-                  
-                </div>
-
-            <div>
-
-           
-            </div>
-
-
-          </div>
-
-          <div>
-            <div className='flex flex-col gap-1.5 '>
-              <p className='text-[#1E1E1E] text-[14px] font-medium ml-auto'>3km away</p>
-              <button type='button' className='text-[#FFFFFF] bg-[#0F9067] cursor-pointer
-             h-[35px] rounded-[17.5px] w-[151.14px]'> Book Now</button>
-            
-            <button type='button' className='text-[#0F9067] border-[#0F9067] border cursor-pointer
-             h-[35px] rounded-[17.5px] w-[151.14px]'> Book Now</button>
-            </div>
-
-
-          </div>
-
-            
-        </div>
-
-      </section>
+   <DashboarFeatures  Margintop={""} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_B.png"}  title={"Jane Cooper"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_C.png"}  title={"Dianne Russell"} />
+   </section>
     </div>
   )
 }
 
+
 export default DashboardPage;
 
 
-// /* Rectangle 88 */
-
-// position: absolute;
-// width: 151.14px;
-// height: 35px;
-// left: 616.64px;
-// top: 65px;
-
-// background: #0F9067;
-// border-radius: 17.5px;
 
 
 
