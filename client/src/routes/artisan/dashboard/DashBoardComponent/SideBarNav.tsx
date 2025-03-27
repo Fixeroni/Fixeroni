@@ -2,6 +2,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { Link } from "@tanstack/react-router";
+import { useDashboardStore, dashboardContent } from "../../../../stores/auth/useDashboardStore";
+
 
 export const Route = createFileRoute(
   "/artisan/dashboard/DashBoardComponent/SideBarNav",
@@ -10,7 +12,12 @@ export const Route = createFileRoute(
 });
 
 function SideBarNav() {
-  const menuItems = useMemo(
+const {content, setContent} = useDashboardStore();
+
+
+
+
+  const menuItems:Array<{ name: dashboardContent; icon: string; notification?: number }>= useMemo(
     () => [
       { name: "Dashboard", icon: "/images/icons/dashboardIcon.png" },
       { name: "Find Pro", icon: "/images/icons/findProIcon.png" },
@@ -49,7 +56,7 @@ function SideBarNav() {
           <ul>
             {menuItems.map(({ name, notification, icon }) => {
               return (
-                <li className="mb-10" key={name}>
+                <li className="mb-10 cursor-pointer" key={name} onClick={() => setContent(name)} >
                   <div className=" flex flex-col items-center">
                     <div className="flex items-center">
                       <img src={icon} alt="" className="" />
@@ -66,15 +73,15 @@ function SideBarNav() {
                     </div>
 
                     <div>
-                      <Link to="/artisan/dashboard/dashboard-pages/FindPro">
+                      
                         {" "}
                         <h2
-                          className={` ${name !== "Dashboard" ? "text-[#1E1E1E] opacity-[0.5]" : "text-[#0F9067]"} 
+                          className={` ${name !== content ? "text-[#1E1E1E] opacity-[0.5]" : "text-[#0F9067]"} 
                            font-medium text-[1.2rem] poppins`}
                         >
                           {name}
                         </h2>{" "}
-                      </Link>
+                      
                     </div>
                   </div>
                 </li>
