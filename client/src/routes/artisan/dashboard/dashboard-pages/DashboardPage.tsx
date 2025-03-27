@@ -1,10 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router'
 import {DashboarFeatures } from '../DashBoardComponent/DashboarFeatures';
-
+import {  Outlet } from '@tanstack/react-router'
+import FindPro from './FindPro';
 
 export const Route = createFileRoute('/artisan/dashboard/dashboard-pages/DashboardPage')({
   component: DashboardPage,
-})
+
+});
 
 
 
@@ -39,7 +41,7 @@ function DashboardPage() {
             </div>
           </div>
       </section>
-
+   
      {/* Feature Pro section begines here*/}
      <section>
      <h3 className='Poppins text-[#1E1E1E] text-[20px] py-3'>Featured Pro’s</h3>
@@ -48,6 +50,11 @@ function DashboardPage() {
    <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_B.png"}  title={"Jane Cooper"} />
    <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_C.png"}  title={"Dianne Russell"} />
    </section>
+        <div>
+        <Outlet />
+        jndkc
+        </div>
+   
     </div>
   )
 }
