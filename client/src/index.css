@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
-@theme {
+/* @theme {
   --color-white-dark: #f8f8f8;
   --color-gray-primary: #c2c2c2;
   --color-primary-light: #a9eec9;
   --color-gray-secondary: #787878;
   --color-primary: #0f9067;
-}
+} */
 
 
 .scrollBar{
