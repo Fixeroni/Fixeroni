@@ -13,6 +13,8 @@ type AuthStore = {
   }) => Promise<void>;
 };
 
+
+
 export const useAuthStore = create<AuthStore>((set) => ({
   isLoading: false,
   setIsLoading: (loading) => set({ isLoading: loading }),
@@ -82,4 +84,13 @@ export const useAuthStore = create<AuthStore>((set) => ({
       set({ isLoading: false });
     }
   },
+
+
+
+ 
+  
+
+
+
+
 })); 
