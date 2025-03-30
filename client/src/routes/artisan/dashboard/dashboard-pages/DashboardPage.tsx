@@ -1,18 +1,22 @@
 import { createFileRoute } from '@tanstack/react-router'
-import StarRating from '../DashBoardComponent/StarRating';
-import { useState } from 'react';
+import {DashboarFeatures } from '../DashBoardComponent/DashboarFeatures';
+import {  Outlet } from '@tanstack/react-router'
+import FindPro from './FindPro';
 
 export const Route = createFileRoute('/artisan/dashboard/dashboard-pages/DashboardPage')({
   component: DashboardPage,
-})
+
+});
+
+
 
 function DashboardPage() {
-  const [rating, setRating] = useState(4)
+
 
   return (
-    <div>
+    <div className=''>
         
-      <section>
+      {/* <section className='sticky top-0 z-10 w-full bg-[#F8F8F8]'>
       <div className='flex'>
         <div></div>
         <div className='flex items-center ml-auto p-2.5 mt-2.5 gap-3'>
@@ -21,7 +25,7 @@ function DashboardPage() {
         </div>
       </div>
       <hr className='w-full opacity-[0.4] border-[#0000007f] border mt-2'/>
-      </section>
+      </section> */}
 
       <section>
           <h2 className='Poppins text-[#1E1E1E] text-[36px] font-medium mt-4'>Hi Ben</h2>
@@ -37,75 +41,33 @@ function DashboardPage() {
             </div>
           </div>
       </section>
+   
+     {/* Feature Pro section begines here*/}
+     <section>
+     <h3 className='Poppins text-[#1E1E1E] text-[20px] py-3'>Featured Pro’s</h3>
 
-      <section>
-        <h3 className='Poppins text-[#1E1E1E] text-[20px] py-3'>Featured Pro’s</h3>
-
-        <div className='h-[180px] w-full bg-[#FFFFFF] rounded-[20px] shawdow---feature p-3'>
-          <div>
-            <div className=' flex items-center gap-2'>
-              <div>
-                <img src="/images/assets/feature_image_A.png" alt="feature_image_A" />
-              </div>
-              <div>
-                <h2 className='Poppins text-[#1E1E1E] text-[23px] font-medium'>Wade Warren</h2>
-                <div className='flex items-center gap-4 '>
-                  <span className='leading-[22px] mt-[-0.5rem]'>
-                    <p className='text-[#535353] font-normal text-[14px]'>Trade</p>
-                    <p className='text-[#535353] font-medium text-[14px]'>Experience</p>
-                    <p className='text-[#535353] font-medium text-[14px]'> Active </p>
-                    <p>
-                    <StarRating  rating={rating} onRatingChange={setRating} />
-                    </p>
-                    
-                  </span>
-                  <span className='leading-[22px]'>
-                    <p className='text-[#535353] text-[14px] font-normal'>Electrician</p>
-                    <p className='text-[#535353] text-[14px] font-normal'>15+ Years</p>
-                    <p className='text-[#535353] text-[14px] font-normal'>Online</p>
-                    <p className='text-[#535353] text-[14px] font-normal'>reviews</p>
-
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-
-           
-            </div>
-
-
-          </div>
-
-            
+   <DashboarFeatures  Margintop={""} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_B.png"}  title={"Jane Cooper"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_C.png"}  title={"Dianne Russell"} />
+   </section>
+        <div>
+        <Outlet />
+        jndkc
         </div>
-      </section>
+   
     </div>
   )
 }
 
+
 export default DashboardPage;
 
 
-// /* Electrician */
 
-// position: absolute;
-// width: 67.51px;
-// height: 10px;
-// left: 255.92px;
-// top: 71px;
 
-// font-family: 'Poppins';
-// font-style: normal;
-// font-weight: 300;
-// font-size: 13px;
-// line-height: 10px;
-// /* identical to box height, or 77% */
-// display: flex;
-// align-items: center;
 
-// color: #535353;
+
+
 
 
 
