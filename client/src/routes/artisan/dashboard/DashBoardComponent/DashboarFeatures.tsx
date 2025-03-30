@@ -86,5 +86,5 @@ export const Route = createFileRoute('/artisan/dashboard/DashBoardComponent/Dash
 }
 
 
-// export default DashboarFeatures;
+export default DashboarFeatures;
 

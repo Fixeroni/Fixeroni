@@ -14,7 +14,7 @@ function DashboardPage() {
 
 
   return (
-    <div className=''>
+    <div>
         
       {/* <section className='sticky top-0 z-10 w-full bg-[#F8F8F8]'>
       <div className='flex'>
