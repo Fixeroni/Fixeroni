@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import SideBarNav from "./SideBarNav";
 import DashboardPage from "../dashboard-pages/DashboardPage";
-import { useDashboardStore, dashboardContent } from "../../../../stores/auth/useDashboardStore";
+import { useDashboardStore } from "../../../../stores/auth/useDashboardStore";
 import FindPro from "../dashboard-pages/FindPro";
 
 export const Route = createFileRoute("/artisan/dashboard/DashBoardComponent/DashboardMainPage")({
