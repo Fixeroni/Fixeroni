@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import SideBarNav from "./SideBarNav";
 import DashboardPage from "../dashboard-pages/DashboardPage";
 import { useDashboardStore, dashboardContent } from "../../../../stores/auth/useDashboardStore";
-import FindPro from "../dashboard-pages/FindPro";
+import RouteComponent from "../dashboard-pages/FindProHeader";
+// import FindPro from "../dashboard-pages/FindPro";
 
 export const Route = createFileRoute("/artisan/dashboard/DashBoardComponent/DashboardMainPage")({
   component: DashboardMinPage,
@@ -31,7 +32,7 @@ const {content} = useDashboardStore();
 
       <section>
         {content === "Dashboard" && <DashboardPage /> }
-        {content === "Find Pro" && <FindPro />}
+        {content === "Find Pro" && <RouteComponent />}
         {/* <DashboardPage /> */}
       </section>
        

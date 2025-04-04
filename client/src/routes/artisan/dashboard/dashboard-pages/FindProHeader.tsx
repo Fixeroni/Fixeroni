@@ -1,9 +1,7 @@
 
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute(
-  '/artisan/dashboard/dashboard-pages/FindProHeader',
-)({
+export const Route = createFileRoute('/artisan/dashboard/dashboard-pages/FindProHeader')({
   component: RouteComponent,
 })
 

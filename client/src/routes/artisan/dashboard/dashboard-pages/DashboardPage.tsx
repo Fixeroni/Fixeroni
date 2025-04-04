@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import {DashboarFeatures } from '../DashBoardComponent/DashboarFeatures';
 import {  Outlet } from '@tanstack/react-router'
-import FindPro from './FindPro';
+// import FindPro from './FindPro';
 
 export const Route = createFileRoute('/artisan/dashboard/dashboard-pages/DashboardPage')({
   component: DashboardPage,
@@ -16,16 +16,7 @@ function DashboardPage() {
   return (
     <div className=''>
         
-      {/* <section className='sticky top-0 z-10 w-full bg-[#F8F8F8]'>
-      <div className='flex'>
-        <div></div>
-        <div className='flex items-center ml-auto p-2.5 mt-2.5 gap-3'>
-          <img src="/images/icons/notification_profile.png" alt="notification"  className=''/>
-          <img src="/images/icons/Profile_img.png" alt="Profile_img" />
-        </div>
-      </div>
-      <hr className='w-full opacity-[0.4] border-[#0000007f] border mt-2'/>
-      </section> */}
+     
 
       <section>
           <h2 className='Poppins text-[#1E1E1E] text-[36px] font-medium mt-4'>Hi Ben</h2>
