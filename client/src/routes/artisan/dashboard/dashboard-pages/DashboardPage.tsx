@@ -14,7 +14,7 @@ function DashboardPage() {
 
 
   return (
-    <div className=''>
+    <div>
         
       {/* <section className='sticky top-0 z-10 w-full bg-[#F8F8F8]'>
       <div className='flex'>
@@ -46,13 +46,13 @@ function DashboardPage() {
      <section>
      <h3 className='Poppins text-[#1E1E1E] text-[20px] py-3'>Featured Pro’s</h3>
 
-   <DashboarFeatures  Margintop={""} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
-   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_B.png"}  title={"Jane Cooper"} />
-   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_C.png"}  title={"Dianne Russell"} />
+   <DashboarFeatures  Margintop={""} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} distance={"3km away"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_B.png"}  title={"Jane Cooper"} distance={"2km away"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_C.png"}  title={"Dianne Russell"} distance={"2km away"} />
    </section>
         <div>
         <Outlet />
-        jndkc
+     
         </div>
    
     </div>

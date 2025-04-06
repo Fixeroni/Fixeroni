@@ -17,7 +17,7 @@ const {content} = useDashboardStore();
         <SideBarNav />
       </div>
 
-      <div className="scroll-smooth h-screen overflow-y-auto scrollBar flex-grow-1">
+      <div className="scroll-smooth  overflow-y-auto scrollBar flex-grow-1">
       <section className='sticky top-0 z-10 w-full bg-[#F8F8F8]'>
       <div className='flex'>
         <div></div>
@@ -32,6 +32,7 @@ const {content} = useDashboardStore();
       <section>
         {content === "Dashboard" && <DashboardPage /> }
         {content === "Find Pro" && <FindPro />}
+        
         {/* <DashboardPage /> */}
       </section>
        
