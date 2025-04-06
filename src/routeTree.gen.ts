@@ -17,11 +17,17 @@ import { Route as ClientAuthRegisterIndexImport } from './routes/client/auth/reg
 import { Route as ArtisanAuthRegisterIndexImport } from './routes/artisan/auth/register/index'
 import { Route as ArtisanAuthLoginIndexImport } from './routes/artisan/auth/login/index'
 import { Route as ArtisanAuthForgotPasswordIndexImport } from './routes/artisan/auth/forgot-password/index'
+<<<<<<< HEAD
+<<<<<<< HEAD
 import { Route as ArtisanDashboardDashboardPagesFindProHeaderImport } from './routes/artisan/dashboard/dashboard-pages/FindProHeader'
+=======
+=======
+import { Route as ArtisanDashboardDashboardPagesFindProHeaderImport } from './routes/artisan/dashboard/dashboard-pages/FindProHeader'
+>>>>>>> goodluck/feature-dashboard-
 import { Route as ArtisanDashboardDashboardPagesFindProImport } from './routes/artisan/dashboard/dashboard-pages/FindPro'
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
 import { Route as ArtisanDashboardDashboardPagesDashboardPageImport } from './routes/artisan/dashboard/dashboard-pages/DashboardPage'
 import { Route as ArtisanDashboardDashBoardComponentStarRatingImport } from './routes/artisan/dashboard/DashBoardComponent/StarRating'
-import { Route as ArtisanDashboardDashBoardComponentSideBarNavImport } from './routes/artisan/dashboard/DashBoardComponent/SideBarNav'
 import { Route as ArtisanDashboardDashBoardComponentDashboardMainPageImport } from './routes/artisan/dashboard/DashBoardComponent/DashboardMainPage'
 import { Route as ArtisanDashboardDashBoardComponentDashboarFeaturesImport } from './routes/artisan/dashboard/DashBoardComponent/DashboarFeatures'
 import { Route as ArtisanDashboardDashBoardComponentDashBoardMapImport } from './routes/artisan/dashboard/DashBoardComponent/DashBoardMap'
@@ -65,17 +71,26 @@ const ArtisanAuthForgotPasswordIndexRoute =
     getParentRoute: () => rootRoute,
   } as any)
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> goodluck/feature-dashboard-
 const ArtisanDashboardDashboardPagesFindProHeaderRoute =
   ArtisanDashboardDashboardPagesFindProHeaderImport.update({
     id: '/artisan/dashboard/dashboard-pages/FindProHeader',
     path: '/artisan/dashboard/dashboard-pages/FindProHeader',
+<<<<<<< HEAD
+=======
+=======
     getParentRoute: () => rootRoute,
   } as any)
 
+>>>>>>> goodluck/feature-dashboard-
 const ArtisanDashboardDashboardPagesFindProRoute =
   ArtisanDashboardDashboardPagesFindProImport.update({
     id: '/artisan/dashboard/dashboard-pages/FindPro',
     path: '/artisan/dashboard/dashboard-pages/FindPro',
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -90,13 +105,6 @@ const ArtisanDashboardDashBoardComponentStarRatingRoute =
   ArtisanDashboardDashBoardComponentStarRatingImport.update({
     id: '/artisan/dashboard/DashBoardComponent/StarRating',
     path: '/artisan/dashboard/DashBoardComponent/StarRating',
-    getParentRoute: () => rootRoute,
-  } as any)
-
-const ArtisanDashboardDashBoardComponentSideBarNavRoute =
-  ArtisanDashboardDashBoardComponentSideBarNavImport.update({
-    id: '/artisan/dashboard/DashBoardComponent/SideBarNav',
-    path: '/artisan/dashboard/DashBoardComponent/SideBarNav',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -160,13 +168,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtisanDashboardDashBoardComponentDashboardMainPageImport
       parentRoute: typeof rootRoute
     }
-    '/artisan/dashboard/DashBoardComponent/SideBarNav': {
-      id: '/artisan/dashboard/DashBoardComponent/SideBarNav'
-      path: '/artisan/dashboard/DashBoardComponent/SideBarNav'
-      fullPath: '/artisan/dashboard/DashBoardComponent/SideBarNav'
-      preLoaderRoute: typeof ArtisanDashboardDashBoardComponentSideBarNavImport
-      parentRoute: typeof rootRoute
-    }
     '/artisan/dashboard/DashBoardComponent/StarRating': {
       id: '/artisan/dashboard/DashBoardComponent/StarRating'
       path: '/artisan/dashboard/DashBoardComponent/StarRating'
@@ -181,11 +182,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtisanDashboardDashboardPagesDashboardPageImport
       parentRoute: typeof rootRoute
     }
+<<<<<<< HEAD
+    '/artisan/dashboard/dashboard-pages/FindProHeader': {
+      id: '/artisan/dashboard/dashboard-pages/FindProHeader'
+      path: '/artisan/dashboard/dashboard-pages/FindProHeader'
+      fullPath: '/artisan/dashboard/dashboard-pages/FindProHeader'
+      preLoaderRoute: typeof ArtisanDashboardDashboardPagesFindProHeaderImport
+=======
     '/artisan/dashboard/dashboard-pages/FindPro': {
       id: '/artisan/dashboard/dashboard-pages/FindPro'
       path: '/artisan/dashboard/dashboard-pages/FindPro'
       fullPath: '/artisan/dashboard/dashboard-pages/FindPro'
       preLoaderRoute: typeof ArtisanDashboardDashboardPagesFindProImport
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
       parentRoute: typeof rootRoute
     }
     '/artisan/dashboard/dashboard-pages/FindProHeader': {
@@ -234,11 +243,17 @@ export interface FileRoutesByFullPath {
   '/artisan/dashboard/DashBoardComponent/DashBoardMap': typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
   '/artisan/dashboard/DashBoardComponent/DashboarFeatures': typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   '/artisan/dashboard/DashBoardComponent/DashboardMainPage': typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
-  '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
-  '/artisan/dashboard/dashboard-pages/FindPro': typeof ArtisanDashboardDashboardPagesFindProRoute
+<<<<<<< HEAD
   '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+=======
+  '/artisan/dashboard/dashboard-pages/FindPro': typeof ArtisanDashboardDashboardPagesFindProRoute
+<<<<<<< HEAD
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
+=======
+  '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+>>>>>>> goodluck/feature-dashboard-
   '/artisan/auth/forgot-password': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
   '/artisan/auth/register': typeof ArtisanAuthRegisterIndexRoute
@@ -251,11 +266,17 @@ export interface FileRoutesByTo {
   '/artisan/dashboard/DashBoardComponent/DashBoardMap': typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
   '/artisan/dashboard/DashBoardComponent/DashboarFeatures': typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   '/artisan/dashboard/DashBoardComponent/DashboardMainPage': typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
-  '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
-  '/artisan/dashboard/dashboard-pages/FindPro': typeof ArtisanDashboardDashboardPagesFindProRoute
+<<<<<<< HEAD
   '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+=======
+  '/artisan/dashboard/dashboard-pages/FindPro': typeof ArtisanDashboardDashboardPagesFindProRoute
+<<<<<<< HEAD
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
+=======
+  '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+>>>>>>> goodluck/feature-dashboard-
   '/artisan/auth/forgot-password': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
   '/artisan/auth/register': typeof ArtisanAuthRegisterIndexRoute
@@ -269,11 +290,17 @@ export interface FileRoutesById {
   '/artisan/dashboard/DashBoardComponent/DashBoardMap': typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
   '/artisan/dashboard/DashBoardComponent/DashboarFeatures': typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   '/artisan/dashboard/DashBoardComponent/DashboardMainPage': typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
-  '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
-  '/artisan/dashboard/dashboard-pages/FindPro': typeof ArtisanDashboardDashboardPagesFindProRoute
+<<<<<<< HEAD
   '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+=======
+  '/artisan/dashboard/dashboard-pages/FindPro': typeof ArtisanDashboardDashboardPagesFindProRoute
+<<<<<<< HEAD
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
+=======
+  '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+>>>>>>> goodluck/feature-dashboard-
   '/artisan/auth/forgot-password/': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login/': typeof ArtisanAuthLoginIndexRoute
   '/artisan/auth/register/': typeof ArtisanAuthRegisterIndexRoute
@@ -288,11 +315,17 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/DashBoardMap'
     | '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
     | '/artisan/dashboard/DashBoardComponent/DashboardMainPage'
-    | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
-    | '/artisan/dashboard/dashboard-pages/FindPro'
+<<<<<<< HEAD
     | '/artisan/dashboard/dashboard-pages/FindProHeader'
+=======
+    | '/artisan/dashboard/dashboard-pages/FindPro'
+<<<<<<< HEAD
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
+=======
+    | '/artisan/dashboard/dashboard-pages/FindProHeader'
+>>>>>>> goodluck/feature-dashboard-
     | '/artisan/auth/forgot-password'
     | '/artisan/auth/login'
     | '/artisan/auth/register'
@@ -304,11 +337,17 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/DashBoardMap'
     | '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
     | '/artisan/dashboard/DashBoardComponent/DashboardMainPage'
-    | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
-    | '/artisan/dashboard/dashboard-pages/FindPro'
+<<<<<<< HEAD
     | '/artisan/dashboard/dashboard-pages/FindProHeader'
+=======
+    | '/artisan/dashboard/dashboard-pages/FindPro'
+<<<<<<< HEAD
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
+=======
+    | '/artisan/dashboard/dashboard-pages/FindProHeader'
+>>>>>>> goodluck/feature-dashboard-
     | '/artisan/auth/forgot-password'
     | '/artisan/auth/login'
     | '/artisan/auth/register'
@@ -320,11 +359,17 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/DashBoardMap'
     | '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
     | '/artisan/dashboard/DashBoardComponent/DashboardMainPage'
-    | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
-    | '/artisan/dashboard/dashboard-pages/FindPro'
+<<<<<<< HEAD
     | '/artisan/dashboard/dashboard-pages/FindProHeader'
+=======
+    | '/artisan/dashboard/dashboard-pages/FindPro'
+<<<<<<< HEAD
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
+=======
+    | '/artisan/dashboard/dashboard-pages/FindProHeader'
+>>>>>>> goodluck/feature-dashboard-
     | '/artisan/auth/forgot-password/'
     | '/artisan/auth/login/'
     | '/artisan/auth/register/'
@@ -338,11 +383,17 @@ export interface RootRouteChildren {
   ArtisanDashboardDashBoardComponentDashBoardMapRoute: typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
   ArtisanDashboardDashBoardComponentDashboarFeaturesRoute: typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   ArtisanDashboardDashBoardComponentDashboardMainPageRoute: typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
-  ArtisanDashboardDashBoardComponentSideBarNavRoute: typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   ArtisanDashboardDashBoardComponentStarRatingRoute: typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   ArtisanDashboardDashboardPagesDashboardPageRoute: typeof ArtisanDashboardDashboardPagesDashboardPageRoute
-  ArtisanDashboardDashboardPagesFindProRoute: typeof ArtisanDashboardDashboardPagesFindProRoute
+<<<<<<< HEAD
   ArtisanDashboardDashboardPagesFindProHeaderRoute: typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+=======
+  ArtisanDashboardDashboardPagesFindProRoute: typeof ArtisanDashboardDashboardPagesFindProRoute
+<<<<<<< HEAD
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
+=======
+  ArtisanDashboardDashboardPagesFindProHeaderRoute: typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+>>>>>>> goodluck/feature-dashboard-
   ArtisanAuthForgotPasswordIndexRoute: typeof ArtisanAuthForgotPasswordIndexRoute
   ArtisanAuthLoginIndexRoute: typeof ArtisanAuthLoginIndexRoute
   ArtisanAuthRegisterIndexRoute: typeof ArtisanAuthRegisterIndexRoute
@@ -358,16 +409,22 @@ const rootRouteChildren: RootRouteChildren = {
     ArtisanDashboardDashBoardComponentDashboarFeaturesRoute,
   ArtisanDashboardDashBoardComponentDashboardMainPageRoute:
     ArtisanDashboardDashBoardComponentDashboardMainPageRoute,
-  ArtisanDashboardDashBoardComponentSideBarNavRoute:
-    ArtisanDashboardDashBoardComponentSideBarNavRoute,
   ArtisanDashboardDashBoardComponentStarRatingRoute:
     ArtisanDashboardDashBoardComponentStarRatingRoute,
   ArtisanDashboardDashboardPagesDashboardPageRoute:
     ArtisanDashboardDashboardPagesDashboardPageRoute,
-  ArtisanDashboardDashboardPagesFindProRoute:
-    ArtisanDashboardDashboardPagesFindProRoute,
+<<<<<<< HEAD
   ArtisanDashboardDashboardPagesFindProHeaderRoute:
     ArtisanDashboardDashboardPagesFindProHeaderRoute,
+=======
+  ArtisanDashboardDashboardPagesFindProRoute:
+    ArtisanDashboardDashboardPagesFindProRoute,
+<<<<<<< HEAD
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
+=======
+  ArtisanDashboardDashboardPagesFindProHeaderRoute:
+    ArtisanDashboardDashboardPagesFindProHeaderRoute,
+>>>>>>> goodluck/feature-dashboard-
   ArtisanAuthForgotPasswordIndexRoute: ArtisanAuthForgotPasswordIndexRoute,
   ArtisanAuthLoginIndexRoute: ArtisanAuthLoginIndexRoute,
   ArtisanAuthRegisterIndexRoute: ArtisanAuthRegisterIndexRoute,
@@ -389,11 +446,17 @@ export const routeTree = rootRoute
         "/artisan/dashboard/DashBoardComponent/DashBoardMap",
         "/artisan/dashboard/DashBoardComponent/DashboarFeatures",
         "/artisan/dashboard/DashBoardComponent/DashboardMainPage",
-        "/artisan/dashboard/DashBoardComponent/SideBarNav",
         "/artisan/dashboard/DashBoardComponent/StarRating",
         "/artisan/dashboard/dashboard-pages/DashboardPage",
-        "/artisan/dashboard/dashboard-pages/FindPro",
+<<<<<<< HEAD
         "/artisan/dashboard/dashboard-pages/FindProHeader",
+=======
+        "/artisan/dashboard/dashboard-pages/FindPro",
+<<<<<<< HEAD
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
+=======
+        "/artisan/dashboard/dashboard-pages/FindProHeader",
+>>>>>>> goodluck/feature-dashboard-
         "/artisan/auth/forgot-password/",
         "/artisan/auth/login/",
         "/artisan/auth/register/",
@@ -415,17 +478,19 @@ export const routeTree = rootRoute
     "/artisan/dashboard/DashBoardComponent/DashboardMainPage": {
       "filePath": "artisan/dashboard/DashBoardComponent/DashboardMainPage.tsx"
     },
-    "/artisan/dashboard/DashBoardComponent/SideBarNav": {
-      "filePath": "artisan/dashboard/DashBoardComponent/SideBarNav.tsx"
-    },
     "/artisan/dashboard/DashBoardComponent/StarRating": {
       "filePath": "artisan/dashboard/DashBoardComponent/StarRating.tsx"
     },
     "/artisan/dashboard/dashboard-pages/DashboardPage": {
       "filePath": "artisan/dashboard/dashboard-pages/DashboardPage.tsx"
     },
+<<<<<<< HEAD
+    "/artisan/dashboard/dashboard-pages/FindProHeader": {
+      "filePath": "artisan/dashboard/dashboard-pages/FindProHeader.tsx"
+=======
     "/artisan/dashboard/dashboard-pages/FindPro": {
       "filePath": "artisan/dashboard/dashboard-pages/FindPro.tsx"
+>>>>>>> bd4c5ee794d29be9bc5780facf32ad90798c32c3
     },
     "/artisan/dashboard/dashboard-pages/FindProHeader": {
       "filePath": "artisan/dashboard/dashboard-pages/FindProHeader.tsx"
