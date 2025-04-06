@@ -7,21 +7,38 @@
   --color-gray-secondary: #787878;
   --color-primary: #0f9067;
 } */
+body.overflow-hidden {
+  overflow-y: hidden;
+}
+body.overflowx-hidden {
+  overflow-y: hidden;
+}
+body.overfloww-hidden {
+  overflow-y: hidden;
+}
+body.overflowwx-hidden {
+  overflow-y: hidden;
+}
+body.hide {
+  overflow-y: hidden;
+}
+body.hideen {
+  overflow-y: hidden;
+}
 
-
-.scrollBar{
+.scrollBar {
   -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
-  scrollbar-width: none; 
+  scrollbar-width: none;
 }
-body{
-  background-color: #F8F8F8;
-  font-family: 'Poppins', sans-serif;
+body {
+  background-color: #f8f8f8;
+  font-family: "Poppins", sans-serif;
 }
 
-.box-shawdow{
+.box-shawdow {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
-.shawdow---feature{
+.shawdow---feature {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
 }

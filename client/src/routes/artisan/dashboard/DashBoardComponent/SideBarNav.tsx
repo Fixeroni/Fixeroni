@@ -44,7 +44,7 @@ const {content, setContent} = useDashboardStore();
   return (
     <div className="">
       <div
-        className="w-[147px] h-screen scroll-smooth overflow-y-auto scrollBar bg-[#FFFFFF] 
+        className=" scroll-smooth bg-[#FFFFFF] 
          shadow-[2px_2px_5px_rgba(0,0,0,0.05)] p-5
         rounded-tr-[20px] rounded-br-[20px]"
       >

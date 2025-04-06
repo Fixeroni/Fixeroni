@@ -10,21 +10,25 @@ export const Route = createFileRoute('/artisan/dashboard/dashboard-pages/FindPro
 })
 
  function FindPro() {
-  return <div>
-    <div className='grid grid-cols-7 '>
+  return ( 
+  <section>
+    <div className='grid grid-cols-7 gap-3 '>
       <div className='col-span-1'><SideBarNav/></div>
-      <div className='col-span-4'>
-        {/* <DashboardPage/> */}
+
+      <div className='col-span-4  sticky overflow-y-auto scrollBar   top-0'>
         <FindProHeader/>
-           <DashboarFeatures  Margintop={""} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
-            <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_B.png"}  title={"Jane Cooper"} />
-              <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_C.png"}  title={"Dianne Russell"} />
-        
-        
-      </div>
+        <div className='overflow-y-auto '> 
+            <DashboarFeatures  Margintop={""} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} distance={"3km away"} />
+            <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_B.png"}  title={"Jane Cooper"}  distance={"2km away"}/>
+            <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_C.png"}  title={"Dianne Russell"}  distance={"2km away"} />
+        </div>
+      </div> 
+
       <div className='col-span-2'><DashBoardMap/></div>
+
     </div>
-  </div>
+  </section>
+  );
 }
 
 
