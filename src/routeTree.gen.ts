@@ -83,7 +83,7 @@ const ArtisanDashboardDashboardPagesFindProRoute =
   ArtisanDashboardDashboardPagesFindProImport.update({
     id: '/artisan/dashboard/dashboard-pages/FindPro',
     path: '/artisan/dashboard/dashboard-pages/FindPro',
- bd4c5ee794d29be9bc5780facf32ad90798c32c3
+ 
     getParentRoute: () => rootRoute,
   } as any)
 
