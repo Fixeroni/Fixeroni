@@ -1,5 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import {DashboarFeatures } from '../DashBoardComponent/DashboarFeatures';
+import {  Outlet } from '@tanstack/react-router'
+// import FindPro from './FindPro';
+
 export const Route = createFileRoute('/artisan/dashboard/dashboard-pages/DashboardPage')({
   component: DashboardPage,
 
@@ -13,6 +16,8 @@ function DashboardPage() {
   return (
     <div className=''>
         
+     
+
       <section>
           <h2 className='Poppins text-[#1E1E1E] text-[36px] font-medium mt-4'>Hi Ben</h2>
 
@@ -32,9 +37,9 @@ function DashboardPage() {
      <section>
      <h3 className='Poppins text-[#1E1E1E] text-[20px] py-3'>Featured Pro’s</h3>
 
-   <DashboarFeatures  Margintop={""} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
-   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_B.png"}  title={"Jane Cooper"} />
-   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_C.png"}  title={"Dianne Russell"} />
+   <DashboarFeatures  Margintop={""} image={"/assets/images/feature_image_A.png"}  title={"Wade Warren"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/assets/images/feature_image_B.png"}  title={"Jane Cooper"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/assets/images/feature_image_C.png"}  title={"Dianne Russell"} />
    </section>
         <div>
       

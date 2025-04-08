@@ -1,17 +1,19 @@
-import { createFileRoute, Navigate, redirect } from "@tanstack/react-router";
+import { createFileRoute, Navigate } from "@tanstack/react-router";
 import { useSession } from "../stores/useSessionStore";
+import LandingPage from "@/pages/landing-pages";
 
 export const Route = createFileRoute("/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  // Get the session data
   const session = useSession((state) => state.session);
 
-  // Redirect the user to the login page (if they are not signed in)
-  if (!session) return <Navigate to="/artisan/auth/login" />;
+  // If user is authenticated, redirect to dashboard
+  if (session) {
+    return <Navigate to="/artisan/dashboard" />;
+  }
 
-  // Redirect to the dashboard
-  return <Navigate to="/artisan/dashboard" />;
+  // If not authenticated, show the landing page directly at the root URL
+  return <LandingPage />;
 }

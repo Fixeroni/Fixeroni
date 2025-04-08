@@ -1,5 +1,5 @@
 import { create } from "zustand";
-
+import { persist } from "zustand/middleware";
 
 // export type dashboardContent ="dashboardPage" | "FindPro";
 
@@ -17,7 +17,21 @@ type DashboardState = {
   setContent: (value: dashboardContent) => void;
 };
 
-export const useDashboardStore = create<DashboardState>((set) => ({
+export const useDashboardStore = create<DashboardState>()(
+  persist( (set) => ({
   content: "Dashboard", // Default state
   setContent: (value) => set({ content: value }),
-}));
+}),{ name: "dashboard-content-storage" }
+)
+);
+
+// export const useDashboardStore = create<DashboardState>()(
+//   persist(
+//     (set) => ({
+//       content: "Dashboard", // Default state
+//       setContent: (value) => set({ content: value }),
+//     }),
+//     { name: "dashboard-content-storage" } // Key for localStorage
+//   )
+// );
+

@@ -1,10 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import SideBarNav from "./SideBarNav";
 import DashboardPage from "../dashboard-pages/DashboardPage";
-import { useDashboardStore } from "../../../../stores/auth/useDashboardStore";
-import FindPro from "../dashboard-pages/FindPro";
-import { useToggleStore } from "../../../../stores/profileState";
-import ProfileModal from "../dashboard-pages/ProfileModal";
+import { useDashboardStore, dashboardContent } from "../../../../stores/auth/useDashboardStore";
+import RouteComponent from "../dashboard-pages/FindProHeader";
+// import FindPro from "../dashboard-pages/FindPro";
 
 export const Route = createFileRoute("/artisan/dashboard/DashBoardComponent/DashboardMainPage")({
   component: DashboardMinPage,
@@ -37,7 +36,7 @@ const {isOpen, toggle} = useToggleStore();
 
       <section>
         {content === "Dashboard" && <DashboardPage /> }
-        {content === "Find Pro" && <FindPro />}
+        {content === "Find Pro" && <RouteComponent />}
         {/* <DashboardPage /> */}
       </section>
       {isOpen && <ProfileModal />}
