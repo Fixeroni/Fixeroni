@@ -17,6 +17,7 @@ import { Route as ClientAuthRegisterIndexImport } from './routes/client/auth/reg
 import { Route as ArtisanAuthRegisterIndexImport } from './routes/artisan/auth/register/index'
 import { Route as ArtisanAuthLoginIndexImport } from './routes/artisan/auth/login/index'
 import { Route as ArtisanAuthForgotPasswordIndexImport } from './routes/artisan/auth/forgot-password/index'
+import { Route as ArtisanDashboardDashboardPagesProfileModalImport } from './routes/artisan/dashboard/dashboard-pages/ProfileModal'
 import { Route as ArtisanDashboardDashboardPagesFindProImport } from './routes/artisan/dashboard/dashboard-pages/FindPro'
 import { Route as ArtisanDashboardDashboardPagesDashboardPageImport } from './routes/artisan/dashboard/dashboard-pages/DashboardPage'
 import { Route as ArtisanDashboardDashBoardComponentStarRatingImport } from './routes/artisan/dashboard/DashBoardComponent/StarRating'
@@ -61,6 +62,13 @@ const ArtisanAuthForgotPasswordIndexRoute =
   ArtisanAuthForgotPasswordIndexImport.update({
     id: '/artisan/auth/forgot-password/',
     path: '/artisan/auth/forgot-password/',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const ArtisanDashboardDashboardPagesProfileModalRoute =
+  ArtisanDashboardDashboardPagesProfileModalImport.update({
+    id: '/artisan/dashboard/dashboard-pages/ProfileModal',
+    path: '/artisan/dashboard/dashboard-pages/ProfileModal',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -180,6 +188,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtisanDashboardDashboardPagesFindProImport
       parentRoute: typeof rootRoute
     }
+    '/artisan/dashboard/dashboard-pages/ProfileModal': {
+      id: '/artisan/dashboard/dashboard-pages/ProfileModal'
+      path: '/artisan/dashboard/dashboard-pages/ProfileModal'
+      fullPath: '/artisan/dashboard/dashboard-pages/ProfileModal'
+      preLoaderRoute: typeof ArtisanDashboardDashboardPagesProfileModalImport
+      parentRoute: typeof rootRoute
+    }
     '/artisan/auth/forgot-password/': {
       id: '/artisan/auth/forgot-password/'
       path: '/artisan/auth/forgot-password'
@@ -223,6 +238,7 @@ export interface FileRoutesByFullPath {
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
   '/artisan/dashboard/dashboard-pages/FindPro': typeof ArtisanDashboardDashboardPagesFindProRoute
+  '/artisan/dashboard/dashboard-pages/ProfileModal': typeof ArtisanDashboardDashboardPagesProfileModalRoute
   '/artisan/auth/forgot-password': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
   '/artisan/auth/register': typeof ArtisanAuthRegisterIndexRoute
@@ -239,6 +255,7 @@ export interface FileRoutesByTo {
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
   '/artisan/dashboard/dashboard-pages/FindPro': typeof ArtisanDashboardDashboardPagesFindProRoute
+  '/artisan/dashboard/dashboard-pages/ProfileModal': typeof ArtisanDashboardDashboardPagesProfileModalRoute
   '/artisan/auth/forgot-password': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
   '/artisan/auth/register': typeof ArtisanAuthRegisterIndexRoute
@@ -256,6 +273,7 @@ export interface FileRoutesById {
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
   '/artisan/dashboard/dashboard-pages/FindPro': typeof ArtisanDashboardDashboardPagesFindProRoute
+  '/artisan/dashboard/dashboard-pages/ProfileModal': typeof ArtisanDashboardDashboardPagesProfileModalRoute
   '/artisan/auth/forgot-password/': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login/': typeof ArtisanAuthLoginIndexRoute
   '/artisan/auth/register/': typeof ArtisanAuthRegisterIndexRoute
@@ -274,6 +292,7 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
     | '/artisan/dashboard/dashboard-pages/FindPro'
+    | '/artisan/dashboard/dashboard-pages/ProfileModal'
     | '/artisan/auth/forgot-password'
     | '/artisan/auth/login'
     | '/artisan/auth/register'
@@ -289,6 +308,7 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
     | '/artisan/dashboard/dashboard-pages/FindPro'
+    | '/artisan/dashboard/dashboard-pages/ProfileModal'
     | '/artisan/auth/forgot-password'
     | '/artisan/auth/login'
     | '/artisan/auth/register'
@@ -304,6 +324,7 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
     | '/artisan/dashboard/dashboard-pages/FindPro'
+    | '/artisan/dashboard/dashboard-pages/ProfileModal'
     | '/artisan/auth/forgot-password/'
     | '/artisan/auth/login/'
     | '/artisan/auth/register/'
@@ -321,6 +342,7 @@ export interface RootRouteChildren {
   ArtisanDashboardDashBoardComponentStarRatingRoute: typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   ArtisanDashboardDashboardPagesDashboardPageRoute: typeof ArtisanDashboardDashboardPagesDashboardPageRoute
   ArtisanDashboardDashboardPagesFindProRoute: typeof ArtisanDashboardDashboardPagesFindProRoute
+  ArtisanDashboardDashboardPagesProfileModalRoute: typeof ArtisanDashboardDashboardPagesProfileModalRoute
   ArtisanAuthForgotPasswordIndexRoute: typeof ArtisanAuthForgotPasswordIndexRoute
   ArtisanAuthLoginIndexRoute: typeof ArtisanAuthLoginIndexRoute
   ArtisanAuthRegisterIndexRoute: typeof ArtisanAuthRegisterIndexRoute
@@ -344,6 +366,8 @@ const rootRouteChildren: RootRouteChildren = {
     ArtisanDashboardDashboardPagesDashboardPageRoute,
   ArtisanDashboardDashboardPagesFindProRoute:
     ArtisanDashboardDashboardPagesFindProRoute,
+  ArtisanDashboardDashboardPagesProfileModalRoute:
+    ArtisanDashboardDashboardPagesProfileModalRoute,
   ArtisanAuthForgotPasswordIndexRoute: ArtisanAuthForgotPasswordIndexRoute,
   ArtisanAuthLoginIndexRoute: ArtisanAuthLoginIndexRoute,
   ArtisanAuthRegisterIndexRoute: ArtisanAuthRegisterIndexRoute,
@@ -369,6 +393,7 @@ export const routeTree = rootRoute
         "/artisan/dashboard/DashBoardComponent/StarRating",
         "/artisan/dashboard/dashboard-pages/DashboardPage",
         "/artisan/dashboard/dashboard-pages/FindPro",
+        "/artisan/dashboard/dashboard-pages/ProfileModal",
         "/artisan/auth/forgot-password/",
         "/artisan/auth/login/",
         "/artisan/auth/register/",
@@ -401,6 +426,9 @@ export const routeTree = rootRoute
     },
     "/artisan/dashboard/dashboard-pages/FindPro": {
       "filePath": "artisan/dashboard/dashboard-pages/FindPro.tsx"
+    },
+    "/artisan/dashboard/dashboard-pages/ProfileModal": {
+      "filePath": "artisan/dashboard/dashboard-pages/ProfileModal.tsx"
     },
     "/artisan/auth/forgot-password/": {
       "filePath": "artisan/auth/forgot-password/index.tsx"

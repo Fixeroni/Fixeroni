@@ -3,6 +3,8 @@ import SideBarNav from "./SideBarNav";
 import DashboardPage from "../dashboard-pages/DashboardPage";
 import { useDashboardStore } from "../../../../stores/auth/useDashboardStore";
 import FindPro from "../dashboard-pages/FindPro";
+import { useToggleStore } from "../../../../stores/profileState";
+import ProfileModal from "../dashboard-pages/ProfileModal";
 
 export const Route = createFileRoute("/artisan/dashboard/DashBoardComponent/DashboardMainPage")({
   component: DashboardMinPage,
@@ -10,6 +12,8 @@ export const Route = createFileRoute("/artisan/dashboard/DashBoardComponent/Dash
 
 function DashboardMinPage() {
 const {content} = useDashboardStore();
+
+const {isOpen, toggle} = useToggleStore();
 
   return (
     <div className="flex gap-5 ">
@@ -22,8 +26,10 @@ const {content} = useDashboardStore();
       <div className='flex'>
         <div></div>
         <div className='flex items-center ml-auto p-2.5 mt-2.5 gap-3'>
-          <img src="/images/icons/notification_profile.png" alt="notification"  className=''/>
-          <img src="/images/icons/Profile_img.png" alt="Profile_img" />
+          <img src="/images/icons/notification_profile.png" alt="notification" className="w-full cursor-pointer"/>
+          <img src="/images/icons/Profile_img.png" className="w-full cursor-pointer" alt="Profile_img"  onClick={toggle}/>
+        
+          
         </div>
       </div>
       <hr className='w-full opacity-[0.4] border-[#0000007f] border mt-2'/>
@@ -34,7 +40,7 @@ const {content} = useDashboardStore();
         {content === "Find Pro" && <FindPro />}
         {/* <DashboardPage /> */}
       </section>
-       
+      {isOpen && <ProfileModal />}
       </div>
     </div>
   );
