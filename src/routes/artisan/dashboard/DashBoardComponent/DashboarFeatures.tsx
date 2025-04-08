@@ -91,7 +91,8 @@ else{
                  <div className='flex justify-end mt-[25px] '><i onClick={togglepopup} className=" fa-solid fa-times text-[30px] mr-[17px]"></i></div>
                  <div className='flex justify-center items-center  h-[403px] rounded-[25px]'>
                  <div className='block  justify-center items-center '>
-                  <div className='flex items-center justify-center p-[15px] font-[poppins] '><p>Click to make payment</p></div>
+                  <div className='flex items-center justify-evenly p-[15px] font-[poppins] '><i className="fa-solid fa-sack-dollar " ></i>
+                  <p>Click to make payment</p></div>
                   <div className='flex justify-center mt-[17px]'><button className='block bg-[#0F9067] h-[60px] text-[white] w-[75%] rounded-[10px]'><p className='text-[verdana]'>Fee</p><p className='text-[verdana]' >NGN 500</p></button></div>
                   <div className='p-[15px] justify-center items-center w-[100%]'>
                   <p className='flex justify-center text-[13px] font-[poppins]'>To access our artisans, a NGN 500 charge</p>
