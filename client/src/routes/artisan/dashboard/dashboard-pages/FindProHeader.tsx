@@ -1,12 +1,14 @@
 
 import { createFileRoute } from '@tanstack/react-router'
+import { DashboarFeatures } from '../DashBoardComponent/DashboarFeatures';
 
 export const Route = createFileRoute('/artisan/dashboard/dashboard-pages/FindProHeader')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <div><section>
+  return <div>
+   <section>
   <h3 className='Poppins text-[#1E1E1E] text-[30px] font-medium mt-4'>Find a Pro</h3>
 
 
@@ -28,6 +30,14 @@ rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex items-center justif
 rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex items-center justify-center'>All Cities <i className="fa-solid fa-chevron-down text-sm ml-[10px]"></i></button>
     
   </div>
-</section></div>
+</section>
+<section>
+   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
+</section>
+
+
+</div>
 }
 export default RouteComponent;

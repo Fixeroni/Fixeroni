@@ -18,6 +18,7 @@ import { Route as ArtisanAuthRegisterIndexImport } from './routes/artisan/auth/r
 import { Route as ArtisanAuthLoginIndexImport } from './routes/artisan/auth/login/index'
 import { Route as ArtisanAuthForgotPasswordIndexImport } from './routes/artisan/auth/forgot-password/index'
 import { Route as ArtisanDashboardDashboardPagesFindProHeaderImport } from './routes/artisan/dashboard/dashboard-pages/FindProHeader'
+import { Route as ArtisanDashboardDashboardPagesDmapImport } from './routes/artisan/dashboard/dashboard-pages/Dmap'
 import { Route as ArtisanDashboardDashboardPagesDashboardPageImport } from './routes/artisan/dashboard/dashboard-pages/DashboardPage'
 import { Route as ArtisanDashboardDashBoardComponentStarRatingImport } from './routes/artisan/dashboard/DashBoardComponent/StarRating'
 import { Route as ArtisanDashboardDashBoardComponentSideBarNavImport } from './routes/artisan/dashboard/DashBoardComponent/SideBarNav'
@@ -68,6 +69,13 @@ const ArtisanDashboardDashboardPagesFindProHeaderRoute =
   ArtisanDashboardDashboardPagesFindProHeaderImport.update({
     id: '/artisan/dashboard/dashboard-pages/FindProHeader',
     path: '/artisan/dashboard/dashboard-pages/FindProHeader',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const ArtisanDashboardDashboardPagesDmapRoute =
+  ArtisanDashboardDashboardPagesDmapImport.update({
+    id: '/artisan/dashboard/dashboard-pages/Dmap',
+    path: '/artisan/dashboard/dashboard-pages/Dmap',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -173,6 +181,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtisanDashboardDashboardPagesDashboardPageImport
       parentRoute: typeof rootRoute
     }
+    '/artisan/dashboard/dashboard-pages/Dmap': {
+      id: '/artisan/dashboard/dashboard-pages/Dmap'
+      path: '/artisan/dashboard/dashboard-pages/Dmap'
+      fullPath: '/artisan/dashboard/dashboard-pages/Dmap'
+      preLoaderRoute: typeof ArtisanDashboardDashboardPagesDmapImport
+      parentRoute: typeof rootRoute
+    }
     '/artisan/dashboard/dashboard-pages/FindProHeader': {
       id: '/artisan/dashboard/dashboard-pages/FindProHeader'
       path: '/artisan/dashboard/dashboard-pages/FindProHeader'
@@ -222,6 +237,7 @@ export interface FileRoutesByFullPath {
   '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
+  '/artisan/dashboard/dashboard-pages/Dmap': typeof ArtisanDashboardDashboardPagesDmapRoute
   '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
   '/artisan/auth/forgot-password': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
@@ -238,6 +254,7 @@ export interface FileRoutesByTo {
   '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
+  '/artisan/dashboard/dashboard-pages/Dmap': typeof ArtisanDashboardDashboardPagesDmapRoute
   '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
   '/artisan/auth/forgot-password': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login': typeof ArtisanAuthLoginIndexRoute
@@ -255,6 +272,7 @@ export interface FileRoutesById {
   '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
+  '/artisan/dashboard/dashboard-pages/Dmap': typeof ArtisanDashboardDashboardPagesDmapRoute
   '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
   '/artisan/auth/forgot-password/': typeof ArtisanAuthForgotPasswordIndexRoute
   '/artisan/auth/login/': typeof ArtisanAuthLoginIndexRoute
@@ -273,6 +291,7 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
+    | '/artisan/dashboard/dashboard-pages/Dmap'
     | '/artisan/dashboard/dashboard-pages/FindProHeader'
     | '/artisan/auth/forgot-password'
     | '/artisan/auth/login'
@@ -288,6 +307,7 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
+    | '/artisan/dashboard/dashboard-pages/Dmap'
     | '/artisan/dashboard/dashboard-pages/FindProHeader'
     | '/artisan/auth/forgot-password'
     | '/artisan/auth/login'
@@ -303,6 +323,7 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
+    | '/artisan/dashboard/dashboard-pages/Dmap'
     | '/artisan/dashboard/dashboard-pages/FindProHeader'
     | '/artisan/auth/forgot-password/'
     | '/artisan/auth/login/'
@@ -320,6 +341,7 @@ export interface RootRouteChildren {
   ArtisanDashboardDashBoardComponentSideBarNavRoute: typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   ArtisanDashboardDashBoardComponentStarRatingRoute: typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   ArtisanDashboardDashboardPagesDashboardPageRoute: typeof ArtisanDashboardDashboardPagesDashboardPageRoute
+  ArtisanDashboardDashboardPagesDmapRoute: typeof ArtisanDashboardDashboardPagesDmapRoute
   ArtisanDashboardDashboardPagesFindProHeaderRoute: typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
   ArtisanAuthForgotPasswordIndexRoute: typeof ArtisanAuthForgotPasswordIndexRoute
   ArtisanAuthLoginIndexRoute: typeof ArtisanAuthLoginIndexRoute
@@ -342,6 +364,8 @@ const rootRouteChildren: RootRouteChildren = {
     ArtisanDashboardDashBoardComponentStarRatingRoute,
   ArtisanDashboardDashboardPagesDashboardPageRoute:
     ArtisanDashboardDashboardPagesDashboardPageRoute,
+  ArtisanDashboardDashboardPagesDmapRoute:
+    ArtisanDashboardDashboardPagesDmapRoute,
   ArtisanDashboardDashboardPagesFindProHeaderRoute:
     ArtisanDashboardDashboardPagesFindProHeaderRoute,
   ArtisanAuthForgotPasswordIndexRoute: ArtisanAuthForgotPasswordIndexRoute,
@@ -368,6 +392,7 @@ export const routeTree = rootRoute
         "/artisan/dashboard/DashBoardComponent/SideBarNav",
         "/artisan/dashboard/DashBoardComponent/StarRating",
         "/artisan/dashboard/dashboard-pages/DashboardPage",
+        "/artisan/dashboard/dashboard-pages/Dmap",
         "/artisan/dashboard/dashboard-pages/FindProHeader",
         "/artisan/auth/forgot-password/",
         "/artisan/auth/login/",
@@ -398,6 +423,9 @@ export const routeTree = rootRoute
     },
     "/artisan/dashboard/dashboard-pages/DashboardPage": {
       "filePath": "artisan/dashboard/dashboard-pages/DashboardPage.tsx"
+    },
+    "/artisan/dashboard/dashboard-pages/Dmap": {
+      "filePath": "artisan/dashboard/dashboard-pages/Dmap.tsx"
     },
     "/artisan/dashboard/dashboard-pages/FindProHeader": {
       "filePath": "artisan/dashboard/dashboard-pages/FindProHeader.tsx"
