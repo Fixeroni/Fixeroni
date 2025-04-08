@@ -85,19 +85,23 @@ else{
           </div>
           <div>
             {modal &&(
-              <div className='z-[100] bg-[transparent]  top-[260px] absolute w-[100%] flex justify-center'>
-              <div className=' w-[40%] rounded-[25px] bg-[#fff] h-[300px]'>
+             
+              <div className='z-[100]  top-[260px] left-[20px] absolute w-[100%] flex justify-center'>
+              <div className=' w-[40%] rounded-[25px] bg-[#fff]  border border-[black] h-[460px]'>
                  <div className='flex justify-end mt-[25px] '><i onClick={togglepopup} className=" fa-solid fa-times text-[30px] mr-[17px]"></i></div>
-                 <div className='block  h-[300px] justify-center items-center '>
-                  <p>Click to make payment</p>
-                  <div className='flex justify-center'><button className='block bg-[#0F9067] text-[white] w-[65%] rounded-[10px]'><p>Fee</p><p>NGN 500</p></button></div>
-                  <div className='p-[15px]  justify-center items-center w-[100%]'>
-                  <p className='flex justify-center text-[14px] text-[poppins]'>To access our artisans, a NGN 500 charge</p>
-                  <p className='flex justify-center text-[14px] text-[poppins]'> applies. This fee is fully refundable if the</p>
-                  <p className='flex justify-center text-[14px] text-[poppins]'> agreed terms are not met</p></div>
+                 <div className='flex justify-center items-center  h-[403px] rounded-[25px]'>
+                 <div className='block  justify-center items-center '>
+                  <div className='flex items-center justify-center p-[15px] font-[poppins] '><p>Click to make payment</p></div>
+                  <div className='flex justify-center mt-[17px]'><button className='block bg-[#0F9067] h-[60px] text-[white] w-[75%] rounded-[10px]'><p className='text-[verdana]'>Fee</p><p className='text-[verdana]' >NGN 500</p></button></div>
+                  <div className='p-[15px] justify-center items-center w-[100%]'>
+                  <p className='flex justify-center text-[13px] font-[poppins]'>To access our artisans, a NGN 500 charge</p>
+                  <p className='flex justify-center text-[13px] font-[poppins]'> applies. This fee is fully refundable if the</p>
+                  <p className='flex justify-center text-[13px] font-[poppins]'> agreed terms are not met</p></div>
+                 </div>
                  </div>
             </div>
             </div>
+      
             )}
             </div>
 
