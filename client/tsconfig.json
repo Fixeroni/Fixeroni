@@ -6,6 +6,11 @@
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+        "@/assets": ["public/assets"]
+    },
     "skipLibCheck": true
   }
 }

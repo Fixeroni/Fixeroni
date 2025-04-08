@@ -37,9 +37,9 @@ function DashboardPage() {
      <section>
      <h3 className='Poppins text-[#1E1E1E] text-[20px] py-3'>Featured Pro’s</h3>
 
-   <DashboarFeatures  Margintop={""} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
-   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_B.png"}  title={"Jane Cooper"} />
-   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_C.png"}  title={"Dianne Russell"} />
+   <DashboarFeatures  Margintop={""} image={"/assets/images/feature_image_A.png"}  title={"Wade Warren"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/assets/images/feature_image_B.png"}  title={"Jane Cooper"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/assets/images/feature_image_C.png"}  title={"Dianne Russell"} />
    </section>
         <div>
         <Outlet />

@@ -183,8 +183,9 @@ function PersonalDetails() {
       .required("Please select years of experience")
       .min(1, "Must have at least 1 year of experience"),
     workPortfolio: Yup.mixed().test("fileSize", "File too large", (value) => {
-      if (!value) return true;
-      return value.size <= 5000000; // 5MB
+      const file = value as File | null | undefined;
+      if (!file) return true;
+      return file.size <= 5000000; // 5MB
     }),
   });
 
@@ -426,23 +427,23 @@ function VerificationAndSecurity() {
       .required("Government ID is required")
       .test("fileSize", "File too large", (value) => {
         if (!value) return false;
-        return value.size <= 5000000;
+        return value instanceof File && value.size <= 5000000;
       })
       .test("fileType", "Invalid file type", (value) => {
         if (!value) return false;
         return (
-          value.type === "application/pdf" || value.type.startsWith("image/")
+          (value as File).type === "application/pdf" || (value as File).type.startsWith("image/")
         );
       }),
     profilePicture: Yup.mixed()
       .required("Profile picture is required")
       .test("fileSize", "File too large", (value) => {
         if (!value) return false;
-        return value.size <= 5000000;
+        return value instanceof File && value.size <= 5000000;
       })
       .test("fileType", "Invalid file type", (value) => {
         if (!value) return false;
-        return value.type.startsWith("image/");
+        return (value as File).type.startsWith("image/");
       }),
   });
 

@@ -32,9 +32,9 @@ rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex items-center justif
   </div>
 </section>
 <section>
-   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
-   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
-   <DashboarFeatures Margintop={"mt-4"} image={"/images/assets/feature_image_A.png"}  title={"Wade Warren"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/assets/images/feature_image_A.png"}  title={"Wade Warren"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/assets/images/feature_image_A.png"}  title={"Wade Warren"} />
+   <DashboarFeatures Margintop={"mt-4"} image={"/assets/images/feature_image_A.png"}  title={"Wade Warren"} />
 </section>
 
 
