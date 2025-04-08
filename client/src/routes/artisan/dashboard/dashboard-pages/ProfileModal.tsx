@@ -34,7 +34,7 @@ function ProfileModal() {
           <div className="flex justify-center items-center ">
             <div className="relative">
               <img
-                src="/images/assets/profile-image.png"
+                src="/assets/images/profile-image.png"
                 alt="Profile"
                 className=" object-cover w-[60px] aspect-square rounded-[30px] border-[2px] border-[#0F9067]"
               />
@@ -59,6 +59,17 @@ function ProfileModal() {
 
             <section className="px-8 mt-4">
                 <div className="bg-[url('/images/branding/availbaldash.png')] bg-fill   profile----availablebal-shawdow rounded-[6.98964px] w-full h-[180px]">
+                    <div className="py-6 ml-6 flex flex-col">
+                    <h3 className="text-[#FFFFFF] opacity-[0.9] font-light text-[18px] ">Available Balance</h3>
+                    <h3 className="text-[#FFFFFF] text-[35px] font-normal tracking-[2px]"><span className="line-through">N</span>500.00</h3>
+                    </div>
+
+                    <div>
+                      <button type="button" className="cursor-pointer bg-[#ffffff7f] rounded-[12px] w-[130px] h-[48px]">
+                     + <p className="text-[#FFFFFF] text-[16px]">Top Up</p> 
+                      </button>
+                    </div>
+                   
 
                 </div>
             </section>
@@ -73,19 +84,28 @@ export default ProfileModal;
 
 
 
-// /* Frame 335 */
+// // /* Top Up */
 
 // position: absolute;
-// width: 346px;
-// height: 180px;
-// left: 30px;
-// top: 258px;
+// width: 56px;
+// height: 23px;
+// left: 0px;
+// top: 0px;
 
-// /* Brand color
+// font-family: 'Poppins';
+// font-style: normal;
+// font-weight: 400;
+// font-size: 16px;
+// line-height: 24px;
+// text-align: center;
 
-// Primary color
-// */
-// background: #10B981;
-// box-shadow: 0px 1.86391px 1.86391px rgba(0, 0, 0, 0.25);
-// border-radius: 6.98964px;
+// color: #FFFFFF;
+
+
+
+
+
+
+
+
 
