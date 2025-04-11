@@ -4,7 +4,7 @@ import { createRootRoute, Outlet } from "@tanstack/react-router";
 
 export const Route = createRootRoute({
   component: () => <Outlet />,
-  // Add an error component to handle uncaught errors
+  
   errorComponent: ({ error }) => {
     console.error("Router error:", error);
     return (
