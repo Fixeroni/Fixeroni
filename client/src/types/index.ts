@@ -31,3 +31,26 @@ export type Feature = {
   // cta: string;
   Margintop: string;
 };
+
+
+export type ProfileButtonProps = {
+  name: string;
+  icon: string;
+
+};
+
+export type ProfileDetailsProps = {
+  name: string;
+  icon: string;
+  date: string;
+  amount: string;
+  amountColor: string;
+};
+
+export type NotificationDetailsProps = {
+  title: string;
+  date: string;
+  time: string;
+  padding: string,
+};
+

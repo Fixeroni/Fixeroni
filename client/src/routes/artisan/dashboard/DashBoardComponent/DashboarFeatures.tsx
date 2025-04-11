@@ -68,8 +68,8 @@ export const Route = createFileRoute('/artisan/dashboard/DashBoardComponent/Dash
               <button type='button' className='text-[#FFFFFF] bg-[#0F9067] cursor-pointer
              h-[35px] rounded-[17.5px] w-[151.14px]'> Book Now</button>
             
-            <button type='button' className='text-[#0F9067] border-[#0F9067] border cursor-pointer mt-2
-             h-[35px] rounded-[17.5px] w-[151.14px]'> Book Now</button>
+            <button type='button' className='text-[#0F9067] border-[#0F9067] border-2 cursor-pointer mt-2
+             h-[35px] rounded-[17.5px] w-[151.14px]'>Send Message</button>
             </div>
 
 
