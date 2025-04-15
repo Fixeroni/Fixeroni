@@ -16,7 +16,7 @@ export default function AboutUs() {
         />
 
         <div className="absolute inset-0 bg-black/50 flex items-center px-8">
-          <h1 className="text-white text-2xl md:text-3xl md:mb-16 mb-16 font-bold">
+          <h1 className="text-white text-2xl md:text-3xl md:mb-16 mb-16 font-light">
             About Us
           </h1>
         </div>

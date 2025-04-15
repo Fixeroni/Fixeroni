@@ -5,15 +5,14 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-8 md:py-12 px-4 md:px-8">
+    <footer className="bg-[#1F1F1F] text-white py-8 md:py-12 px-4 md:px-20">
       <div className="container mx-auto">
         <div className="md:hidden mb-8">
           <img
-            src='/assets/images/Frame 72.png'
+            src="/assets/images/Frame 72.png"
             alt="Fixeroni Logo"
-            width={20}
-            height={20}
-          
+            width={50}
+            height={50}
           />
           <p className="text-sm mt-2 max-w-xs">
             Connecting you with trusted professionals for all your service needs
@@ -23,11 +22,10 @@ export default function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8">
           <div className="hidden md:block space-y-4">
             <img
-              src='/assets/images/Frame 72.png'
+              src="/assets/images/Frame 72.png"
               alt="Fixeroni Logo"
-              width={80}
-              height={80}
-              
+              width={200}
+              height={200}
             />
             <p className="text-[12px] max-w-xs">
               Connecting you with trusted <br /> professionals for all your

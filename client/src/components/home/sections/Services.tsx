@@ -59,15 +59,15 @@ export default function ServicesSection() {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <div>
-            <h2 className="text-3xl iatlic  md:text-4xl font-bold text-green-600">
+            <h2 className="text-3xl italic  md:text-4xl font-medium text-green-600">
               Explore Our Popular Services
             </h2>
-            <p className="text-gray-700 italic mt-2">
+            <p className="text-gray-700 font-medium mt-2">
               Discover our most in demand services
             </p>
           </div>
           <Button
-            className="mt-4 md:mt-0 bg-white font-bold text-green-900 border-green-900 border-2 hover:bg-green-50"
+            className="mt-4 md:mt-0 rounded-[10px] bg-white font-bold text-green-900 border-green-900 border-2 hover:bg-green-50"
             variant="outline"
             size="lg"
           >
