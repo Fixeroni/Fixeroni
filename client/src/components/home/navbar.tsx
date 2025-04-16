@@ -78,7 +78,6 @@ const Navbar = () => {
             alt="Fixeroni Logo"
             width={20}
             height={20}
-           
           />
           <span
             className="text-xl font-bold"
@@ -114,7 +113,7 @@ const Navbar = () => {
 
         <div className="hidden md:block">
           <Link href="/artisan/auth/login">
-            <Button className="bg-green-500 hover:bg-green-600 text-white text-[12px] px-6 py-2 rounded-full cursor-pointer">
+            <Button className="bg-[#10B981] hover:bg-green-600 text-white text-[12px] px-6 py-2 rounded-full cursor-pointer">
               Get Started
             </Button>
           </Link>

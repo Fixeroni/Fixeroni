@@ -58,7 +58,7 @@ export default function TestimonialsSection() {
       message: "Fair Pricing",
       position: "right",
       bubbleColor: "white",
-      positionClass: "bottom-[-20] right-12",
+      positionClass: "bottom-[-0] right-2",
     },
   ];
 
@@ -80,7 +80,7 @@ export default function TestimonialsSection() {
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 max-w-6xl">
-        <h2 className="text-4xl font-bold text-green-700 mb-16">
+        <h2 className="text-4xl font-medium italic text-green-700 mb-16">
           What Our Customers Are Saying
         </h2>
 

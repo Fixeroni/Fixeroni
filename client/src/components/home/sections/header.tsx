@@ -12,20 +12,20 @@ const Header = () => {
 
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center  justify-between  md:p-12 relative">
-        <div className="max-w-lg text-center flex flex-col space-y-3  md:mt-0  md:text-left z-10 relative">
-          <h1 className="text-3xl pt-36 md:pt-2 md:text-5xl leading-[2.5]">
+        <div className="max-w-lg text-center flex flex-col space-y-6  md:mt-0  md:text-left z-10 relative">
+          <h1 className="text-3xl pt-36 md:pt-16 md:text-4xl leading-[1.5] tracking-wide">
             &quot;Find{" "}
-            <span className="text-green-600 font-bold text-4xl">
+            <span className="text-black-600 font-bold text-5xl">
               Trusted <br />
             </span>{" "}
             Local
-            <span className="text-green-600 font-bold text-4xl">
+            <span className="text-black-600 font-bold text-5xl">
               {" "}
               Expert
             </span>{" "}
             In Minutes&quot;
           </h1>
-          <p className="text-gray-600 mt-4 leading-[1.5]">
+          <p className="text-gray-800  font-medium mt-4 leading-[1.5]">
             Book vetted plumbers, electricians, <br />
             carpenters, and more. Secure, simple, and stress-free.
           </p>

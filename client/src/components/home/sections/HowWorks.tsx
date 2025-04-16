@@ -17,10 +17,10 @@ export default function HowItWorks() {
     <section id="howitworks" className="w-full bg-[#F2F1F1] py-16">
       <div className="container px-4 md:px-6">
         <div className="mb-10">
-          <h2 className="text-3xl font-bold italic mb-5 tracking-tight text-emerald-600">
+          <h2 className="text-3xl font-medium italic mb-5 tracking-tight text-emerald-600">
             How it works
           </h2>
-          <p className="text-gray-600 italic font-light">
+          <p className="text-gray-600 italic font-medium">
             Step-By Step Guide To Getting Your Tasks Done With Ease On Fixeroni
           </p>
         </div>
@@ -40,7 +40,7 @@ export default function HowItWorks() {
             </div>
 
             <Link href="/#search">
-              <Card className="h-[150px]  bg-[#E7ECEF] cursor-pointer transition-shadow shadow-lg  hover:shadow-black">
+              <Card className="h-[150px]  bg-[#E7ECEF] cursor-pointer transition-shadow shadow-lg  hover:shadow-lg">
                 <CardContent className="flex p-6">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
                     <Search className="h-10 w-10 text-blue-500" />
