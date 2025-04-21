@@ -37,23 +37,5 @@ function Schedule() {
 
 export default Schedule;
 
-// /* View details */
 
-// width: 84px;
-// height: 14px;
-
-// font-family: 'Poppins';
-// font-style: normal;
-// font-weight: 400;
-// font-size: 14px;
-// line-height: 14px;
-// /* identical to box height, or 99% */
-
-// color: #14AE5C;
-
-
-// /* Inside auto layout */
-// flex: none;
-// order: 1;
-// flex-grow: 0;
 

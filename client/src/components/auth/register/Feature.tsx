@@ -10,24 +10,42 @@ function Feature({
   ctaText,
 }: FeatureType) {
   return (
-    <article
-      className={` ${side === "right" ? "flex-row-reverse" : ""} flex gap-4 items-center justify-center text-[#535353] shadow-xl bg-white rounded-2xl p-4`}
+    <div className=" bg-white rounded-2xl  text-[#535353] shadow-xl">
+      
+      <div className={`flex justify-center  ` }><h2 className={`text-2xl font-bold  ${ side === "right" ? "ml-auto pt-4 px-4" : "text-center pt-4" } `}>{title}</h2>  </div> 
+    
+    <div
+      className={` ${side === "right" ? "flex-row-reverse" : "" } flex gap-4 items-center justify-center `}
     >
-      <img src={image} className="w-40 h-40" />
+      <div className="flex justify-center"> <img src={image} className="w-full h-40 mt-auto" />  </div>
 
-      <article className="flex flex-col gap-2 justify-center md:max-w-[400px] px-4">
-        <h2 className="text-2xl font-bold">{title}</h2>
-        <p className="text-md">{description}</p>
+      <div className={`flex flex-col gap-2 ${side === "right" ? "pl-4 pb-4" : "pr-4 prb-4" }  justify-center md:max-w-[400px] `}>
+       
+        <p className={`text-md  text-justify  ${side === "right" ? "" : "mt-[-1.2rem]" }`}>{description}</p>
 
         <Link
           to={cta}
-          className="text-white bg-primary rounded-xl py-2 px-4 w-fit text-md"
+          className={`text-white  bg-[#0F9067] rounded-[10px] w-fit h-[30px] text-md px-2.5 mt-2  ${side === "right" ? "" : "ml-auto" }   `}
         >
           {ctaText}
         </Link>
-      </article>
-    </article>
+      </div>
+    </div>
+    </div>
   );
 }
 
 export default Feature;
+
+
+// /* Frame 97 */
+
+// position: absolute;
+// width: 120px;
+// height: 30px;
+// left: 218px;
+// top: 141px;
+
+// background: #0F9067;
+// border-radius: 10px;
+

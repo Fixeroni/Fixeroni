@@ -2,7 +2,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react';
 import StarRating from '../DashBoardComponent/StarRating';
-import { Feature } from '../../../../types';
+import { DashboarFeatureprops } from '../../../../types';
 
 
 export const Route = createFileRoute('/artisan/dashboard/DashBoardComponent/DashboarFeatures')({
@@ -13,7 +13,7 @@ export const Route = createFileRoute('/artisan/dashboard/DashBoardComponent/Dash
 
 
 
- export function DashboarFeatures({Margintop,  image, title}:Feature) {
+ export function DashboarFeatures({Margintop,  image, title}:DashboarFeatureprops) {
   const [rating, setRating] = useState<number | null>(null);
 
 

@@ -1,13 +1,29 @@
+import { useLoginStore } from "@/stores/auth/useLoginStore";
 import { ReactNode } from "react";
 
 function AuthHoverCard({ children }: { children: ReactNode }) {
+const {content} = useLoginStore()
+
   return (
-    <article className="w-full absolute h-full flex flex-col justify-center items-center">
-      <article className="bg-white-dark md:p-8 p-4 shadow-md md:min-w-[1000px] rounded-xl w-fit h-fit flex flex-col justify-center items-center gap-4">
+    <div className="w-full  absolute  top-0   flex-col justify-center items-center">
+      <div className={`   mx-auto  mb-8 ${content === "register" ? "mt-[4.4rem]": "mt-[4.4rem]"}
+       w-[720px] bg-[#F8F8F8]
+      rounded-[20px] h-full flex flex-col justify-center items-center overflow-hidden `}>
         {children}
-      </article>
-    </article>
+      </div>
+    </div>
   );
 }
 
 export default AuthHoverCard;
+
+// /* Group 37166 */
+
+// position: absolute;
+// width: 720px;
+// height: 711px;
+// left: 360px;
+// top: 95px;
+
+// filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.05));
+

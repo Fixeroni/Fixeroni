@@ -25,12 +25,18 @@ export type Artisan = {
 export type Feature = {
   image: string;
   title: string;
-  // description: string;
-  // side: "left" | "right";
-  // ctaText: string;
-  // cta: string;
-  Margintop: string;
+  description: string;
+  side: "left" | "right";
+  ctaText: string;
+  cta: string;
 };
+
+
+export type DashboarFeatureprops= {
+  image: string;
+  title: string;
+  Margintop: string;
+}
 
 
 export type ProfileButtonProps = {
