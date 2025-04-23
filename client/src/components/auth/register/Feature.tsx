@@ -38,14 +38,4 @@ function Feature({
 export default Feature;
 
 
-// /* Frame 97 */
-
-// position: absolute;
-// width: 120px;
-// height: 30px;
-// left: 218px;
-// top: 141px;
-
-// background: #0F9067;
-// border-radius: 10px;
 

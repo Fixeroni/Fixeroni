@@ -140,43 +140,8 @@ function LoginContent() {
 
 export default LoginContent;
 
-// /* Enter email address */
-
-// width: 172px;
-// height: 22px;
-
-// font-family: 'Poppins';
-// font-style: normal;
-// font-weight: 400;
-// font-size: 14px;
-// line-height: 22px;
-// /* identical to box height, or 157% */
-
-// color: #616161;
-
-// opacity: 0.5;
-
-// /* Inside auto layout */
-// flex: none;
-// order: 0;
-// flex-grow: 0;
 
 
 
 
 
-// (
-//   <Eye
-//     className="text-primary-light hover:cursor-pointer"
-//     size={30}
-//     strokeWidth={2}
-//     onClick={() => setShowPassword((prev) => !prev)}
-//   />
-// ) : (
-//   <EyeOff
-//     className="text-primary-light hover:cursor-pointer"
-//     size={30}
-//     strokeWidth={2}
-//     onClick={() => setShowPassword((prev) => !prev)}
-//   />
-// )
