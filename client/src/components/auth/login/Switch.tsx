@@ -42,14 +42,3 @@ function Switch({
 export default Switch;
 
 
-// /* Frame 4 */
-
-// box-sizing: border-box;
-
-// position: absolute;
-// width: 170px;
-// height: 50px;
-// left: 542px;
-// top: 302px;
-
-// border-bottom: 2px solid #0F9067;

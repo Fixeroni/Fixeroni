@@ -31,12 +31,3 @@ function AuthLayout({ children }: { children: ReactNode }) {
 export default AuthLayout;
 
 
-// /* pexels-irbin-medina-390275-1432112 */
-
-// position: absolute;
-// width: 1440px;
-// height: 357px;
-// left: 0px;
-// top: -5px;
-
-// background: url(pexels-irbin-medina-390275-1432112);

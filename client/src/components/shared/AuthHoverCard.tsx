@@ -17,13 +17,4 @@ const {content} = useLoginStore()
 
 export default AuthHoverCard;
 
-// /* Group 37166 */
-
-// position: absolute;
-// width: 720px;
-// height: 711px;
-// left: 360px;
-// top: 95px;
-
-// filter: drop-shadow(0px 2px 5px rgba(0, 0, 0, 0.05));
 

@@ -50,19 +50,7 @@ const {schedule} = useToggleStore();
 export default ViewSchedule;
 
 
-// /* Rectangle 95 */
 
-// box-sizing: border-box;
-
-// position: absolute;
-// width: 155px;
-// height: 32px;
-// left: 30px;
-// top: 208px;
-
-// background: #FFFFFF;
-// border: 1px solid #D9D7D7;
-// border-radius: 10px;
 
 
 
