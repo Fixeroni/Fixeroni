@@ -1,4 +1,9 @@
+
 import { Feature } from "../types";
+
+
+
+
 
 const features: Feature[] = [
   {
@@ -7,7 +12,7 @@ const features: Feature[] = [
     description: "Need a pro? Fixeroni connects you with skilled artisans for any job big or small. Post your task, get offers, and hire with confidence.",
     ctaText: "Find an Artisan",
     side: "left",
-    cta: "/client/auth/register",
+    content: "Client", 
   },
   {
     image: "/assets/images/feature-2.png",
@@ -16,7 +21,7 @@ const features: Feature[] = [
       "Join Fixeroni and connect with clients who need your expertise. Whether you're a plumber, carpenter, designer, or tech guru, get hired, get paid, and grow your business.",
     ctaText: "Join as an Artisan",
     side: "right",
-    cta: "/artisan/auth/register",
+    content:  "ArtisantA"
   },
 ];
 

@@ -22,15 +22,22 @@ export type Artisan = {
   accountType: string;
 };
 
-export type Feature = {
+
+type LogContent =  "Client" | "ArtisantA" | "ArtisantB" | "Login/RegCode";
+
+export interface Feature{
   image: string;
   title: string;
   description: string;
   side: "left" | "right";
   ctaText: string;
-  cta: string;
+  content: LogContent;
+ 
 };
 
+export interface FeatureProps extends Feature {
+  handleClick: () => void;
+}
 
 export type DashboarFeatureprops= {
   image: string;

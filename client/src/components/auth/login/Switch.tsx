@@ -1,6 +1,9 @@
 import  { ReactNode, useState } from "react";
 import AnimateEntranceFromBottom from "../../animated/AnimateEntranceFromBottom";
 import { useLoginStore } from "@/stores/auth/useLoginStore";
+import RegisterClient from "@/routes/artisan/auth/register/Client";
+import Artisant from "@/routes/artisan/auth/register/Artisant";
+// import ClientRegister from "@/routes/artisan/auth/register/ClientRegister";
 
 function Switch({
   login,
@@ -23,18 +26,18 @@ function Switch({
           Login
         </div>
         <div
-          className={`${content === "register" && "border-b-2 border-[#0F9067]"} cursor-pointer p-2 text-lg min-w-[120px] text-center`}
+          className={`${(content === "register" || content === "Client" || content === "ArtisantA") ? "border-b-2 border-[#0F9067]": ""} cursor-pointer p-2 text-lg min-w-[120px] text-center`}
           onClick={() => setContent("register")}
         >
           Register
         </div>
       </div>
 
-      {content === "login" ? (
-        <AnimateEntranceFromBottom>{login}</AnimateEntranceFromBottom>
-      ) : (
-        <AnimateEntranceFromBottom>{register}</AnimateEntranceFromBottom>
-      )}
+      {content === "login" && (<AnimateEntranceFromBottom>{login}</AnimateEntranceFromBottom>)}
+      {content === "register" && (<AnimateEntranceFromBottom>{register}</AnimateEntranceFromBottom>)}
+      {content === "Client" && (<AnimateEntranceFromBottom> <RegisterClient /> </AnimateEntranceFromBottom>)}
+      {content === "ArtisantA" && (<AnimateEntranceFromBottom> <Artisant /> </AnimateEntranceFromBottom>)}
+   
     </div>
   );
 }

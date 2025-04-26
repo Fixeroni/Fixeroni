@@ -1,14 +1,33 @@
 // useLoginStore.ts
 import { create } from "zustand";
+import { persist } from 'zustand/middleware';
 
-type LoginContent = "login" | "register";
+export type LogContent =
+| "login"
+| "register"
+| "Client"
+| "ArtisantA"
+| "ArtisantB"
+| "Login/RegCode";
 
 interface LoginStore {
-  content: LoginContent;
-  setContent: (value: LoginContent) => void;
+  content: LogContent;
+  setContent: (value: LogContent) => void;
+  steps: number;
+  setSteps: (step: number) => void;
 }
 
-export const useLoginStore = create<LoginStore>((set) => ({
-  content: "login", // default value
-  setContent: (value) => set({ content: value }),
-}));
+export const useLoginStore = create<LoginStore>()(
+  persist(
+    (set) => ({
+      content: "login", // default value
+      setContent: (value) => set({ content: value }),
+      steps: 1,
+      setSteps: (step) => set({ steps: step }),
+    }),
+    {
+      name: "login-store", // Key in localStorage
+    }
+  )
+);
+ //mmmmmm

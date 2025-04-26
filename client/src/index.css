@@ -36,6 +36,12 @@ body{
  opacity: 0.5;
 }
 
+.my-select {
+  color: #616161;
+ opacity: 0.5;
+}
+
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

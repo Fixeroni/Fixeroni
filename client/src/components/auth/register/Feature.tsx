@@ -1,14 +1,21 @@
-import { Link } from "@tanstack/react-router";
-import { Feature as FeatureType } from "../../../types";
+// import { button } from "@tanstack/react-router";
+import { FeatureProps, Feature as FeatureType } from "../../../types";
+
+
+
 
 function Feature({
   image,
   title,
-  cta,
+
   description,
   side,
   ctaText,
-}: FeatureType) {
+  handleClick
+}: FeatureProps) {
+
+
+
   return (
     <div className=" bg-white rounded-2xl  text-[#535353] shadow-xl">
       
@@ -23,12 +30,12 @@ function Feature({
        
         <p className={`text-md  text-justify  ${side === "right" ? "" : "mt-[-1.2rem]" }`}>{description}</p>
 
-        <Link
-          to={cta}
+        <button
+         onClick={handleClick}
           className={`text-white  bg-[#0F9067] rounded-[10px] w-fit h-[30px] text-md px-2.5 mt-2  ${side === "right" ? "" : "ml-auto" }   `}
         >
           {ctaText}
-        </Link>
+        </button>
       </div>
     </div>
     </div>

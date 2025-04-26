@@ -69,7 +69,7 @@ function LoginContent() {
           </button>
         </div>
 
-        <div className="flex items-center gap-3 justify-center mt-6 mb-6">
+        <div className="flex items-center gap-3 justify-center mt-1 mb-6">
           <div>
             {" "}
             <hr className="w-[99.84px] h-[1px] text-[#c2c2c2cc]" />{" "}
@@ -85,7 +85,7 @@ function LoginContent() {
           </div>
         </div>
 
-        <form className="flex flex-col gap-8 justify-center items-center">
+        <form className="flex flex-col gap-8  ">
           <Input
             type="email"
             value={email}
@@ -112,12 +112,16 @@ function LoginContent() {
             placeholder="Enter password"
           />
 
+          <div className="flex ">
           <Link
-            className="text-[#616161] mr-auto px-33 mt-[-1.6rem] text-[12px] cursor-pointer"
+            className="text-[#616161] mr-auto  mt-[-1.6rem] text-[12px] cursor-pointer"
             to="/artisan/auth/forgot-password"
           >
             Forget password?
           </Link>
+
+          </div>
+         
 
           <button
             className="font-semibold text-white bg-[#0F9067] shadow-sm hover:shadow-md transition duration-300 p-2 hover:cursor-pointer h-[ 44px] rounded-[20px]  w-[356px]"
