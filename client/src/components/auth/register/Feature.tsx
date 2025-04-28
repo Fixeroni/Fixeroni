@@ -32,7 +32,7 @@ function Feature({
 
         <button
          onClick={handleClick}
-          className={`text-white  bg-[#0F9067] rounded-[10px] w-fit h-[30px] text-md px-2.5 mt-2  ${side === "right" ? "" : "ml-auto" }   `}
+          className={`text-white cursor-pointer bg-[#0F9067] rounded-[10px] w-fit h-[30px] text-md px-2.5 mt-2  ${side === "right" ? "" : "ml-auto" }   `}
         >
           {ctaText}
         </button>

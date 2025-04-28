@@ -1,6 +1,6 @@
 // useLoginStore.ts
 import { create } from "zustand";
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 export type LogContent =
 | "login"
@@ -27,6 +27,7 @@ export const useLoginStore = create<LoginStore>()(
     }),
     {
       name: "login-store", // Key in localStorage
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

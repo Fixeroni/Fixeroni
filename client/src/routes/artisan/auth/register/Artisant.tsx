@@ -1,6 +1,7 @@
 import { useLoginStore } from "@/stores/auth/useLoginStore";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
 
 export const Route = createFileRoute("/artisan/auth/register/Artisant")({
   component: Artisant,
@@ -12,16 +13,22 @@ interface FormData {
   address: string;
   password: string;
   confirmpassword: string;
+  workportfolio: string;
+  governmentIdUpload:string;
+  profilePicture: string;
 }
 
 function Artisant() {
-  const {steps, setSteps} = useLoginStore()
+  const {steps, setSteps, setContent} = useLoginStore()
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     email: "",
     address: "",
     confirmpassword: "",
     password: "",
+    governmentIdUpload: "",
+    profilePicture: "",
+    workportfolio: ""
   });
 
   const handleNext = () => {
@@ -34,10 +41,18 @@ function Artisant() {
 
   const handleChange =
     (field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      setFormData((prev) => ({
-        ...prev,
-        [field]: e.target.value,
-      }));
+      const file = e.target.files?.[0];
+      if (file) {
+        setFormData((prev) => ({
+          ...prev,
+          [field]: file.name, // store the file name
+        }));
+      } else {
+        setFormData((prev) => ({
+          ...prev,
+          [field]: e.target.value,
+        }));
+      }
     };
 
   return (
@@ -57,6 +72,8 @@ function Artisant() {
                 paddingBottom={""}
                 value={formData.firstName}
                 onChange={handleChange("firstName")}
+                filePlaceholder={""}
+                fieldId="firstName" 
               />
               <ArtisantRegisterInpu
                 placeholder={"Email address"}
@@ -64,6 +81,8 @@ function Artisant() {
                 paddingBottom={""}
                 value={formData.email}
                 onChange={handleChange("email")}
+                filePlaceholder={""}
+                fieldId="email" 
               />
               <ArtisantRegisterInpu
                 placeholder={"Address"}
@@ -71,6 +90,8 @@ function Artisant() {
                 paddingBottom={""}
                 value={formData.address}
                 onChange={handleChange("address")}
+                filePlaceholder={""}
+                fieldId="address" 
               />
               <ArtisantRegisterInpu
                 placeholder={"Password"}
@@ -78,6 +99,8 @@ function Artisant() {
                 paddingBottom={""}
                 value={formData.password}
                 onChange={handleChange("password")}
+                filePlaceholder={""}
+                fieldId="password" 
               />
               <ArtisantRegisterInpu
                 placeholder={"Confirm password"}
@@ -85,6 +108,8 @@ function Artisant() {
                 paddingBottom={"mb-5"}
                 value={formData.confirmpassword}
                 onChange={handleChange("confirmpassword")}
+                filePlaceholder={""}
+                fieldId="confirmpassword" 
               />
             </div>
           )}
@@ -98,26 +123,32 @@ function Artisant() {
                 placeholder={"Work Portfolio"}
                 type={"file"}
                 paddingBottom={""}
-                value={formData.password}
-                onChange={handleChange("password")}
+                value={formData.workportfolio}
+                onChange={handleChange("workportfolio")}
+                filePlaceholder={"Work Portfolio"}
+                fieldId="workportfolio" 
               />
             </div>
           )}
           {steps === 3 && (
             <div>
               <ArtisantRegisterInpu
-                placeholder={"Address"}
+                placeholder={"Government Id Upload"}
                 type={"file"}
                 paddingBottom={""}
-                value={formData.address}
-                onChange={handleChange("address")}
+                value={formData.governmentIdUpload}
+                onChange={handleChange("governmentIdUpload")}
+                filePlaceholder={"Government Id Upload"}
+                fieldId="governmentIdUpload" 
               />
               <ArtisantRegisterInpu
-                placeholder={"Password"}
+                placeholder={"Profile Picture"}
                 type={"file"}
                 paddingBottom={""}
-                value={formData.password}
-                onChange={handleChange("password")}
+                value={formData.profilePicture}
+                onChange={handleChange("profilePicture")}
+                filePlaceholder={"Profile Picture"}
+                fieldId="file-profilePicture" 
               />
             </div>
           )}
@@ -170,7 +201,7 @@ function Artisant() {
              {steps === 1 && (
               <button
                 className="font-semibold text-white bg-[#0F9067] shadow-sm mb-6 transition duration-300 p-2 hover:cursor-pointer h-[ 44px] rounded-[20px]  w-full"
-                type="submit"
+                type="button"
                 onClick={handleNext}
               >
                 Next 
@@ -189,6 +220,7 @@ function Artisant() {
              <button
               className="font-semibold text-white bg-[#0F9067] shadow-sm mb-6 transition duration-300 p-2 hover:cursor-pointer h-[ 44px] rounded-[20px]  w-full"
               type="submit"
+              onClick={() => setContent("Login/RegCode")}
             >
               Submit
             </button> 
@@ -206,6 +238,8 @@ type ArtisantRegisterInpuProps = {
   type: string;
   paddingBottom: string;
   value: string;
+  fieldId:string;
+  filePlaceholder:string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -214,20 +248,39 @@ function ArtisantRegisterInpu({
   type,
   paddingBottom,
   value,
+  fieldId,
+  filePlaceholder,
   onChange,
 }: ArtisantRegisterInpuProps) {
+  const showFileSelected = value !== "";
+
   return (
     <div
-      className={`bg-white rounded-xl ${paddingBottom} mt-3 px-4 py-2 placeholder:text-sm text-[#616161] w-[356px] flex gap-2 items-center`}
+      className={`bg-white relative rounded-xl ${paddingBottom} mt-3 px-4 py-2 placeholder:text-sm text-[#616161] w-[356px] flex gap-2 items-center`}
     >
+      {type === "file" && !showFileSelected && (
+           <label
+           htmlFor={fieldId}
+           className="  text-[#616161] opacity-[0.5] cursor-pointer w-full"
+         >
+           {filePlaceholder}
+         </label>
+      )} 
       <input
         type={type}
-        className=" bg-transparent w-full  focus:outline-none  my-input"
+         id={fieldId}
+        className={` bg-transparent w-full  focus:outline-none  my-input ${type === "file" && !showFileSelected && "hidden" }`}
         placeholder={placeholder}
         onChange={onChange}
-        value={value}
+        value={type === "text" ? value : undefined}
         required
       />
+       {type == "file" && (
+        <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2">
+                 <img src="/images/icons/upload-icon.png" alt="" />
+            </div>
+       )}
+       
     </div>
   );
 }
@@ -241,15 +294,20 @@ interface SelectCategoryInputProps {
 
 function SelectCategoryInpu({placeHolder,  options= []}:SelectCategoryInputProps){
     return(
-        <div className=" bg-white rounded-xl mt-3 px-4 py-2 placeholder:text-sm text-[#616161] w-[356px] flex gap-2 items-center">
-            <select name="" id="" className="w-full  bg-transparent focus:outline-none">
-                <option value="" disabled selected className="opacity-[0.5] text-[#616161]" >{placeHolder}</option>
+        <div className=" bg-white relative rounded-xl mt-3 px-4 py-2 placeholder:text-sm text-[#616161] w-[356px] flex gap-2 items-center">
+            <select name="" id="" className="w-full appearance-none bg-transparent focus:outline-none ">
+                <option value="" disabled selected hidden className="opacity-50 text-[#616161]" >{placeHolder}</option>
                 {options.map((option, index) => (
           <option key={index} value={option.toLowerCase()}>
             {option}
           </option>
         ))}
             </select>
+
+
+            <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2">
+                 <IoIosArrowDown className="text-[#0F9067]"/>
+            </div>
        
         </div>
     )

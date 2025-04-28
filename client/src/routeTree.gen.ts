@@ -32,6 +32,7 @@ import { Route as ArtisanDashboardDashBoardComponentNotificationImport } from '.
 import { Route as ArtisanDashboardDashBoardComponentDashboardMainPageImport } from './routes/artisan/dashboard/DashBoardComponent/DashboardMainPage'
 import { Route as ArtisanDashboardDashBoardComponentDashboarFeaturesImport } from './routes/artisan/dashboard/DashBoardComponent/DashboarFeatures'
 import { Route as ArtisanDashboardDashBoardComponentDashBoardMapImport } from './routes/artisan/dashboard/DashBoardComponent/DashBoardMap'
+import { Route as ArtisanAuthRegisterVerificationCodeImport } from './routes/artisan/auth/register/VerificationCode'
 import { Route as ArtisanAuthRegisterClientImport } from './routes/artisan/auth/register/Client'
 import { Route as ArtisanAuthRegisterArtisantImport } from './routes/artisan/auth/register/Artisant'
 
@@ -180,6 +181,13 @@ const ArtisanDashboardDashBoardComponentDashBoardMapRoute =
     getParentRoute: () => rootRoute,
   } as any)
 
+const ArtisanAuthRegisterVerificationCodeRoute =
+  ArtisanAuthRegisterVerificationCodeImport.update({
+    id: '/artisan/auth/register/VerificationCode',
+    path: '/artisan/auth/register/VerificationCode',
+    getParentRoute: () => rootRoute,
+  } as any)
+
 const ArtisanAuthRegisterClientRoute = ArtisanAuthRegisterClientImport.update({
   id: '/artisan/auth/register/Client',
   path: '/artisan/auth/register/Client',
@@ -223,6 +231,13 @@ declare module '@tanstack/react-router' {
       path: '/artisan/auth/register/Client'
       fullPath: '/artisan/auth/register/Client'
       preLoaderRoute: typeof ArtisanAuthRegisterClientImport
+      parentRoute: typeof rootRoute
+    }
+    '/artisan/auth/register/VerificationCode': {
+      id: '/artisan/auth/register/VerificationCode'
+      path: '/artisan/auth/register/VerificationCode'
+      fullPath: '/artisan/auth/register/VerificationCode'
+      preLoaderRoute: typeof ArtisanAuthRegisterVerificationCodeImport
       parentRoute: typeof rootRoute
     }
     '/artisan/dashboard/DashBoardComponent/DashBoardMap': {
@@ -368,6 +383,7 @@ export interface FileRoutesByFullPath {
   '/artisan/dashboard': typeof ArtisanDashboardIndexRoute
   '/artisan/auth/register/Artisant': typeof ArtisanAuthRegisterArtisantRoute
   '/artisan/auth/register/Client': typeof ArtisanAuthRegisterClientRoute
+  '/artisan/auth/register/VerificationCode': typeof ArtisanAuthRegisterVerificationCodeRoute
   '/artisan/dashboard/DashBoardComponent/DashBoardMap': typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
   '/artisan/dashboard/DashBoardComponent/DashboarFeatures': typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   '/artisan/dashboard/DashBoardComponent/DashboardMainPage': typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
@@ -394,6 +410,7 @@ export interface FileRoutesByTo {
   '/artisan/dashboard': typeof ArtisanDashboardIndexRoute
   '/artisan/auth/register/Artisant': typeof ArtisanAuthRegisterArtisantRoute
   '/artisan/auth/register/Client': typeof ArtisanAuthRegisterClientRoute
+  '/artisan/auth/register/VerificationCode': typeof ArtisanAuthRegisterVerificationCodeRoute
   '/artisan/dashboard/DashBoardComponent/DashBoardMap': typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
   '/artisan/dashboard/DashBoardComponent/DashboarFeatures': typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   '/artisan/dashboard/DashBoardComponent/DashboardMainPage': typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
@@ -421,6 +438,7 @@ export interface FileRoutesById {
   '/artisan/dashboard/': typeof ArtisanDashboardIndexRoute
   '/artisan/auth/register/Artisant': typeof ArtisanAuthRegisterArtisantRoute
   '/artisan/auth/register/Client': typeof ArtisanAuthRegisterClientRoute
+  '/artisan/auth/register/VerificationCode': typeof ArtisanAuthRegisterVerificationCodeRoute
   '/artisan/dashboard/DashBoardComponent/DashBoardMap': typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
   '/artisan/dashboard/DashBoardComponent/DashboarFeatures': typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   '/artisan/dashboard/DashBoardComponent/DashboardMainPage': typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
@@ -449,6 +467,7 @@ export interface FileRouteTypes {
     | '/artisan/dashboard'
     | '/artisan/auth/register/Artisant'
     | '/artisan/auth/register/Client'
+    | '/artisan/auth/register/VerificationCode'
     | '/artisan/dashboard/DashBoardComponent/DashBoardMap'
     | '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
     | '/artisan/dashboard/DashBoardComponent/DashboardMainPage'
@@ -474,6 +493,7 @@ export interface FileRouteTypes {
     | '/artisan/dashboard'
     | '/artisan/auth/register/Artisant'
     | '/artisan/auth/register/Client'
+    | '/artisan/auth/register/VerificationCode'
     | '/artisan/dashboard/DashBoardComponent/DashBoardMap'
     | '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
     | '/artisan/dashboard/DashBoardComponent/DashboardMainPage'
@@ -499,6 +519,7 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/'
     | '/artisan/auth/register/Artisant'
     | '/artisan/auth/register/Client'
+    | '/artisan/auth/register/VerificationCode'
     | '/artisan/dashboard/DashBoardComponent/DashBoardMap'
     | '/artisan/dashboard/DashBoardComponent/DashboarFeatures'
     | '/artisan/dashboard/DashBoardComponent/DashboardMainPage'
@@ -526,6 +547,7 @@ export interface RootRouteChildren {
   ArtisanDashboardIndexRoute: typeof ArtisanDashboardIndexRoute
   ArtisanAuthRegisterArtisantRoute: typeof ArtisanAuthRegisterArtisantRoute
   ArtisanAuthRegisterClientRoute: typeof ArtisanAuthRegisterClientRoute
+  ArtisanAuthRegisterVerificationCodeRoute: typeof ArtisanAuthRegisterVerificationCodeRoute
   ArtisanDashboardDashBoardComponentDashBoardMapRoute: typeof ArtisanDashboardDashBoardComponentDashBoardMapRoute
   ArtisanDashboardDashBoardComponentDashboarFeaturesRoute: typeof ArtisanDashboardDashBoardComponentDashboarFeaturesRoute
   ArtisanDashboardDashBoardComponentDashboardMainPageRoute: typeof ArtisanDashboardDashBoardComponentDashboardMainPageRoute
@@ -552,6 +574,8 @@ const rootRouteChildren: RootRouteChildren = {
   ArtisanDashboardIndexRoute: ArtisanDashboardIndexRoute,
   ArtisanAuthRegisterArtisantRoute: ArtisanAuthRegisterArtisantRoute,
   ArtisanAuthRegisterClientRoute: ArtisanAuthRegisterClientRoute,
+  ArtisanAuthRegisterVerificationCodeRoute:
+    ArtisanAuthRegisterVerificationCodeRoute,
   ArtisanDashboardDashBoardComponentDashBoardMapRoute:
     ArtisanDashboardDashBoardComponentDashBoardMapRoute,
   ArtisanDashboardDashBoardComponentDashboarFeaturesRoute:
@@ -603,6 +627,7 @@ export const routeTree = rootRoute
         "/artisan/dashboard/",
         "/artisan/auth/register/Artisant",
         "/artisan/auth/register/Client",
+        "/artisan/auth/register/VerificationCode",
         "/artisan/dashboard/DashBoardComponent/DashBoardMap",
         "/artisan/dashboard/DashBoardComponent/DashboarFeatures",
         "/artisan/dashboard/DashBoardComponent/DashboardMainPage",
@@ -635,6 +660,9 @@ export const routeTree = rootRoute
     },
     "/artisan/auth/register/Client": {
       "filePath": "artisan/auth/register/Client.tsx"
+    },
+    "/artisan/auth/register/VerificationCode": {
+      "filePath": "artisan/auth/register/VerificationCode.tsx"
     },
     "/artisan/dashboard/DashBoardComponent/DashBoardMap": {
       "filePath": "artisan/dashboard/DashBoardComponent/DashBoardMap.tsx"
