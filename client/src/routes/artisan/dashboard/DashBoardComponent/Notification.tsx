@@ -14,7 +14,7 @@ const {notification}= useToggleStore();
   return (
     <div>
 
-        <div className="fixed h-screen inset-0 flex z-20 justify-center bg-[#64646466]/50 backdrop-blur-md scroll-auto overflow-y-scroll">
+        <div className="fixed h-screen inset-0 flex z-20 justify-end scroll-auto overflow-y-scroll">
               <div className="w-[406px]   h-fit bg-[#FFFFFF] rounded-[20px] shawdow---feature mt-4 mb-3">
                 <section>
                   <div className="p-8 flex justify-between items-center">
