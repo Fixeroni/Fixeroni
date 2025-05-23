@@ -14,7 +14,7 @@ function AuthLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex flex-col  w-full">
-    <div>
+    <div className="max-sm:w-full">
     <img src="/assets/images/login-bg-image.png" alt=""  className="w-full h-[357px]"/>
     </div>
     

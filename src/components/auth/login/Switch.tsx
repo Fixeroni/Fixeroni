@@ -21,7 +21,7 @@ function Switch({
   return (
     <div className="w-full flex flex-col justify-center items-center ">
       {content === "Login/RegCode" ? "" : (
-         <div className="flex gap-4 items-center mb-4 w-full justify-center  bg-white ">
+         <div className="flex gap-4 items-center mb-4 w-full  justify-center  bg-white ">
          <div
            className={`${content === "login" && "border-b-2 border-[#0F9067]"} cursor-pointer p-2 text-lg min-w-[120px] text-center`}
            onClick={() => setContent("login")}

@@ -25,7 +25,7 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="grid gap-20 p-6 md:grid-cols-2">
+        <div className="grid gap-20 max-sm:gap-8 p-6 md:grid-cols-2">
           <div className="relative">
             <div className="mb-4 flex justify-center">
               <div className="relative h-32 w-64">
@@ -42,7 +42,7 @@ export default function HowItWorks() {
             <Link href="/#search">
               <Card className="h-[150px]  bg-[#E7ECEF] cursor-pointer transition-shadow shadow-lg  hover:shadow-lg">
                 <CardContent className="flex p-6">
-                  <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
+                  <div className="mr-4 flex h-16  w-16 flex-shrink-0 items-center justify-center">
                     <Search className="h-10 w-10 text-blue-500" />
                   </div>
                   <div>
@@ -94,7 +94,7 @@ export default function HowItWorks() {
             </Link>
           </div>
 
-          <div className="relative mt-[-60px]">
+          <div className="relative mt-[-60px] max-sm:mt-0">
             <Link href="#">
               <Card className="md:h-[150px] cursor-pointer bg-[#F4F4F4] shadow-lg transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
@@ -116,7 +116,7 @@ export default function HowItWorks() {
             </Link>
           </div>
 
-          <div className="relative mt-[-60px]">
+          <div className="relative mt-[-60px] max-sm:mt-0">
             <Link href="#get-hired">
               <Card className="md:h-[150px] cursor-pointer  bg-[#F4F4F4] shadow-lg  transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
@@ -138,7 +138,7 @@ export default function HowItWorks() {
             </Link>
           </div>
 
-          <div className="relative mt-[-60px]">
+          <div className="relative mt-[-60px] max-sm:mt-0">
             <Link href="#pay">
               <Card className="md:h-[150px] cursor-pointer shadow-lg transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
@@ -159,7 +159,7 @@ export default function HowItWorks() {
             </Link>
           </div>
 
-          <div className="relative mt-[-60px]">
+          <div className="relative mt-[-60px] max-sm:mt-0">
             <Link href="#get-paid">
               <Card className="md:h-[150px] cursor-pointer  bg-[#E7ECEF] shadow-lg  transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">

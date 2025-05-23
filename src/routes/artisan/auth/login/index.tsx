@@ -30,7 +30,7 @@ const {content} = useLoginStore()
         </p>
          ): (
           <p className="text-[#787878] text-md">
-          Let us get things running smoothly and <br /> keep the world in
+          Let us get things running smoothly <br className="max-sm:block hidden"/> and <br className="max-sm:hidden"/> keep the world in
           working order.
           </p>
 

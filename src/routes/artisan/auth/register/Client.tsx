@@ -18,7 +18,7 @@ function RegisterClient() {
 
   return (
     <div>
-      <form>
+      <form className="max-sm:px-2">
         <RegisterInpu
           placeholder={"First name"}
           type={"text"}
@@ -80,7 +80,7 @@ function RegisterClient() {
 function RegisterInpu({ placeholder, type, paddingBottom }: RegisterInpuProps) {
   return (
     <div
-      className={`bg-white rounded-xl ${paddingBottom} mt-3 px-4 py-2 placeholder:text-sm text-[#616161] w-[356px] flex gap-2 items-center`}
+      className={`bg-white rounded-xl ${paddingBottom} mt-3 px-4 py-2 placeholder:text-sm text-[#616161] max-sm:w-full w-[356px] flex gap-2 items-center`}
     >
       <input
         type={type}

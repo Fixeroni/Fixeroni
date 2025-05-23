@@ -88,10 +88,10 @@ export default function ServicesSection() {
                 key={service.id}
                 className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
               >
-                <Card className="overflow-hidden h-[500px] md:h-[410px] rounded-xl border-0 shadow-md group cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <Card className="overflow-hidden w-fit h-[500px] md:h-[410px] rounded-xl border-0 shadow-md group cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                   <CardContent className="p-0 relative aspect-[3/4]">
                     <Badge
-                      className="absolute h-[40px] rounded-[20px] shadow-lg top-4 left-4 z-20 bg-white text-black font-normal"
+                      className="absolute h-[40px] border-0 font-semibold rounded-[20px] shadow-lg top-16 left-10 z-20 bg-white text-black"
                       variant="outline"
                     >
                       Starts from ${service.startingPrice}/hr
@@ -100,10 +100,10 @@ export default function ServicesSection() {
                     <img
                       src={service.image || "/placeholder.svg"}
                       alt={service.name}
-                      className=" rounded-lg scale-110 transition-all duration-300 group-hover:scale-110"
+                      className=" rounded-lg w-full scale-110 transition-all duration-300 group-hover:scale-110"
                     />
-                    <CardFooter className="absolute bottom-0 left-0 right-0 p-4 z-20">
-                      <h3 className="text-xl  font-semibold text-white group-hover:text-green-300 transition-colors duration-300">
+                    <CardFooter className="absolute bottom-0 left-0 right-0 py-14 px-10   z-20  ">
+                      <h3 className="text-xl  font-semibold  text-white group-hover:text-green-300 transition-colors duration-300">
                         {service.name}
                       </h3>
                     </CardFooter>
@@ -112,11 +112,11 @@ export default function ServicesSection() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-between items-center mt-16">
+          <div className="flex justify-between items-center mt-16 max-sm:flex-col max-sm:mt-4 max-sm:gap-4">
             <p className="text-gray-700 italic">
               &quot;Need Help Now? Book a Pro in 60 Seconds&quot;
             </p>
-            <div className="flex gap-2">
+            <div className="flex gap-2 max-sm:ml-auto max-sm:gap-4">
               <CarouselPrevious className="static translate-y-0 h-10 w-10" />
               <CarouselNext className="static translate-y-0 h-10 w-10" />
             </div>

@@ -58,7 +58,7 @@ function Artisant() {
   return (
     <div>
       <div>
-        <form action="">
+        <form action="" className="">
           <h3 className="text-[#000000] text-[20px] font-normal">
             {steps === 1 && "Personal Information"}
             {steps === 2 && "Personal Details"}
@@ -256,7 +256,7 @@ function ArtisantRegisterInpu({
 
   return (
     <div
-      className={`bg-white relative rounded-xl ${paddingBottom} mt-3 px-4 py-2 placeholder:text-sm text-[#616161] w-[356px] flex gap-2 items-center`}
+      className={`bg-white relative rounded-xl ${paddingBottom} mt-3 px-4 py-2 placeholder:text-sm text-[#616161] max-sm:w-[290px] w-[356px] flex gap-2 items-center`}
     >
       {type === "file" && !showFileSelected && (
            <label
@@ -294,7 +294,7 @@ interface SelectCategoryInputProps {
 
 function SelectCategoryInpu({placeHolder,  options= []}:SelectCategoryInputProps){
     return(
-        <div className=" bg-white relative rounded-xl mt-3 px-4 py-2 placeholder:text-sm text-[#616161] w-[356px] flex gap-2 items-center">
+        <div className=" bg-white relative rounded-xl mt-3 px-4 py-2 placeholder:text-sm text-[#616161] max-sm:w-[290px] w-[356px] flex gap-2 items-center">
             <select name="" id="" className="w-full appearance-none bg-transparent focus:outline-none ">
                 <option value="" disabled selected hidden className="opacity-50 text-[#616161]" >{placeHolder}</option>
                 {options.map((option, index) => (
