@@ -15,26 +15,30 @@ function VerificationCode() {
   const [remaining, setRemaining] = useState(5 * 60);
   const [isExpired, setIsExpired] = useState(false);
   const navigate = useNavigate();
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRemaining((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          // navigate({to: "/artisan/auth/login"});
-          setIsExpired(true);
 
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 100);
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setRemaining((prev) => {
+//         if (prev <= 1) {
+//           clearInterval(interval);
+//           // navigate({to: "/artisan/auth/login"});
+//           setIsExpired(true);
 
-    return () => clearInterval(interval);
-  }, []);
+//           return 0;
+//         }
+//         return prev - 1;
+//       });
+//     }, 100);
 
-  if (isExpired) {
-    return navigate({ to: "/" });
-  }
+//     return () => clearInterval(interval);
+//   }, []);
+
+//  useEffect(() => {
+//     if (isExpired) {
+//       navigate({ to: "/" });
+//     }
+//   }, [isExpired, navigate]);
+
   // Calculate minutes and seconds separately
   const minutes = Math.floor(remaining / 60);
   const seconds = remaining % 60;
@@ -90,7 +94,7 @@ function VerificationInput() {
     [&::-webkit-outer-spin-button]:m-0
     [@media(pointer:coarse)]:appearance-none 
    
-   focus:outline-none  font-bold text-2xl w-[76px] h-[63px] mb-2.5 border border-[#0F9067] "
+   focus:outline-none  font-bold text-2xl max-sm:w-[50px] w-[76px] max-sm:h-[50px] h-[63px] mb-2.5 border border-[#0F9067] "
     />
   );
 }

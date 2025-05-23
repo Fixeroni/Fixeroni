@@ -73,18 +73,21 @@ const Navbar = () => {
           }}
           className="flex items-center space-x-2"
         >
-          <img
-            src="/assets/images/Group 11.png"
+          <div>
+             <img
+            src="/images/branding/logo.png"
             alt="Fixeroni Logo"
-            width={20}
-            height={20}
+           className="w-30"
           />
-          <span
+
+          </div>
+         
+          {/* <span
             className="text-xl font-bold"
             style={{ fontFamily: "var(--font-antipasto)" }}
           >
             Fixeroni
-          </span>
+          </span> */}
         </a>
 
         <ul className="hidden md:flex space-x-6">
@@ -96,7 +99,7 @@ const Navbar = () => {
                   e.preventDefault();
                   scrollToSection(link.id);
                 }}
-                className={`text-gray-700 text-[12px] hover:text-green-600 font-medium relative pb-1 ${
+                className={`text-gray-700 text-[1rem] hover:text-green-600 font-medium relative pb-1 ${
                   activeSection === link.id ? "text-green-600" : ""
                 }`}
               >
@@ -159,7 +162,7 @@ const Navbar = () => {
             ))}
           </ul>
           <div className="px-4 pb-4">
-            <Link href="/login">
+            <Link href="/artisan/auth/login">
               <Button className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full">
                 Get Started
               </Button>

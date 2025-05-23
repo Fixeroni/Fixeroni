@@ -54,15 +54,15 @@ function LoginContent() {
   // };
 
   return (
-    <div className="mt-20">
+    <div className="mt-20 ">
       <div className="">
         {isLoading && <LoadingSpinner />}
 
-        <div className="flex flex-col justify-center  items-center">
+        <div className="flex flex-col justify-center  items-center ">
           <button
             type="button"
             // onClick={handleGoogleLogin}
-            className="flex gap-4 text-black mt-[-5.5rem] items-center justify-center w-[356px] bg-[#FFFFFF] cursor-pointer rounded-[12px]  px-8 py-2 md:max-w-[400px]"
+            className="flex gap-4 text-black mt-[-5.5rem] items-center justify-center max-sm:w-[290px]  w-[356px] bg-[#FFFFFF] cursor-pointer rounded-[12px]  px-8 py-2 md:max-w-[400px]"
           >
             <img src="/images/icons/google.png" className="w-6 h-6" />
             Login in with Google
@@ -71,8 +71,8 @@ function LoginContent() {
 
         <div className="flex items-center gap-3 justify-center mt-1 mb-6">
           <div>
-            {" "}
-            <hr className="w-[99.84px] h-[1px] text-[#c2c2c2cc]" />{" "}
+            
+            <hr className="w-[99.84px] max-sm:w-[50px] h-[1px] text-[#c2c2c2cc]" />{" "}
           </div>
           <div>
             <p className="text-[#c2c2c2cc] w-full text-[12px]">
@@ -81,11 +81,11 @@ function LoginContent() {
           </div>
           <div>
             {" "}
-            <hr className="w-[99.84px] h-[1px] text-[#c2c2c2cc]" />{" "}
+            <hr className="w-[99.84px] max-sm:w-[50px] h-[1px] text-[#c2c2c2cc]" />{" "}
           </div>
         </div>
 
-        <form className="flex flex-col gap-8  ">
+        <form className="flex flex-col gap-8  max-sm:justify-center max-sm:items-center">
           <Input
             type="email"
             value={email}
@@ -112,7 +112,7 @@ function LoginContent() {
             placeholder="Enter password"
           />
 
-          <div className="flex ">
+          <div className="flex  max-sm:mr-auto max-sm:px-10">
           <Link
             className="text-[#616161] mr-auto  mt-[-1.6rem] text-[12px] cursor-pointer"
             to="/artisan/auth/forgot-password"
@@ -124,7 +124,7 @@ function LoginContent() {
          
 
           <button
-            className="font-semibold text-white bg-[#0F9067] shadow-sm hover:shadow-md transition duration-300 p-2 hover:cursor-pointer h-[ 44px] rounded-[20px]  w-[356px]"
+            className="font-semibold text-white bg-[#0F9067] shadow-sm hover:shadow-md transition duration-300 p-2 hover:cursor-pointer h-[ 44px] rounded-[20px] max-sm:w-[290px]  w-[356px]"
             type="submit"
           >
             Login
