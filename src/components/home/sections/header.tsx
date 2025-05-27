@@ -31,7 +31,7 @@ const Header = () => {
           </p>
 
           {/* Search Bar */}
-          <div className="mt-4 relative z-20">
+          <div className="mt-4 relative z-20 max-sm:flex max-sm:justify-center max-sm:items-center">
             <SearchBar />
           </div>
 

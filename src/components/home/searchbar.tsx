@@ -27,7 +27,7 @@ export function SearchBar({
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-[350px] md:w-[40vw] max-w-3xl items-center rounded-full border-[0.1vw] border-gray-400 md:ml-0 ml-5  bg-transparent shadow-sm overflow-hidden"
+      className="flex max-sm:w-fit w-[350px] md:w-[40vw] max-w-3xl  items-center rounded-full border-[0.1vw] border-gray-400 md:ml-0 ml-5 max-sm:ml-0  bg-transparent shadow-sm overflow-hidden"
     >
       <div className="flex items-center pl-4">
         <Search className="h-5 w-5 text-gray-400 border-transparent" />
