@@ -10,11 +10,10 @@ export default function Footer() {
         <div className="md:hidden mb-8">
           <img
             src="/assets/images/Frame 72.png"
-            alt="Fixeroni Logo"
-            width={50}
-            height={50}
+            alt="Fixeroni Logo" 
+             className="w-28"  
           />
-          <p className="text-sm mt-2 max-w-xs">
+          <p className="text-sm mt-2 max-w-xs" >
             Connecting you with trusted professionals for all your service needs
           </p>
         </div>
@@ -22,10 +21,9 @@ export default function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8">
           <div className="hidden md:block space-y-4">
             <img
-              src="/assets/images/Frame 72.png"
+              src="/assets/images/Frame 72.pn"
               alt="Fixeroni Logo"
-              width={200}
-              height={200}
+               className="w-full object-cover"             
             />
             <p className="text-[12px] max-w-xs">
               Connecting you with trusted <br /> professionals for all your

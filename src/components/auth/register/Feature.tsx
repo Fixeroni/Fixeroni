@@ -11,7 +11,7 @@ function Feature({
   handleClick,
 }: FeatureProps) {
   return (
-    <div className=" bg-white rounded-2xl  text-[#535353] shadow-xl max-sm:pb-2">
+    <div className=" bg-white rounded-2xl max-md:mx-12  text-[#535353] shadow-xl max-sm:pb-2">
       <div className={`flex justify-center  `}>
         <h2
           className={`text-2xl max-sm:text-[1.1rem] font-bold  ${side === "right" ? "ml-auto pt-4 px-4" : "text-center pt-4"} `}
@@ -23,7 +23,7 @@ function Feature({
       <div
         className={` ${side === "right" ? "flex-row-reverse" : ""} flex gap-4 items-center justify-center max-sm:flex-col `}
       >
-        <div className="flex justify-center">
+        <div className="flex justify-center max-md:w-full">
           {" "}
           <img src={image} className="w-full h-40 mt-auto" />{" "}
         </div>

@@ -112,9 +112,9 @@ function LoginContent() {
             placeholder="Enter password"
           />
 
-          <div className="flex  max-sm:mr-auto max-sm:px-10">
+          <div className="flex  max-sm:mr-auto ">
           <Link
-            className="text-[#616161] mr-auto  mt-[-1.6rem] text-[12px] cursor-pointer"
+            className="text-[#616161] mr-auto max-sm:text-left  mt-[-1.6rem] text-[12px] cursor-pointer"
             to="/artisan/auth/forgot-password"
           >
             Forget password?

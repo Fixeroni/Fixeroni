@@ -112,11 +112,11 @@ export default function ServicesSection() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <div className="flex justify-between items-center mt-16 max-sm:flex-col max-sm:mt-4 max-sm:gap-4">
+          <div className="flex justify-between items-center mt-16 max-sm:flex-col max-md:flex-col max-md:gap-4 max-md:mt-4 max-sm:mt-4 max-sm:gap-4">
             <p className="text-gray-700 italic">
               &quot;Need Help Now? Book a Pro in 60 Seconds&quot;
             </p>
-            <div className="flex gap-2 max-sm:ml-auto max-sm:gap-4">
+            <div className="flex gap-2 max-sm:ml-auto max-sm:gap-4 max-md:ml-auto max-md:gap-10">
               <CarouselPrevious className="static translate-y-0 h-10 w-10" />
               <CarouselNext className="static translate-y-0 h-10 w-10" />
             </div>
