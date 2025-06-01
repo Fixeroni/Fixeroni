@@ -102,7 +102,7 @@ export default function ServicesSection() {
                       alt={service.name}
                       className=" rounded-lg w-full scale-110 transition-all duration-300 group-hover:scale-110"
                     />
-                    <CardFooter className="absolute bottom-0 left-0 right-0 py-14 px-10   z-20  ">
+                    <CardFooter className="absolute bottom-0 left-0 right-0 py-14 px-15   z-20  ">
                       <h3 className="text-xl  font-semibold  text-white group-hover:text-green-300 transition-colors duration-300">
                         {service.name}
                       </h3>
