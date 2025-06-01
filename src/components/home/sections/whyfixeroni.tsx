@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function WhyFixeroniSection() {
   return (
-    <section className="w-full md:mt-28 max-sm:mt-10 mt-72 bg-[#F2F1F1] overflow-hidden">
+    <section className="w-full md:mt-28 max-sm:mt-[13rem] mt-72 bg-[#F2F1F1] overflow-hidden">
       <div className="grid md:grid-cols-2">
         <div className="relative md:h-[900px] h-[700px]">
           <div className="absolute inset-0">
@@ -41,7 +41,7 @@ export default function WhyFixeroniSection() {
             Guaranteed Satisfaction With
           </h3>
 
-          <div className="relative mb-16 md:ml-[-100px] mr-0  max-sm:ml-[-1rem] place-items-center ">
+          <div className="relative mb-16 md:ml-[-100px] mr-0  max-sm:ml-[-1rem] max-md:place-items-center ">
             <div className="absolute -left-1 -top-3 z-10 max-sm:left-[1rem] max-md:left-32">
               <div className=" p-2 rounded-full ">
                 {/* <CheckCircle className="h-6 w-6 text-white" /> */}

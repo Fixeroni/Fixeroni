@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 // import { services } from "@/public/assests/index";
 export default function AboutUs() {
   return (
-    <div id="about" className="flex flex-col min-h-screen max-md:h-full max-sm:mb-[10rem] max-sm:pb-1  max-md:pb-24 max-md:mb-[28rem] max-md:mt-12">
+    <div id="about" className="flex relative flex-col min-h-screen max-md:h-full  max-sm:mb-[10rem] max-sm:pb-1  max-md:pb-24 max-md:mb-[28rem] max-sm:mt-0 max-md:mt-12">
       {/* Top section with background image and overlay */}
       <div className="relative h-[30vh] md:h-[40vh]">
         <img
@@ -15,15 +15,15 @@ export default function AboutUs() {
           className="object-cover w-full h-full"
         />
 
-        <div className="absolute inset-0 bg-black/50 flex items-center px-8 max-md:py-14">
-          <h1 className="text-white text-2xl md:text-3xl md:mb-16 mb-16 font-light">
+        <div className="absolute inset-0 bg-black/50 flex items-center px-8 max-md:py-14 max-sm:py-0 ">
+          <h1 className="text-white text-2xl md:text-3xl md:mb-16 mb-16 font-light max-sm:mt-[-3rem] max-sm:font-semibold">
             About Us
           </h1>
         </div>
       </div>
 
-      <div className="bg-white flex-grow relative max-md:mt-12 max-sm:mb-11 max-sm:h-full">
-        <Card className="max-w-7xl bg-[#F8F8F8] mx-auto md:p-15  pl-72 p-2 shadow-xl max-sm:shadow-none border-0 absolute left-4 right-4 -top-20 md:-top-24">
+      <div className="bg-white flex-grow relative max-sm:mt-[-2rem] max-md:mt-12 max-sm:mb-11 max-sm:h-full">
+        <Card className="max-w-7xl bg-[#F8F8F8] mx-auto md:p-15  pl-72 p-2 shadow-xl max-sm:shadow-none border-0 absolute left-4 right-4 -top-20 md:-top-24 ">
           <CardContent className="">
             <p className="text-gray-700 leading-relaxed text-center text-sm md:text-base max-sm:text-justify">
               Fixeroni connects you with verified experts, ensuring top-notch
