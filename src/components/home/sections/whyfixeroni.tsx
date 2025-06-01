@@ -60,7 +60,7 @@ export default function WhyFixeroniSection() {
           </div>
 
           {/* Second Card - Transparent Pricing */}
-          <div className="relative mb-16 ml-12 md:ml-56 max-sm:ml-[0rem] max-sm:flex max-sm:justify-center max-md:place-items-center">
+          <div className="relative mb-16 ml-12 md:ml-56 mt-[-1rem] max-sm:ml-[0rem] max-sm:flex max-sm:justify-center max-md:place-items-center"> 
             <div className="absolute right-25 -top-3 z-10 max-sm:right-[0rem]">
               <div className=" p-2 rounded-full max-sm:p-3">
                 {/* <Tag className="h-6 w-6 text-black" /> */}
