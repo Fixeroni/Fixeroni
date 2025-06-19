@@ -11,7 +11,7 @@ function Feature({
   handleClick,
 }: FeatureProps) {
   return (
-    <div className=" bg-white rounded-2xl max-md:mx-12  text-[#535353] shadow-xl max-sm:pb-2">
+    <div className=" bg-white rounded-2xl w- max-md:mx-12  text-[#535353] shadow-xl max-sm:pb-2">
       <div className={`flex justify-center  `}>
         <h2
           className={`text-2xl max-sm:text-[1.1rem] font-bold  ${side === "right" ? "ml-auto pt-4 px-4" : "text-center pt-4"} `}
@@ -32,7 +32,7 @@ function Feature({
           className={`flex flex-col gap-2 max-sm:px-4 ${side === "right" ? "pl-4 pb-4" : "pr-4 max-sm:pb-4"}  justify-center md:max-w-[400px] `}
         >
           <p
-            className={`text-md  text-justify  ${side === "right" ? "" : "mt-[-1.2rem]"}`}
+            className={`text-md  ${side === "right" ? "" : "mt-[-1.2rem]"}`}
           >
             {description}
           </p>
