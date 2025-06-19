@@ -3,7 +3,7 @@ import { SearchBar } from "@/components/home/searchbar";
 // import { HeroBanner } from "@/public/assets";
 // import { googlePlay } from "@/public/assets";
 // import { appStore } from "@/public/assets";
-import Image from "next/image";
+// import Image from "next/image";
 
 const Header = () => {
   return (

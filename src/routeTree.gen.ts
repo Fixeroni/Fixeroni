@@ -36,6 +36,7 @@ import { Route as ArtisanAuthRegisterVerificationCodeImport } from './routes/art
 import { Route as ArtisanAuthRegisterClientImport } from './routes/artisan/auth/register/Client'
 import { Route as ArtisanAuthRegisterArtisantImport } from './routes/artisan/auth/register/Artisant'
 
+
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
