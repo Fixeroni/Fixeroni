@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { CheckCircle, Tag, Lock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 // import { whyFixeroni } from "@/public/assets";

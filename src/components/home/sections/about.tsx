@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 // import { AboutBg } from "@/public/assets/index";
 // import { oneUser } from "@/public/assets/index";

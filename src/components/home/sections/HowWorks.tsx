@@ -1,6 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
+// import Image from "next/image";
+// import Link from "next/link";
+import { Link } from '@tanstack/react-router';
+// import { HashLink as Link} from 'react-router-hash-link';
 import { Card, CardContent } from "@/components/ui/card";
+// import { Link } from '@tanstack/react-router';
 import {
   Search,
   UserPlus,
@@ -39,7 +42,7 @@ export default function HowItWorks() {
               </div>
             </div>
 
-            <Link href="/#search">
+            <Link to='/'>
               <Card className="h-[150px]  bg-[#E7ECEF] cursor-pointer transition-shadow shadow-lg  hover:shadow-lg">
                 <CardContent className="flex p-6">
                   <div className="mr-4 flex h-16  w-16 flex-shrink-0 items-center justify-center">
@@ -74,7 +77,7 @@ export default function HowItWorks() {
               </div>
             </div>
 
-            <Link href="/signup">
+            <Link to="/artisan/auth/login">
               <Card className="md:h-[150px] cursor-pointer transition-shadow shadow-lg hover:shadow-md">
                 <CardContent className="flex p-5">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
@@ -95,7 +98,7 @@ export default function HowItWorks() {
           </div>
 
           <div className="relative mt-[-60px] max-sm:mt-0">
-            <Link href="#">
+            <Link to="/">
               <Card className="md:h-[150px] cursor-pointer bg-[#F4F4F4] shadow-lg transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
@@ -117,7 +120,7 @@ export default function HowItWorks() {
           </div>
 
           <div className="relative mt-[-60px] max-sm:mt-0">
-            <Link href="#get-hired">
+            <Link to="/">
               <Card className="md:h-[150px] cursor-pointer  bg-[#F4F4F4] shadow-lg  transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
@@ -139,7 +142,7 @@ export default function HowItWorks() {
           </div>
 
           <div className="relative mt-[-60px] max-sm:mt-0">
-            <Link href="#pay">
+            <Link to="/">
               <Card className="md:h-[150px] cursor-pointer shadow-lg transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
@@ -160,7 +163,7 @@ export default function HowItWorks() {
           </div>
 
           <div className="relative mt-[-60px] max-sm:mt-0">
-            <Link href="#get-paid">
+            <Link to="/">
               <Card className="md:h-[150px] cursor-pointer  bg-[#E7ECEF] shadow-lg  transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">

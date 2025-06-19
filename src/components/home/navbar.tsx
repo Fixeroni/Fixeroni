@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
+// import Link from "next/link";
+import { Link } from "@tanstack/react-router";
+// import Image from "next/image";
+// import { HashLink as Link } from 'react-router-hash-link';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 // import { Logo } from "@/public/assets";
@@ -115,7 +117,7 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:block">
-          <Link href="/artisan/auth/login">
+          <Link to="/artisan/auth/login">
             <Button className="bg-[#10B981] hover:bg-green-600 text-white text-[12px] px-6 py-2 rounded-full cursor-pointer">
               Get Started
             </Button>
@@ -162,7 +164,7 @@ const Navbar = () => {
             ))}
           </ul>
           <div className="px-4 pb-4">
-            <Link href="/artisan/auth/login">
+            <Link to="/artisan/auth/login">
               <Button className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-full">
                 Get Started
               </Button>
