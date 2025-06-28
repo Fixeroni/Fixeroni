@@ -11,27 +11,27 @@ const Header = () => {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-center  justify-between  md:p-12 relative">
-        <div className="max-w-lg text-center flex flex-col space-y-6  md:mt-0  md:text-left z-10 relative">
-          <h1 className="text-3xl pt-36 md:pt-16 md:text-4xl leading-[1.5] tracking-wide">
-            &quot;Find{" "}
-            <span className="text-black-600 font-bold text-5xl">
+      <section className="flex flex-col md:flex-row items-center  justify-between  relative">
+        <div className="max-w-lg text-center flex flex-col space-y-6 md:pl-12   md:mt-0  md:text-left z-10 relative w-full">
+          <h1 className="text-3xl pt-36 md:pt-16 md:text-4xl ">
+           <span className="font-semibold"> &quot;</span>Find 
+            <span className="text-black-600 font-bold text-6xl">
               Trusted <br />
-            </span>{" "}
-            Local
-            <span className="text-black-600 font-bold text-5xl">
-              {" "}
-              Expert
-            </span>{" "}
-            In Minutes&quot;
+            </span>
+            {/* Local
+            <span className="text-black-600 font-bold text-5xl"> Expert</span>  In Minutes&quot; */}
           </h1>
-          <p className="text-gray-800  font-medium mt-4 leading-[1.5]">
+          <h1 className="text-3xl   md:text-4xl ">
+           <span className="font-medium">Local</span> 
+            <span className="text-black-600 font-bold text-5xl"> Expert</span> <span className=""> In Minutes&quot;</span> 
+          </h1>
+          <p className="text-gray-800  font-medium mt-1 leading-[1.5]">
             Book vetted plumbers, electricians, <br />
             carpenters, and more. Secure, simple, and stress-free.
           </p>
 
           {/* Search Bar */}
-          <div className="mt-4 relative z-20 max-sm:flex max-sm:justify-center max-sm:items-center">
+          <div className="mt-8 relative z-20 max-sm:flex max-sm:justify-center max-sm:items-center">
             <SearchBar />
           </div>
 
@@ -57,13 +57,17 @@ const Header = () => {
         </div>
 
         {/* Right Section - Image */}
-        <div className="mt-6 md:mt-[-52px] flex justify-center absolute md:relative right-0 md:right-auto top-1/2 md:top-auto transform md:transform-none -translate-y-1/2 md:translate-y-0 z-0">
+        <div className="mt-6 md:mt-[-52px] flex justify-center absolute md:relative  right-0 md:right-auto top-1/2 md:top-auto transform md:transform-none -translate-y-1/2 md:translate-y-0 z-0">
+         <div className="">
           <img
             src="/assets/images/Image.png"
             alt="Worker providing service"
-            width={500}
+            // width={500}
             height={600}
+            className="w-full mr-auto bg-cover  backgroundBlendMode"
+            loading="lazy"
           />
+          </div>
         </div>
       </section>
     </header>
@@ -71,3 +75,28 @@ const Header = () => {
 };
 
 export default Header;
+
+// /* “Find Trusted Local Expert In Minutes” */
+
+// width: 628px;
+// height: 192px;
+
+// font-family: 'Poppins';
+// font-style: normal;
+// font-weight: 700;
+// font-size: 64px;
+// line-height: 96px;
+// display: flex;
+// align-items: center;
+
+// color: #000000;
+
+
+// /* Inside auto layout */
+// flex: none;
+// order: 0;
+// flex-grow: 0;
+
+
+
+
