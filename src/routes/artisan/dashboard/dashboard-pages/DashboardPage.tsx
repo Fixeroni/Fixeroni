@@ -15,9 +15,6 @@ function DashboardPage() {
 
   return (
     <div className=''>
-        
-     
-
       <section>
           <h2 className='Poppins text-[#1E1E1E] text-[36px] font-medium mt-4'>Hi Ben</h2>
 

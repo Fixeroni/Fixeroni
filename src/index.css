@@ -40,6 +40,9 @@ body{
   color: #616161;
  opacity: 0.5;
 }
+.backgroundBlendMode{
+  background-blend-mode: darken;
+}
 
 
 :root {

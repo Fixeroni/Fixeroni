@@ -18,8 +18,8 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", id: "home" },
     { name: "About Us", id: "about" },
-    { name: "Services", id: "services" },
     { name: "How It Works", id: "howitworks" },
+     { name: "Services", id: "services" },
   ];
 
   // Function to handle smooth scrolling to sections
@@ -39,8 +39,8 @@ const Navbar = () => {
       const scrollPosition = window.scrollY;
 
       // Check if page is scrolled past the header
-      setIsScrolled(scrollPosition > window.innerHeight - 80); // 80px is approx navbar height
-
+      setIsScrolled(scrollPosition > window.innerHeight - 667); // 80px is approx navbar height
+          
       sections.forEach((section) => {
         if (section) {
           const sectionTop = section.offsetTop;
@@ -101,13 +101,13 @@ const Navbar = () => {
                   e.preventDefault();
                   scrollToSection(link.id);
                 }}
-                className={`text-gray-700 text-[1rem] hover:text-green-600 font-medium relative pb-1 ${
-                  activeSection === link.id ? "text-green-600" : ""
+                className={`text-gray-700 text-[1rem] hover:text-[#10B981] font-medium relative pb-1 ${
+                  activeSection === link.id ? "text-[#10B981]" : ""
                 }`}
               >
                 {link.name}
                 <span
-                  className={`absolute left-0 bottom-0 w-full h-0.5 bg-green-500 transform origin-left transition-transform duration-300 ${
+                  className={`absolute left-0 bottom-0 w-full h-0.5 bg-[#10B981] transform origin-left transition-transform duration-300 ${
                     activeSection === link.id ? "scale-x-100" : "scale-x-0"
                   } hover:scale-x-100`}
                 ></span>
@@ -177,3 +177,15 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+// /* Rectangle 29 */
+
+// position: absolute;
+// width: 159px;
+// height: 60px;
+// left: 686px;
+// top: 600px;
+
+// background: #10B981;
+// border-radius: 0px 41px 41px 0px;
