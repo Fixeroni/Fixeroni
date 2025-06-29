@@ -5,77 +5,116 @@ interface Testimonial {
   name: string;
   image: string;
   message: string;
-  position: "left" | "right";
-  bubbleColor: "gray" | "coral" | "green" | "white";
-  positionClass: string;
+  side: "left" | "right";
+  bubbleImage: string;
+  avatarPosition: string;
+  bubblePosition: string;
+  bubbleSize: {
+    width: number;
+    height: number;
+  };
+  textPosition: {
+    top: string;
+    left: string;
+    right: string;
+    bottom: string;
+  };
 }
 
 export default function TestimonialsSection() {
   const testimonials: Testimonial[] = [
+    // RIGHT SIDE AVATARS
     {
       id: 1,
       name: "Jane Cooper",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "/assets/images/Ellipse 2.png",
       message:
         "Fixeroni saved my day! Found a licensed plumber within 20 minutes, and the job was done perfectly. No more endless Google searches.",
-      position: "right",
-      bubbleColor: "gray",
-      positionClass: "top-0 right-10",
-    },
-    {
-      id: 2,
-      name: "Jenny Wilson",
-      image: "/placeholder.svg?height=80&width=80",
-      message:
-        "I love vizioning. Fixeroni has connected me with serious clients. The app is easy to use, and payments are always on time. Highly recommend.",
-      position: "left",
-      bubbleColor: "gray",
-      positionClass: "top-24 left-10",
+      side: "right",
+      bubbleImage: "/assets/images/Union.png",
+      avatarPosition: "top-10 right-18",
+      bubblePosition: "bottom-120 right-50",
+      bubbleSize: { width: 400, height: 160 },
+      textPosition: {
+        top: "25px",
+        left: "20px",
+        right: "60px",
+        bottom: "25px",
+      },
     },
     {
       id: 3,
       name: "Esther Howard",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "/assets/images/Ellipse 5.png",
       message:
         "I looked everywhere for a platform with transparent pricing and super professional. Finally, a platform that actually delivers quality.",
-      position: "right",
-      bubbleColor: "green",
-      positionClass: "top-[200px] right-32",
-    },
-    {
-      id: 4,
-      name: "Guy Hawkins",
-      image: "/placeholder.svg?height=80&width=80",
-      message: "Great",
-      position: "left",
-      bubbleColor: "coral",
-      positionClass: "bottom-6 left-24",
+      side: "right",
+      bubbleImage: "/assets/images/Union-deep-green.png",
+      avatarPosition: "top-68 right-18",
+      bubblePosition: "top-50 right-40",
+      bubbleSize: { width: 400, height: 130 },
+      textPosition: {
+        top: "20px",
+        left: "20px",
+        right: "70px",
+        bottom: "20px",
+      },
     },
     {
       id: 5,
       name: "Jacob Jones",
-      image: "/placeholder.svg?height=80&width=80",
+      image: "/assets/images/Ellipse 5.png",
       message: "Fair Pricing",
-      position: "right",
-      bubbleColor: "white",
-      positionClass: "bottom-[-0] right-2",
+      side: "right",
+      bubbleImage: "/assets/images/Union.png",
+      avatarPosition: "bottom-4 right-18",
+      bubblePosition: "bottom-8 right-40",
+      bubbleSize: { width: 140, height: 85 },
+      textPosition: {
+        top: "25px",
+        left: "20px",
+        right: "20px",
+        bottom: "25px",
+      },
+    },
+
+    // LEFT SIDE AVATARS
+    {
+      id: 2,
+      name: "Jenny Wilson",
+      image: "/assets/images/Ellipse 5.png",
+      message:
+        "As an electrician, Fixeroni has connected me with serious clients. The app is easy to use, and payments are always on time. Highly recommend.",
+      side: "left",
+      bubbleImage: "/assets/images/Union-green.png",
+      avatarPosition: "top-40 left-20",
+      bubblePosition: "top-20 left-45",
+      bubbleSize: { width: 400, height: 140 },
+      textPosition: {
+        top: "25px",
+        left: "60px",
+        right: "20px",
+        bottom: "25px",
+      },
+    },
+    {
+      id: 4,
+      name: "Guy Hawkins",
+      image: "/assets/images/Ellipse 5.png",
+      message: "Great",
+      side: "left",
+      bubbleImage: "/assets/images/Union-red.png",
+      avatarPosition: "bottom-16 left-20",
+      bubblePosition: "bottom-30 left-45",
+      bubbleSize: { width: 120, height: 80 },
+      textPosition: {
+        top: "25px",
+        left: "25px",
+        right: "25px",
+        bottom: "25px",
+      },
     },
   ];
-
-  const getBubbleColor = (color: string) => {
-    switch (color) {
-      case "gray":
-        return "bg-gray-200";
-      case "coral":
-        return "bg-red-300";
-      case "green":
-        return "bg-green-300";
-      case "white":
-        return "bg-white shadow";
-      default:
-        return "bg-gray-200";
-    }
-  };
 
   return (
     <section className="py-16 bg-gray-50">
@@ -84,151 +123,105 @@ export default function TestimonialsSection() {
           What Our Customers Are Saying
         </h2>
 
-        {/* Desktop layout with absolute positioning */}
-        <div className="relative h-[500px] hidden md:block">
+       
+        <div className="relative h-[600px] hidden md:block">
           {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className={`absolute ${
-                testimonial.positionClass
-              } flex flex-col items-${
-                testimonial.position === "left" ? "start" : "end"
-              }`}
-            >
-              {testimonial.position === "left" ? (
-                <>
-                  <div className="flex items-center gap-3 mb-3">
-                    <Avatar className="h-16 w-16 border-2 border-white">
-                      <AvatarImage
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                      />
-                      <AvatarFallback>
-                        {testimonial.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </AvatarFallback>
-                    </Avatar>
-                    <span className="font-medium">{testimonial.name}</span>
-                  </div>
-                  <div
-                    className={`${getBubbleColor(
-                      testimonial.bubbleColor,
-                    )} p-4 rounded-2xl rounded-tl-none max-w-xs relative`}
-                  >
-                    <p className="text-sm">{testimonial.message}</p>
-                    <div
-                      className={`absolute top-0 left-0 w-4 h-4 ${getBubbleColor(
-                        testimonial.bubbleColor,
-                      )} transform -translate-x-1/2 -translate-y-1/4 rotate-45`}
-                    ></div>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div
-                    className={`${getBubbleColor(
-                      testimonial.bubbleColor,
-                    )} p-4 rounded-2xl rounded-tr-none mb-3 max-w-xs relative`}
-                  >
-                    <p className="text-sm">{testimonial.message}</p>
-                    <div
-                      className={`absolute top-0 right-0 w-4 h-4 ${getBubbleColor(
-                        testimonial.bubbleColor,
-                      )} transform translate-x-1/2 -translate-y-1/4 rotate-45`}
-                    ></div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="font-medium">{testimonial.name}</span>
-                    <Avatar className="h-16 w-16 border-2 border-white">
-                      <AvatarImage
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                      />
-                      <AvatarFallback>
-                        {testimonial.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </AvatarFallback>
-                    </Avatar>
-                  </div>
-                </>
-              )}
+            <div key={testimonial.id}>
+              {/* Avatar with Name */}
+              <div
+                className={`absolute ${testimonial.avatarPosition} flex flex-col items-center`}
+              >
+                <Avatar className="h-16 w-16 border-2 border-white shadow-lg">
+                  <AvatarImage
+                    src={testimonial.image || "/placeholder.svg"}
+                    alt={testimonial.name}
+                  />
+                  <AvatarFallback>
+                    {testimonial.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </AvatarFallback>
+                </Avatar>
+                <span className="font-medium text-sm mt-2 text-center">
+                  {testimonial.name}
+                </span>
+              </div>
+
+              {/* Speech Bubble */}
+              <div
+                className={`absolute ${testimonial.bubblePosition}`}
+                style={{
+                  width: `${testimonial.bubbleSize.width}px`,
+                  height: `${testimonial.bubbleSize.height}px`,
+                  backgroundImage: `url(${testimonial.bubbleImage})`,
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div
+                  className="absolute text-[10px] leading-relaxed flex items-center justify-center text-center p-2"
+                  style={{
+                    top: testimonial.textPosition.top,
+                    left: testimonial.textPosition.left,
+                    right: testimonial.textPosition.right,
+                    bottom: testimonial.textPosition.bottom,
+                  }}
+                >
+                  {testimonial.message}
+                </div>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="grid gap-10 md:hidden">
+        {/* Mobile */}
+        <div className="grid gap-8 md:hidden">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className={`flex flex-col ${
-                testimonial.position === "left" ? "items-start" : "items-end"
-              }`}
+              className={`flex flex-col ${testimonial.side === "left" ? "items-start" : "items-end"}`}
             >
-              {testimonial.position === "left" ? (
-                <>
-                  <div className="flex items-center gap-3 mb-3">
-                    <Avatar className="h-12 w-12 border-2 border-white">
-                      <AvatarImage
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                      />
-                      <AvatarFallback>
-                        {testimonial.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </AvatarFallback>
-                    </Avatar>
-                    <span className="font-medium">{testimonial.name}</span>
-                  </div>
-                  <div
-                    className={`${getBubbleColor(
-                      testimonial.bubbleColor,
-                    )} p-4 rounded-2xl rounded-tl-none max-w-xs relative`}
-                  >
-                    <p className="text-sm">{testimonial.message}</p>
-                    <div
-                      className={`absolute top-0 left-0 w-4 h-4 ${getBubbleColor(
-                        testimonial.bubbleColor,
-                      )} transform -translate-x-1/2 -translate-y-1/4 rotate-45`}
-                    ></div>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div
-                    className={`${getBubbleColor(
-                      testimonial.bubbleColor,
-                    )} p-4 rounded-2xl rounded-tr-none mb-3 max-w-xs relative`}
-                  >
-                    <p className="text-sm">{testimonial.message}</p>
-                    <div
-                      className={`absolute top-0 right-0 w-4 h-4 ${getBubbleColor(
-                        testimonial.bubbleColor,
-                      )} transform translate-x-1/2 -translate-y-1/4 rotate-45`}
-                    ></div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="font-medium">{testimonial.name}</span>
-                    <Avatar className="h-12 w-12 border-2 border-white">
-                      <AvatarImage
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                      />
-                      <AvatarFallback>
-                        {testimonial.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}
-                      </AvatarFallback>
-                    </Avatar>
-                  </div>
-                </>
-              )}
+              <div className="flex items-center gap-3 mb-3">
+                <Avatar className="h-12 w-12 border-2 border-white">
+                  <AvatarImage
+                    src={testimonial.image || "/placeholder.svg"}
+                    alt={testimonial.name}
+                  />
+                  <AvatarFallback>
+                    {testimonial.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </AvatarFallback>
+                </Avatar>
+                <span className="font-medium">{testimonial.name}</span>
+              </div>
+
+              <div
+                className="relative"
+                style={{
+                  width: `${Math.min(testimonial.bubbleSize.width, 280)}px`,
+                  height: `${testimonial.bubbleSize.height}px`,
+                  backgroundImage: `url(${testimonial.bubbleImage})`,
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div
+                  className="absolute text-sm leading-relaxed flex items-center justify-center text-center p-3"
+                  style={{
+                    top: "15px",
+                    left: "15px",
+                    right: "15px",
+                    bottom: "15px",
+                  }}
+                >
+                  {testimonial.message}
+                </div>
+              </div>
             </div>
           ))}
         </div>

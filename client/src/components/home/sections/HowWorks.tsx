@@ -1,5 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
+// import Image from "next/image";
+// import Link from "next/link";
+import { Link } from "@tanstack/react-router";
+// import { HashLink as Link} from 'react-router-hash-link';
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Search,
@@ -17,7 +19,7 @@ export default function HowItWorks() {
     <section id="howitworks" className="w-full bg-[#F2F1F1] py-16">
       <div className="container px-4 md:px-6">
         <div className="mb-10">
-          <h2 className="text-3xl font-medium italic mb-5 tracking-tight text-emerald-600">
+          <h2 className="text-3xl font-medium italic mb-5 tracking-tight text-[#09724E]">
             How it works
           </h2>
           <p className="text-gray-600 italic font-medium">
@@ -39,11 +41,23 @@ export default function HowItWorks() {
               </div>
             </div>
 
+<<<<<<< Updated upstream:client/src/components/home/sections/HowWorks.tsx
             <Link href="/#search">
               <Card className="h-[150px]  bg-[#E7ECEF] cursor-pointer transition-shadow shadow-lg  hover:shadow-lg">
                 <CardContent className="flex p-6">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
                     <Search className="h-10 w-10 text-blue-500" />
+=======
+            <Link to="/">
+              <Card className="h-[150px]  bg-[#E7ECEF] cursor-pointer transition-shadow shadow-lg  hover:shadow-lg">
+                <CardContent className="flex p-6">
+                  <div className="mr-4 flex h-16  w-16 flex-shrink-0 items-center justify-center">
+                    <img
+                      src="/assets/images/search.png"
+                      alt="Search"
+                      className="h-10 w-10"
+                    />
+>>>>>>> Stashed changes:src/components/home/sections/HowWorks.tsx
                   </div>
                   <div>
                     <h3 className="mb-2 text-lg font-semibold uppercase text-gray-600">
@@ -78,7 +92,11 @@ export default function HowItWorks() {
               <Card className="md:h-[150px] cursor-pointer transition-shadow shadow-lg hover:shadow-md">
                 <CardContent className="flex p-5">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
-                    <UserPlus className="h-10 w-10 text-blue-500" />
+                    <img
+                      src="/assets/images/sign-up.png"
+                      alt="Sign Up"
+                      className="h-10 w-10"
+                    />
                   </div>
                   <div>
                     <h3 className="mb-2 text-lg font-semibold uppercase text-gray-800">
@@ -99,7 +117,11 @@ export default function HowItWorks() {
               <Card className="md:h-[150px] cursor-pointer bg-[#F4F4F4] shadow-lg transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
-                    <Calendar className="h-10 w-10 text-green-500" />
+                    <img
+                      src="/assets/images/book.png"
+                      alt="Book"
+                      className="h-10 w-10"
+                    />
                   </div>
                   <div>
                     <h3 className="mb-2 text-lg font-semibold uppercase text-gray-800">
@@ -121,7 +143,11 @@ export default function HowItWorks() {
               <Card className="md:h-[150px] cursor-pointer  bg-[#F4F4F4] shadow-lg  transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
-                    <Briefcase className="h-10 w-10 text-orange-500" />
+                    <img
+                      src="/assets/images/Briefcase.png"
+                      alt="Get Hired"
+                      className="h-10 w-10"
+                    />
                   </div>
                   <div>
                     <h3 className="mb-2 text-lg font-semibold uppercase text-gray-800">
@@ -143,7 +169,11 @@ export default function HowItWorks() {
               <Card className="md:h-[150px] cursor-pointer shadow-lg transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
-                    <Wallet className="h-10 w-10 text-amber-500" />
+                    <img
+                      src="/assets/images/Wallet.png"
+                      alt="Pay"
+                      className="h-10 w-10"
+                    />
                   </div>
                   <div>
                     <h3 className="mb-2 text-lg font-semibold uppercase text-gray-800">
@@ -164,7 +194,11 @@ export default function HowItWorks() {
               <Card className="md:h-[150px] cursor-pointer  bg-[#E7ECEF] shadow-lg  transition-shadow hover:shadow-md">
                 <CardContent className="flex p-5">
                   <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
-                    <DollarSign className="h-10 w-10 text-yellow-500" />
+                    <img
+                      src="/assets/images/noto-v1_money-bag.png"
+                      alt="Get Paid"
+                      className="h-10 w-10"
+                    />
                   </div>
                   <div>
                     <h3 className="mb-2 text-lg font-semibold uppercase text-gray-800">
