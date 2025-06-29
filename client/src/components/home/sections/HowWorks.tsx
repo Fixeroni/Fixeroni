@@ -41,13 +41,6 @@ export default function HowItWorks() {
               </div>
             </div>
 
-<<<<<<< Updated upstream:client/src/components/home/sections/HowWorks.tsx
-            <Link href="/#search">
-              <Card className="h-[150px]  bg-[#E7ECEF] cursor-pointer transition-shadow shadow-lg  hover:shadow-lg">
-                <CardContent className="flex p-6">
-                  <div className="mr-4 flex h-16 w-16 flex-shrink-0 items-center justify-center">
-                    <Search className="h-10 w-10 text-blue-500" />
-=======
             <Link to="/">
               <Card className="h-[150px]  bg-[#E7ECEF] cursor-pointer transition-shadow shadow-lg  hover:shadow-lg">
                 <CardContent className="flex p-6">
@@ -57,7 +50,6 @@ export default function HowItWorks() {
                       alt="Search"
                       className="h-10 w-10"
                     />
->>>>>>> Stashed changes:src/components/home/sections/HowWorks.tsx
                   </div>
                   <div>
                     <h3 className="mb-2 text-lg font-semibold uppercase text-gray-600">
