@@ -59,7 +59,7 @@ export default function ServicesSection() {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
           <div>
-            <h2 className="text-3xl italic  md:text-4xl font-medium text-green-600">
+            <h2 className="text-3xl italic  md:text-4xl font-medium text-[#09724E]">
               Explore Our Popular Services
             </h2>
             <p className="text-gray-700 font-medium mt-2">
@@ -67,7 +67,7 @@ export default function ServicesSection() {
             </p>
           </div>
           <Button
-            className="mt-4 md:mt-0 rounded-[10px] bg-white font-bold text-green-900 border-green-900 border-2 hover:bg-green-50"
+            className="mt-4 md:mt-0 rounded-[10px] bg-white font-bold text-[#09724E] border-[#09724E] border-2 hover:bg-green-50"
             variant="outline"
             size="lg"
           >
@@ -88,7 +88,7 @@ export default function ServicesSection() {
                 key={service.id}
                 className="pl-2 md:pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
               >
-                <Card className="overflow-hidden h-[500px] md:h-[410px] rounded-xl border-0 shadow-md group cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <Card className="overflow-hidden w-fit h-[500px] md:h-[410px] rounded-xl border-0 shadow-2xl group cursor-pointer transition-all duration-300 hover:shadow-[0_12px_60px_0_rgba(0,0,0,1)] hover:-translate-y-1">
                   <CardContent className="p-0 relative aspect-[3/4]">
                     <Badge
                       className="absolute h-[40px] rounded-[20px] shadow-lg top-4 left-4 z-20 bg-white text-black font-normal"
