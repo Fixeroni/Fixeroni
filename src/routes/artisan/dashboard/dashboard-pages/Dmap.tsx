@@ -48,9 +48,9 @@ function MapView() {
             <input
               type="text"
               placeholder="What service do you need?"
-              className="flex-1 outline-none bg-transparent"
+              className="flex-1 outline-none bg-transparent text-[14px]"
             />
-            <span className="material-icons text-gray-500 ml-2 cursor-pointer">close</span>
+            <span className="material-icons text-gray-500 ml-2 cursor-pointer">x</span>
           </div>
         </div>
 
