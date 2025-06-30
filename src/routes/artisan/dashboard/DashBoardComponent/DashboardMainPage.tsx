@@ -7,6 +7,8 @@ import { useToggleStore } from "@/stores/profileState";
 import ProfileModal from "../dashboard-pages/ProfileModal";
 import Notification from "./Notification";
 import Schedule from "../dashboard-pages/Schedule";
+import Messages from "../dashboard-pages/Messages";
+import Favorite from "../dashboard-pages/Favorite";
 // import FindPro from "../dashboard-pages/FindPro";
 
 export const Route = createFileRoute("/artisan/dashboard/DashBoardComponent/DashboardMainPage")({
@@ -25,27 +27,37 @@ const {isOpen, toggle, isNotification, notification} = useToggleStore();
       </div>
 
       <div className="scroll-smooth h-screen overflow-y-auto scrollBar flex-grow-1">
-      <section className='sticky top-0 z-10 w-full bg-[#F8F8F8]'>
-      <div className='flex'>
-        <div></div>
-        <div className='flex items-center ml-auto p-2.5 mt-2.5 gap-3'>
-          <img src="/images/icons/notification_profile.png" alt="notification" className="w-full cursor-pointer" onClick={notification}/>
-          <img src="/images/icons/Profile_img.png" className="w-full cursor-pointer" alt="Profile_img"  onClick={toggle}/>
-        
-          
-        </div>
-      </div>
-      <hr className='w-full opacity-[0.4] border-[#0000007f] border mt-2'/>
-      </section>
+        <section className="sticky top-0 z-10 w-full bg-[#F8F8F8]">
+          <div className="flex">
+            <div></div>
+            <div className="flex items-center ml-auto p-2.5 mt-2.5 gap-3">
+              <img
+                src="/images/icons/notification_profile.png"
+                alt="notification"
+                className="w-full cursor-pointer"
+                onClick={notification}
+              />
+              <img
+                src="/images/icons/Profile_img.png"
+                className="w-full cursor-pointer"
+                alt="Profile_img"
+                onClick={toggle}
+              />
+            </div>
+          </div>
+          <hr className="w-full opacity-[0.4] border-[#0000007f] border mt-2" />
+        </section>
 
-      <section>
-        {content === "Dashboard" && <DashboardPage /> }
-        {content === "Find Pro" && <RouteComponent />}
-        {content === "Schedule" && <Schedule />}
-        {/* <DashboardPage /> */}
-      </section>
-      {isOpen && <ProfileModal/>}
-      {isNotification && <Notification />}
+        <section>
+          {content === "Dashboard" && <DashboardPage />}
+          {content === "Find Pro" && <RouteComponent />}
+          {content === "Schedule" && <Schedule />}
+          {content === "Messages" && <Messages />}
+          {content === "Favorite" && <Favorite />}
+          {/* <DashboardPage /> */}
+        </section>
+        {isOpen && <ProfileModal />}
+        {isNotification && <Notification />}
       </div>
     </div>
   );

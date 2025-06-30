@@ -23,4 +23,10 @@ export default defineConfig({
   define: {
     "process.env": {},
   },
+ server: {
+    watch: {
+      usePolling: true,
+    },
+  },
+
 });
