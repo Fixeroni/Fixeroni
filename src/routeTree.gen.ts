@@ -19,7 +19,9 @@ import { Route as ArtisanAuthForgotPasswordIndexImport } from './routes/artisan/
 import { Route as ArtisanDashboardDashboardPagesScheduleImport } from './routes/artisan/dashboard/dashboard-pages/Schedule'
 import { Route as ArtisanDashboardDashboardPagesProfileModalImport } from './routes/artisan/dashboard/dashboard-pages/ProfileModal'
 import { Route as ArtisanDashboardDashboardPagesOrdersImport } from './routes/artisan/dashboard/dashboard-pages/Orders'
+import { Route as ArtisanDashboardDashboardPagesMessagesImport } from './routes/artisan/dashboard/dashboard-pages/Messages'
 import { Route as ArtisanDashboardDashboardPagesFindProHeaderImport } from './routes/artisan/dashboard/dashboard-pages/FindProHeader'
+import { Route as ArtisanDashboardDashboardPagesFavoriteImport } from './routes/artisan/dashboard/dashboard-pages/Favorite'
 import { Route as ArtisanDashboardDashboardPagesDmapImport } from './routes/artisan/dashboard/dashboard-pages/Dmap'
 import { Route as ArtisanDashboardDashboardPagesDashboardPageImport } from './routes/artisan/dashboard/dashboard-pages/DashboardPage'
 import { Route as ArtisanDashboardDashBoardComponentViewScheduleImport } from './routes/artisan/dashboard/DashBoardComponent/ViewSchedule'
@@ -35,7 +37,6 @@ import { Route as ArtisanDashboardDashBoardComponentDashBoardMapImport } from '.
 import { Route as ArtisanAuthRegisterVerificationCodeImport } from './routes/artisan/auth/register/VerificationCode'
 import { Route as ArtisanAuthRegisterClientImport } from './routes/artisan/auth/register/Client'
 import { Route as ArtisanAuthRegisterArtisantImport } from './routes/artisan/auth/register/Artisant'
-
 
 // Create/Update Routes
 
@@ -91,10 +92,24 @@ const ArtisanDashboardDashboardPagesOrdersRoute =
     getParentRoute: () => rootRoute,
   } as any)
 
+const ArtisanDashboardDashboardPagesMessagesRoute =
+  ArtisanDashboardDashboardPagesMessagesImport.update({
+    id: '/artisan/dashboard/dashboard-pages/Messages',
+    path: '/artisan/dashboard/dashboard-pages/Messages',
+    getParentRoute: () => rootRoute,
+  } as any)
+
 const ArtisanDashboardDashboardPagesFindProHeaderRoute =
   ArtisanDashboardDashboardPagesFindProHeaderImport.update({
     id: '/artisan/dashboard/dashboard-pages/FindProHeader',
     path: '/artisan/dashboard/dashboard-pages/FindProHeader',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const ArtisanDashboardDashboardPagesFavoriteRoute =
+  ArtisanDashboardDashboardPagesFavoriteImport.update({
+    id: '/artisan/dashboard/dashboard-pages/Favorite',
+    path: '/artisan/dashboard/dashboard-pages/Favorite',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -325,11 +340,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtisanDashboardDashboardPagesDmapImport
       parentRoute: typeof rootRoute
     }
+    '/artisan/dashboard/dashboard-pages/Favorite': {
+      id: '/artisan/dashboard/dashboard-pages/Favorite'
+      path: '/artisan/dashboard/dashboard-pages/Favorite'
+      fullPath: '/artisan/dashboard/dashboard-pages/Favorite'
+      preLoaderRoute: typeof ArtisanDashboardDashboardPagesFavoriteImport
+      parentRoute: typeof rootRoute
+    }
     '/artisan/dashboard/dashboard-pages/FindProHeader': {
       id: '/artisan/dashboard/dashboard-pages/FindProHeader'
       path: '/artisan/dashboard/dashboard-pages/FindProHeader'
       fullPath: '/artisan/dashboard/dashboard-pages/FindProHeader'
       preLoaderRoute: typeof ArtisanDashboardDashboardPagesFindProHeaderImport
+      parentRoute: typeof rootRoute
+    }
+    '/artisan/dashboard/dashboard-pages/Messages': {
+      id: '/artisan/dashboard/dashboard-pages/Messages'
+      path: '/artisan/dashboard/dashboard-pages/Messages'
+      fullPath: '/artisan/dashboard/dashboard-pages/Messages'
+      preLoaderRoute: typeof ArtisanDashboardDashboardPagesMessagesImport
       parentRoute: typeof rootRoute
     }
     '/artisan/dashboard/dashboard-pages/Orders': {
@@ -397,7 +426,9 @@ export interface FileRoutesByFullPath {
   '/artisan/dashboard/DashBoardComponent/ViewSchedule': typeof ArtisanDashboardDashBoardComponentViewScheduleRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
   '/artisan/dashboard/dashboard-pages/Dmap': typeof ArtisanDashboardDashboardPagesDmapRoute
+  '/artisan/dashboard/dashboard-pages/Favorite': typeof ArtisanDashboardDashboardPagesFavoriteRoute
   '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+  '/artisan/dashboard/dashboard-pages/Messages': typeof ArtisanDashboardDashboardPagesMessagesRoute
   '/artisan/dashboard/dashboard-pages/Orders': typeof ArtisanDashboardDashboardPagesOrdersRoute
   '/artisan/dashboard/dashboard-pages/ProfileModal': typeof ArtisanDashboardDashboardPagesProfileModalRoute
   '/artisan/dashboard/dashboard-pages/Schedule': typeof ArtisanDashboardDashboardPagesScheduleRoute
@@ -424,7 +455,9 @@ export interface FileRoutesByTo {
   '/artisan/dashboard/DashBoardComponent/ViewSchedule': typeof ArtisanDashboardDashBoardComponentViewScheduleRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
   '/artisan/dashboard/dashboard-pages/Dmap': typeof ArtisanDashboardDashboardPagesDmapRoute
+  '/artisan/dashboard/dashboard-pages/Favorite': typeof ArtisanDashboardDashboardPagesFavoriteRoute
   '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+  '/artisan/dashboard/dashboard-pages/Messages': typeof ArtisanDashboardDashboardPagesMessagesRoute
   '/artisan/dashboard/dashboard-pages/Orders': typeof ArtisanDashboardDashboardPagesOrdersRoute
   '/artisan/dashboard/dashboard-pages/ProfileModal': typeof ArtisanDashboardDashboardPagesProfileModalRoute
   '/artisan/dashboard/dashboard-pages/Schedule': typeof ArtisanDashboardDashboardPagesScheduleRoute
@@ -452,7 +485,9 @@ export interface FileRoutesById {
   '/artisan/dashboard/DashBoardComponent/ViewSchedule': typeof ArtisanDashboardDashBoardComponentViewScheduleRoute
   '/artisan/dashboard/dashboard-pages/DashboardPage': typeof ArtisanDashboardDashboardPagesDashboardPageRoute
   '/artisan/dashboard/dashboard-pages/Dmap': typeof ArtisanDashboardDashboardPagesDmapRoute
+  '/artisan/dashboard/dashboard-pages/Favorite': typeof ArtisanDashboardDashboardPagesFavoriteRoute
   '/artisan/dashboard/dashboard-pages/FindProHeader': typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+  '/artisan/dashboard/dashboard-pages/Messages': typeof ArtisanDashboardDashboardPagesMessagesRoute
   '/artisan/dashboard/dashboard-pages/Orders': typeof ArtisanDashboardDashboardPagesOrdersRoute
   '/artisan/dashboard/dashboard-pages/ProfileModal': typeof ArtisanDashboardDashboardPagesProfileModalRoute
   '/artisan/dashboard/dashboard-pages/Schedule': typeof ArtisanDashboardDashboardPagesScheduleRoute
@@ -481,7 +516,9 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/ViewSchedule'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
     | '/artisan/dashboard/dashboard-pages/Dmap'
+    | '/artisan/dashboard/dashboard-pages/Favorite'
     | '/artisan/dashboard/dashboard-pages/FindProHeader'
+    | '/artisan/dashboard/dashboard-pages/Messages'
     | '/artisan/dashboard/dashboard-pages/Orders'
     | '/artisan/dashboard/dashboard-pages/ProfileModal'
     | '/artisan/dashboard/dashboard-pages/Schedule'
@@ -507,7 +544,9 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/ViewSchedule'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
     | '/artisan/dashboard/dashboard-pages/Dmap'
+    | '/artisan/dashboard/dashboard-pages/Favorite'
     | '/artisan/dashboard/dashboard-pages/FindProHeader'
+    | '/artisan/dashboard/dashboard-pages/Messages'
     | '/artisan/dashboard/dashboard-pages/Orders'
     | '/artisan/dashboard/dashboard-pages/ProfileModal'
     | '/artisan/dashboard/dashboard-pages/Schedule'
@@ -533,7 +572,9 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/ViewSchedule'
     | '/artisan/dashboard/dashboard-pages/DashboardPage'
     | '/artisan/dashboard/dashboard-pages/Dmap'
+    | '/artisan/dashboard/dashboard-pages/Favorite'
     | '/artisan/dashboard/dashboard-pages/FindProHeader'
+    | '/artisan/dashboard/dashboard-pages/Messages'
     | '/artisan/dashboard/dashboard-pages/Orders'
     | '/artisan/dashboard/dashboard-pages/ProfileModal'
     | '/artisan/dashboard/dashboard-pages/Schedule'
@@ -561,7 +602,9 @@ export interface RootRouteChildren {
   ArtisanDashboardDashBoardComponentViewScheduleRoute: typeof ArtisanDashboardDashBoardComponentViewScheduleRoute
   ArtisanDashboardDashboardPagesDashboardPageRoute: typeof ArtisanDashboardDashboardPagesDashboardPageRoute
   ArtisanDashboardDashboardPagesDmapRoute: typeof ArtisanDashboardDashboardPagesDmapRoute
+  ArtisanDashboardDashboardPagesFavoriteRoute: typeof ArtisanDashboardDashboardPagesFavoriteRoute
   ArtisanDashboardDashboardPagesFindProHeaderRoute: typeof ArtisanDashboardDashboardPagesFindProHeaderRoute
+  ArtisanDashboardDashboardPagesMessagesRoute: typeof ArtisanDashboardDashboardPagesMessagesRoute
   ArtisanDashboardDashboardPagesOrdersRoute: typeof ArtisanDashboardDashboardPagesOrdersRoute
   ArtisanDashboardDashboardPagesProfileModalRoute: typeof ArtisanDashboardDashboardPagesProfileModalRoute
   ArtisanDashboardDashboardPagesScheduleRoute: typeof ArtisanDashboardDashboardPagesScheduleRoute
@@ -601,8 +644,12 @@ const rootRouteChildren: RootRouteChildren = {
     ArtisanDashboardDashboardPagesDashboardPageRoute,
   ArtisanDashboardDashboardPagesDmapRoute:
     ArtisanDashboardDashboardPagesDmapRoute,
+  ArtisanDashboardDashboardPagesFavoriteRoute:
+    ArtisanDashboardDashboardPagesFavoriteRoute,
   ArtisanDashboardDashboardPagesFindProHeaderRoute:
     ArtisanDashboardDashboardPagesFindProHeaderRoute,
+  ArtisanDashboardDashboardPagesMessagesRoute:
+    ArtisanDashboardDashboardPagesMessagesRoute,
   ArtisanDashboardDashboardPagesOrdersRoute:
     ArtisanDashboardDashboardPagesOrdersRoute,
   ArtisanDashboardDashboardPagesProfileModalRoute:
@@ -641,7 +688,9 @@ export const routeTree = rootRoute
         "/artisan/dashboard/DashBoardComponent/ViewSchedule",
         "/artisan/dashboard/dashboard-pages/DashboardPage",
         "/artisan/dashboard/dashboard-pages/Dmap",
+        "/artisan/dashboard/dashboard-pages/Favorite",
         "/artisan/dashboard/dashboard-pages/FindProHeader",
+        "/artisan/dashboard/dashboard-pages/Messages",
         "/artisan/dashboard/dashboard-pages/Orders",
         "/artisan/dashboard/dashboard-pages/ProfileModal",
         "/artisan/dashboard/dashboard-pages/Schedule",
@@ -701,8 +750,14 @@ export const routeTree = rootRoute
     "/artisan/dashboard/dashboard-pages/Dmap": {
       "filePath": "artisan/dashboard/dashboard-pages/Dmap.tsx"
     },
+    "/artisan/dashboard/dashboard-pages/Favorite": {
+      "filePath": "artisan/dashboard/dashboard-pages/Favorite.tsx"
+    },
     "/artisan/dashboard/dashboard-pages/FindProHeader": {
       "filePath": "artisan/dashboard/dashboard-pages/FindProHeader.tsx"
+    },
+    "/artisan/dashboard/dashboard-pages/Messages": {
+      "filePath": "artisan/dashboard/dashboard-pages/Messages.tsx"
     },
     "/artisan/dashboard/dashboard-pages/Orders": {
       "filePath": "artisan/dashboard/dashboard-pages/Orders.tsx"

@@ -17,18 +17,19 @@ const {content, setContent} = useDashboardStore();
 
 
 
-  const menuItems:Array<{ name: dashboardContent; icon: string; notification?: number }>= useMemo(
+  const menuItems:Array<{ name: dashboardContent; icon: string; iconA:string; notification?: number }>= useMemo(
     () => [
-      { name: "Dashboard", icon: "/images/icons/dashboardIcon.png" },
-      { name: "Find Pro", icon: "/images/icons/findProIcon.png" },
-      { name: "Schedule", icon: "/images/icons/scheduleIcon.png" },
+      { name: "Dashboard", icon: "/images/icons/activeDashboard.png", iconA: "/images/icons/dashboardIcon.png"  },
+      { name: "Find Pro", icon: "/images/icons/findProIcon.png", iconA: "/images/icons/activeFindPro.png" },
+      { name: "Schedule", icon: "/images/icons/scheduleIcon.png", iconA: "/images/icons/activeSchedule.png" },
       {
         name: "Messages",
         icon: "/images/icons/messageIcon.png",
+        iconA: "/images/icons/activeMessage.png",
         notification: 5,
       },
-      { name: "Orders", icon: "/images/icons/reorder_icon.png" },
-      { name: "Favorite", icon: "/images/icons/favourite_icon.png" },
+      { name: "Orders", icon: "/images/icons/reorder_icon.png" , iconA: "/images/icons/activeOrder.png"},
+      { name: "Favorite", icon: "/images/icons/favourite_icon.png", iconA: "/images/icons/ActiveFavorite.png" },
     ],
     [],
   );
@@ -54,12 +55,12 @@ const {content, setContent} = useDashboardStore();
 
         <div className="mt-17">
           <ul>
-            {menuItems.map(({ name, notification, icon }) => {
+            {menuItems.map(({ name, notification, icon, iconA }) => {
               return (
                 <li className="mb-10 cursor-pointer" key={name} onClick={() => setContent(name)} >
                   <div className=" flex flex-col items-center">
                     <div className="flex items-center">
-                      <img src={icon} alt="" className="" />
+                      <img src={name !== content ? icon : iconA} alt="" className="" />
 
                       {notification && (
                         <span
