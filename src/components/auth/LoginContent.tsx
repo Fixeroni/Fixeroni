@@ -11,7 +11,7 @@ function LoginContent() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, googleLogin, isLoading } = useAuthStore();
+  // const { login, googleLogin, isLoading } = useAuthStore();
   const navigate = useNavigate();
 
   // const handleSubmit = async (e: React.FormEvent) => {
@@ -56,7 +56,7 @@ function LoginContent() {
   return (
     <div className="mt-20 ">
       <div className="">
-        {isLoading && <LoadingSpinner />}
+        {/* {isLoading && <LoadingSpinner />} */}
 
         <div className="flex flex-col justify-center  items-center ">
           <button

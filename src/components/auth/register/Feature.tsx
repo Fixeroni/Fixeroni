@@ -1,4 +1,5 @@
 // import { button } from "@tanstack/react-router";
+import { useRegisterFormStore } from "@/stores/useRegisterFormStore";
 import { FeatureProps, Feature as FeatureType } from "../../../types";
 
 function Feature({
@@ -10,6 +11,18 @@ function Feature({
   ctaText,
   handleClick,
 }: FeatureProps) {
+
+const { setFormData } = useRegisterFormStore(); 
+
+
+const handleCtaClick = ()=>{
+  if(ctaText === "Find an Artisan"){
+                setFormData({ userType: "CUSTOMER" });
+              }else if(ctaText === "Join as an Artisan"){
+                setFormData({ userType: "ARTISANT" });
+              }
+}
+
   return (
     <div className=" bg-white rounded-2xl w- max-md:mx-12  text-[#535353] shadow-xl max-sm:pb-2">
       <div className={`flex justify-center  `}>
@@ -38,7 +51,11 @@ function Feature({
           </p>
 
           <button
-            onClick={handleClick}
+            onClick={()=>{
+              handleCtaClick();
+              handleClick();
+            }
+            }
             className={`text-white cursor-pointer bg-[#0F9067] rounded-[10px] w-fit h-[30px] text-md px-2.5 mt-2  ${side === "right" ? "" : "ml-auto"}   `}
           >
             {ctaText}

@@ -34,14 +34,4 @@ function Favorite() {
 
 export default Favorite;
 
-// /* Ellipse 28 */
 
-// width: 70px;
-// height: 70px;
-
-// background: url(.jpg), #D9D9D9;
-
-// /* Inside auto layout */
-// flex: none;
-// order: 0;
-// flex-grow: 0;

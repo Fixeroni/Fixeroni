@@ -22,33 +22,8 @@ export const Route = createFileRoute('/artisan/dashboard/dashboard-pages/Message
 
 export default Messages;
 
-// /* Group 37264 */
-
-// width: 30px;
-// height: 30px;
 
 
-// /* Inside auto layout */
-// flex: none;
-// order: 1;
-// flex-grow: 0;
-/* 5 */
-
-// position: absolute;
-// width: 10px;
-// height: 14px;
-// left: 718px;
-// top: 8px;
-
-// font-family: 'Poppins';
-// font-style: normal;
-// font-weight: 600;
-// font-size: 14px;
-// line-height: 14px;
-// /* identical to box height, or 99% */
-
-// color: #FFFFFF;
-/* Group 37264 */
 
 
 
