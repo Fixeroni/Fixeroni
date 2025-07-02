@@ -1,96 +1,68 @@
-import { create } from 'zustand';
+import { create } from "zustand";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useLoginStore } from "./useLoginStore";
 
-type AuthStore = {
-  isLoading: boolean;
-  setIsLoading: (loading: boolean) => void;
-  login: (credentials: { email: string; password: string }) => Promise<void>;
-  googleLogin: (credential: string) => Promise<void>;
-  register: (data: {
+
+interface SignupData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  fixeroniTag: string;
+  userType: string;
+}
+
+interface AuthState {
     email: string;
-    password: string;
-    firstName: string;
-    fixeroniTag: string;
-  }) => Promise<void>;
-};
+  loading: boolean;
+  error: string | null;
+  signupSuccess: boolean;
+  signup: (data: SignupData) => Promise<void>;
+  setEmail: (email: string) => void;
+}
 
+export const useAuthStore = create<AuthState>((set) => ({
+   email: '',
+  loading: false,
+  error: null,
+  signupSuccess: false,
 
+  setEmail: (email) => set({ email }),
 
-export const useAuthStore = create<AuthStore>((set) => ({
-  isLoading: false,
-  setIsLoading: (loading) => set({ isLoading: loading }),
-  
-  login: async (credentials) => {
-    set({ isLoading: true });
-    try {
-      const response = await fetch('http://localhost:3000/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials),
-      });
-      
-      if (!response.ok) throw new Error('Login failed');
-      
-      const data = await response.json();
-      // Handle successful login (store tokens, etc)
-      
-    } catch (error) {
-      console.error('Login error:', error);
-      throw error;
-    } finally {
-      set({ isLoading: false });
+  signup: async (data) => {
+  set({ loading: true, error: null, signupSuccess: false });
+
+  try {
+    const res = await axios.post(
+      "https://fixeronibackendtest.onrender.com/api/auth/signup",
+      data
+    );
+
+    if (res.status === 201 || res.status === 200) {
+      toast.success("Signup successful!");
+
+      // Store the email used for signup
+      set({ signupSuccess: true, email: data.email });
+
+      // Show success and move to OTP verification screen
+      setTimeout(() => {
+        useLoginStore.getState().setContent("Login/RegCode");
+      }, 1000);
+    } else {
+      throw new Error(res.data?.message || "Signup failed");
     }
-  },
-
-  googleLogin: async (credential) => {
-    set({ isLoading: true });
-    try {
-      const response = await fetch('http://localhost:3000/auth/google', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ credential }),
-      });
-
-      if (!response.ok) throw new Error('Google login failed');
-      
-      const data = await response.json();
-      // Handle successful login
-      
-    } catch (error) {
-      console.error('Google login error:', error);
-      throw error;
-    } finally {
-      set({ isLoading: false });
-    }
-  },
-
-  register: async (data) => {
-    set({ isLoading: true });
-    try {
-      const response = await fetch('http://localhost:3000/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) throw new Error('Registration failed');
-      
-      const responseData = await response.json();
-      // Handle successful registration
-      
-    } catch (error) {
-      console.error('Registration error:', error);
-      throw error;
-    } finally {
-      set({ isLoading: false });
-    }
-  },
-
-
-
- 
-  
+  } catch (err: any) {
+    const message = err.response?.data?.message || err.message || "Something went wrong";
+    console.error("Signup error:", message);
+    toast.error(message);
+    set({ error: message });
+  } finally {
+    set({ loading: false });
+  }
+},
 
 
 
 
-})); 
+}));

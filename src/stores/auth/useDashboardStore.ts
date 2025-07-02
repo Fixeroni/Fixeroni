@@ -25,13 +25,5 @@ export const useDashboardStore = create<DashboardState>()(
 )
 );
 
-// export const useDashboardStore = create<DashboardState>()(
-//   persist(
-//     (set) => ({
-//       content: "Dashboard", // Default state
-//       setContent: (value) => set({ content: value }),
-//     }),
-//     { name: "dashboard-content-storage" } // Key for localStorage
-//   )
-// );
+
 

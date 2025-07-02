@@ -5,7 +5,7 @@ import Switch from "../../../../components/auth/login/Switch";
 import LoginContent from "../../../../components/auth/LoginContent";
 import RegisterContent from "../../../../components/auth/RegisterContent";
 import { useLoginStore } from "@/stores/auth/useLoginStore";
-import { register } from "module";
+import { useAuthStore } from "@/stores/auth/useAuthStore";
 
 export const Route = createFileRoute("/artisan/auth/login/")({
   component: RouteComponent,
@@ -13,6 +13,24 @@ export const Route = createFileRoute("/artisan/auth/login/")({
 
 function RouteComponent() {
 const {content} = useLoginStore()
+
+const { email } = useAuthStore();
+
+const maskEmail = (email: string) => {
+  if (!email || !email.includes('@')) return ''; // ✅ basic guard
+
+  const [user, domain] = email.split('@');
+
+  if (!user || user.length <= 3) {
+    return `${user?.charAt(0) ?? ''}****@${domain}`; // fallback for short usernames
+  }
+
+  const visible = user.slice(0, 3);
+  const masked = '*'.repeat(user.length - 3);
+
+  return `${visible}${masked}@${domain}`;
+};
+
 
   return (
     <AuthLayout>
@@ -26,7 +44,13 @@ const {content} = useLoginStore()
          {content === "Login/RegCode" ? ( <h2 className="text-2xl font-medium">Enter Confirmation Code</h2>):( <h2 className="text-2xl font-medium">Welcome to Fixeroni</h2>)}
          {content === "Login/RegCode" ? (
           <p className="text-[#787878] text-md mt-4">
-          we have sent a confirmation code to  <br /> <span className="font-bold text-black mt-8">ade*********@gmail.com </span>
+          we have sent a confirmation code to  <br /> {email ? (
+      <span className="font-bold text-black mt-8">
+        {maskEmail(email)}
+      </span>
+    ) : (
+      <span className="text-red-500">No email found</span>
+    )}
         </p>
          ): (
           <p className="text-[#787878] text-md">
