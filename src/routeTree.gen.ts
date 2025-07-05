@@ -29,12 +29,12 @@ import { Route as ArtisanDashboardDashBoardComponentTestsImport } from './routes
 import { Route as ArtisanDashboardDashBoardComponentViewScheduleImport } from './routes/artisan/dashboard/DashBoardComponent/ViewSchedule'
 import { Route as ArtisanDashboardDashBoardComponentStarRatingImport } from './routes/artisan/dashboard/DashBoardComponent/StarRating'
 import { Route as ArtisanDashboardDashBoardComponentSideBarNavImport } from './routes/artisan/dashboard/DashBoardComponent/SideBarNav'
-import { Route as ArtisanDashboardDashBoardComponentSchedulesImport } from './routes/artisan/dashboard/DashBoardComponent/Schedules'
 import { Route as ArtisanDashboardDashBoardComponentProfileDetailsImport } from './routes/artisan/dashboard/DashBoardComponent/ProfileDetails'
 import { Route as ArtisanDashboardDashBoardComponentProfileButtonImport } from './routes/artisan/dashboard/DashBoardComponent/ProfileButton'
 import { Route as ArtisanDashboardDashBoardComponentNotificationDetailsImport } from './routes/artisan/dashboard/DashBoardComponent/NotificationDetails'
 import { Route as ArtisanDashboardDashBoardComponentNotificationImport } from './routes/artisan/dashboard/DashBoardComponent/Notification'
 import { Route as ArtisanDashboardDashBoardComponentFindProReviewsImport } from './routes/artisan/dashboard/DashBoardComponent/FindProReviews'
+import { Route as ArtisanDashboardDashBoardComponentFindProProfileSchedulesImport } from './routes/artisan/dashboard/DashBoardComponent/FindProProfileSchedules'
 import { Route as ArtisanDashboardDashBoardComponentFindProProfileOverviewImport } from './routes/artisan/dashboard/DashBoardComponent/FindProProfileOverview'
 import { Route as ArtisanDashboardDashBoardComponentFindProProfileDetailImport } from './routes/artisan/dashboard/DashBoardComponent/FindProProfileDetail'
 import { Route as ArtisanDashboardDashBoardComponentFindProAllStatusImport } from './routes/artisan/dashboard/DashBoardComponent/FindProAllStatus'
@@ -172,13 +172,6 @@ const ArtisanDashboardDashBoardComponentSideBarNavRoute =
     getParentRoute: () => rootRoute,
   } as any)
 
-const ArtisanDashboardDashBoardComponentSchedulesRoute =
-  ArtisanDashboardDashBoardComponentSchedulesImport.update({
-    id: '/artisan/dashboard/DashBoardComponent/Schedules',
-    path: '/artisan/dashboard/DashBoardComponent/Schedules',
-    getParentRoute: () => rootRoute,
-  } as any)
-
 const ArtisanDashboardDashBoardComponentProfileDetailsRoute =
   ArtisanDashboardDashBoardComponentProfileDetailsImport.update({
     id: '/artisan/dashboard/DashBoardComponent/ProfileDetails',
@@ -211,6 +204,13 @@ const ArtisanDashboardDashBoardComponentFindProReviewsRoute =
   ArtisanDashboardDashBoardComponentFindProReviewsImport.update({
     id: '/artisan/dashboard/DashBoardComponent/FindProReviews',
     path: '/artisan/dashboard/DashBoardComponent/FindProReviews',
+    getParentRoute: () => rootRoute,
+  } as any)
+
+const ArtisanDashboardDashBoardComponentFindProProfileSchedulesRoute =
+  ArtisanDashboardDashBoardComponentFindProProfileSchedulesImport.update({
+    id: '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules',
+    path: '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules',
     getParentRoute: () => rootRoute,
   } as any)
 
@@ -399,6 +399,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ArtisanDashboardDashBoardComponentFindProProfileOverviewImport
       parentRoute: typeof rootRoute
     }
+    '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules': {
+      id: '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules'
+      path: '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules'
+      fullPath: '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules'
+      preLoaderRoute: typeof ArtisanDashboardDashBoardComponentFindProProfileSchedulesImport
+      parentRoute: typeof rootRoute
+    }
     '/artisan/dashboard/DashBoardComponent/FindProReviews': {
       id: '/artisan/dashboard/DashBoardComponent/FindProReviews'
       path: '/artisan/dashboard/DashBoardComponent/FindProReviews'
@@ -432,13 +439,6 @@ declare module '@tanstack/react-router' {
       path: '/artisan/dashboard/DashBoardComponent/ProfileDetails'
       fullPath: '/artisan/dashboard/DashBoardComponent/ProfileDetails'
       preLoaderRoute: typeof ArtisanDashboardDashBoardComponentProfileDetailsImport
-      parentRoute: typeof rootRoute
-    }
-    '/artisan/dashboard/DashBoardComponent/Schedules': {
-      id: '/artisan/dashboard/DashBoardComponent/Schedules'
-      path: '/artisan/dashboard/DashBoardComponent/Schedules'
-      fullPath: '/artisan/dashboard/DashBoardComponent/Schedules'
-      preLoaderRoute: typeof ArtisanDashboardDashBoardComponentSchedulesImport
       parentRoute: typeof rootRoute
     }
     '/artisan/dashboard/DashBoardComponent/SideBarNav': {
@@ -573,12 +573,12 @@ export interface FileRoutesByFullPath {
   '/artisan/dashboard/DashBoardComponent/FindProAllStatus': typeof ArtisanDashboardDashBoardComponentFindProAllStatusRoute
   '/artisan/dashboard/DashBoardComponent/FindProProfileDetail': typeof ArtisanDashboardDashBoardComponentFindProProfileDetailRoute
   '/artisan/dashboard/DashBoardComponent/FindProProfileOverview': typeof ArtisanDashboardDashBoardComponentFindProProfileOverviewRoute
+  '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules': typeof ArtisanDashboardDashBoardComponentFindProProfileSchedulesRoute
   '/artisan/dashboard/DashBoardComponent/FindProReviews': typeof ArtisanDashboardDashBoardComponentFindProReviewsRoute
   '/artisan/dashboard/DashBoardComponent/Notification': typeof ArtisanDashboardDashBoardComponentNotificationRoute
   '/artisan/dashboard/DashBoardComponent/NotificationDetails': typeof ArtisanDashboardDashBoardComponentNotificationDetailsRoute
   '/artisan/dashboard/DashBoardComponent/ProfileButton': typeof ArtisanDashboardDashBoardComponentProfileButtonRoute
   '/artisan/dashboard/DashBoardComponent/ProfileDetails': typeof ArtisanDashboardDashBoardComponentProfileDetailsRoute
-  '/artisan/dashboard/DashBoardComponent/Schedules': typeof ArtisanDashboardDashBoardComponentSchedulesRoute
   '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/DashBoardComponent/ViewSchedule': typeof ArtisanDashboardDashBoardComponentViewScheduleRoute
@@ -612,12 +612,12 @@ export interface FileRoutesByTo {
   '/artisan/dashboard/DashBoardComponent/FindProAllStatus': typeof ArtisanDashboardDashBoardComponentFindProAllStatusRoute
   '/artisan/dashboard/DashBoardComponent/FindProProfileDetail': typeof ArtisanDashboardDashBoardComponentFindProProfileDetailRoute
   '/artisan/dashboard/DashBoardComponent/FindProProfileOverview': typeof ArtisanDashboardDashBoardComponentFindProProfileOverviewRoute
+  '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules': typeof ArtisanDashboardDashBoardComponentFindProProfileSchedulesRoute
   '/artisan/dashboard/DashBoardComponent/FindProReviews': typeof ArtisanDashboardDashBoardComponentFindProReviewsRoute
   '/artisan/dashboard/DashBoardComponent/Notification': typeof ArtisanDashboardDashBoardComponentNotificationRoute
   '/artisan/dashboard/DashBoardComponent/NotificationDetails': typeof ArtisanDashboardDashBoardComponentNotificationDetailsRoute
   '/artisan/dashboard/DashBoardComponent/ProfileButton': typeof ArtisanDashboardDashBoardComponentProfileButtonRoute
   '/artisan/dashboard/DashBoardComponent/ProfileDetails': typeof ArtisanDashboardDashBoardComponentProfileDetailsRoute
-  '/artisan/dashboard/DashBoardComponent/Schedules': typeof ArtisanDashboardDashBoardComponentSchedulesRoute
   '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/DashBoardComponent/ViewSchedule': typeof ArtisanDashboardDashBoardComponentViewScheduleRoute
@@ -652,12 +652,12 @@ export interface FileRoutesById {
   '/artisan/dashboard/DashBoardComponent/FindProAllStatus': typeof ArtisanDashboardDashBoardComponentFindProAllStatusRoute
   '/artisan/dashboard/DashBoardComponent/FindProProfileDetail': typeof ArtisanDashboardDashBoardComponentFindProProfileDetailRoute
   '/artisan/dashboard/DashBoardComponent/FindProProfileOverview': typeof ArtisanDashboardDashBoardComponentFindProProfileOverviewRoute
+  '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules': typeof ArtisanDashboardDashBoardComponentFindProProfileSchedulesRoute
   '/artisan/dashboard/DashBoardComponent/FindProReviews': typeof ArtisanDashboardDashBoardComponentFindProReviewsRoute
   '/artisan/dashboard/DashBoardComponent/Notification': typeof ArtisanDashboardDashBoardComponentNotificationRoute
   '/artisan/dashboard/DashBoardComponent/NotificationDetails': typeof ArtisanDashboardDashBoardComponentNotificationDetailsRoute
   '/artisan/dashboard/DashBoardComponent/ProfileButton': typeof ArtisanDashboardDashBoardComponentProfileButtonRoute
   '/artisan/dashboard/DashBoardComponent/ProfileDetails': typeof ArtisanDashboardDashBoardComponentProfileDetailsRoute
-  '/artisan/dashboard/DashBoardComponent/Schedules': typeof ArtisanDashboardDashBoardComponentSchedulesRoute
   '/artisan/dashboard/DashBoardComponent/SideBarNav': typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   '/artisan/dashboard/DashBoardComponent/StarRating': typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   '/artisan/dashboard/DashBoardComponent/ViewSchedule': typeof ArtisanDashboardDashBoardComponentViewScheduleRoute
@@ -693,12 +693,12 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/FindProAllStatus'
     | '/artisan/dashboard/DashBoardComponent/FindProProfileDetail'
     | '/artisan/dashboard/DashBoardComponent/FindProProfileOverview'
+    | '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules'
     | '/artisan/dashboard/DashBoardComponent/FindProReviews'
     | '/artisan/dashboard/DashBoardComponent/Notification'
     | '/artisan/dashboard/DashBoardComponent/NotificationDetails'
     | '/artisan/dashboard/DashBoardComponent/ProfileButton'
     | '/artisan/dashboard/DashBoardComponent/ProfileDetails'
-    | '/artisan/dashboard/DashBoardComponent/Schedules'
     | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/DashBoardComponent/ViewSchedule'
@@ -731,12 +731,12 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/FindProAllStatus'
     | '/artisan/dashboard/DashBoardComponent/FindProProfileDetail'
     | '/artisan/dashboard/DashBoardComponent/FindProProfileOverview'
+    | '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules'
     | '/artisan/dashboard/DashBoardComponent/FindProReviews'
     | '/artisan/dashboard/DashBoardComponent/Notification'
     | '/artisan/dashboard/DashBoardComponent/NotificationDetails'
     | '/artisan/dashboard/DashBoardComponent/ProfileButton'
     | '/artisan/dashboard/DashBoardComponent/ProfileDetails'
-    | '/artisan/dashboard/DashBoardComponent/Schedules'
     | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/DashBoardComponent/ViewSchedule'
@@ -769,12 +769,12 @@ export interface FileRouteTypes {
     | '/artisan/dashboard/DashBoardComponent/FindProAllStatus'
     | '/artisan/dashboard/DashBoardComponent/FindProProfileDetail'
     | '/artisan/dashboard/DashBoardComponent/FindProProfileOverview'
+    | '/artisan/dashboard/DashBoardComponent/FindProProfileSchedules'
     | '/artisan/dashboard/DashBoardComponent/FindProReviews'
     | '/artisan/dashboard/DashBoardComponent/Notification'
     | '/artisan/dashboard/DashBoardComponent/NotificationDetails'
     | '/artisan/dashboard/DashBoardComponent/ProfileButton'
     | '/artisan/dashboard/DashBoardComponent/ProfileDetails'
-    | '/artisan/dashboard/DashBoardComponent/Schedules'
     | '/artisan/dashboard/DashBoardComponent/SideBarNav'
     | '/artisan/dashboard/DashBoardComponent/StarRating'
     | '/artisan/dashboard/DashBoardComponent/ViewSchedule'
@@ -809,12 +809,12 @@ export interface RootRouteChildren {
   ArtisanDashboardDashBoardComponentFindProAllStatusRoute: typeof ArtisanDashboardDashBoardComponentFindProAllStatusRoute
   ArtisanDashboardDashBoardComponentFindProProfileDetailRoute: typeof ArtisanDashboardDashBoardComponentFindProProfileDetailRoute
   ArtisanDashboardDashBoardComponentFindProProfileOverviewRoute: typeof ArtisanDashboardDashBoardComponentFindProProfileOverviewRoute
+  ArtisanDashboardDashBoardComponentFindProProfileSchedulesRoute: typeof ArtisanDashboardDashBoardComponentFindProProfileSchedulesRoute
   ArtisanDashboardDashBoardComponentFindProReviewsRoute: typeof ArtisanDashboardDashBoardComponentFindProReviewsRoute
   ArtisanDashboardDashBoardComponentNotificationRoute: typeof ArtisanDashboardDashBoardComponentNotificationRoute
   ArtisanDashboardDashBoardComponentNotificationDetailsRoute: typeof ArtisanDashboardDashBoardComponentNotificationDetailsRoute
   ArtisanDashboardDashBoardComponentProfileButtonRoute: typeof ArtisanDashboardDashBoardComponentProfileButtonRoute
   ArtisanDashboardDashBoardComponentProfileDetailsRoute: typeof ArtisanDashboardDashBoardComponentProfileDetailsRoute
-  ArtisanDashboardDashBoardComponentSchedulesRoute: typeof ArtisanDashboardDashBoardComponentSchedulesRoute
   ArtisanDashboardDashBoardComponentSideBarNavRoute: typeof ArtisanDashboardDashBoardComponentSideBarNavRoute
   ArtisanDashboardDashBoardComponentStarRatingRoute: typeof ArtisanDashboardDashBoardComponentStarRatingRoute
   ArtisanDashboardDashBoardComponentViewScheduleRoute: typeof ArtisanDashboardDashBoardComponentViewScheduleRoute
@@ -858,6 +858,8 @@ const rootRouteChildren: RootRouteChildren = {
     ArtisanDashboardDashBoardComponentFindProProfileDetailRoute,
   ArtisanDashboardDashBoardComponentFindProProfileOverviewRoute:
     ArtisanDashboardDashBoardComponentFindProProfileOverviewRoute,
+  ArtisanDashboardDashBoardComponentFindProProfileSchedulesRoute:
+    ArtisanDashboardDashBoardComponentFindProProfileSchedulesRoute,
   ArtisanDashboardDashBoardComponentFindProReviewsRoute:
     ArtisanDashboardDashBoardComponentFindProReviewsRoute,
   ArtisanDashboardDashBoardComponentNotificationRoute:
@@ -868,8 +870,6 @@ const rootRouteChildren: RootRouteChildren = {
     ArtisanDashboardDashBoardComponentProfileButtonRoute,
   ArtisanDashboardDashBoardComponentProfileDetailsRoute:
     ArtisanDashboardDashBoardComponentProfileDetailsRoute,
-  ArtisanDashboardDashBoardComponentSchedulesRoute:
-    ArtisanDashboardDashBoardComponentSchedulesRoute,
   ArtisanDashboardDashBoardComponentSideBarNavRoute:
     ArtisanDashboardDashBoardComponentSideBarNavRoute,
   ArtisanDashboardDashBoardComponentStarRatingRoute:
@@ -925,12 +925,12 @@ export const routeTree = rootRoute
         "/artisan/dashboard/DashBoardComponent/FindProAllStatus",
         "/artisan/dashboard/DashBoardComponent/FindProProfileDetail",
         "/artisan/dashboard/DashBoardComponent/FindProProfileOverview",
+        "/artisan/dashboard/DashBoardComponent/FindProProfileSchedules",
         "/artisan/dashboard/DashBoardComponent/FindProReviews",
         "/artisan/dashboard/DashBoardComponent/Notification",
         "/artisan/dashboard/DashBoardComponent/NotificationDetails",
         "/artisan/dashboard/DashBoardComponent/ProfileButton",
         "/artisan/dashboard/DashBoardComponent/ProfileDetails",
-        "/artisan/dashboard/DashBoardComponent/Schedules",
         "/artisan/dashboard/DashBoardComponent/SideBarNav",
         "/artisan/dashboard/DashBoardComponent/StarRating",
         "/artisan/dashboard/DashBoardComponent/ViewSchedule",
@@ -991,6 +991,9 @@ export const routeTree = rootRoute
     "/artisan/dashboard/DashBoardComponent/FindProProfileOverview": {
       "filePath": "artisan/dashboard/DashBoardComponent/FindProProfileOverview.tsx"
     },
+    "/artisan/dashboard/DashBoardComponent/FindProProfileSchedules": {
+      "filePath": "artisan/dashboard/DashBoardComponent/FindProProfileSchedules.tsx"
+    },
     "/artisan/dashboard/DashBoardComponent/FindProReviews": {
       "filePath": "artisan/dashboard/DashBoardComponent/FindProReviews.tsx"
     },
@@ -1005,9 +1008,6 @@ export const routeTree = rootRoute
     },
     "/artisan/dashboard/DashBoardComponent/ProfileDetails": {
       "filePath": "artisan/dashboard/DashBoardComponent/ProfileDetails.tsx"
-    },
-    "/artisan/dashboard/DashBoardComponent/Schedules": {
-      "filePath": "artisan/dashboard/DashBoardComponent/Schedules.tsx"
     },
     "/artisan/dashboard/DashBoardComponent/SideBarNav": {
       "filePath": "artisan/dashboard/DashBoardComponent/SideBarNav.tsx"

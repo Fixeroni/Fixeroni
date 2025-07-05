@@ -1,10 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import React, { useState } from "react";
-import StarRating from "../DashBoardComponent/StarRating";
-import { Button } from "@/components/ui/button";
 import FindProProfileOverview from "../DashBoardComponent/FindProProfileOverview";
 import FindProReviews from "../DashBoardComponent/FindProReviews";
-import Schedules from "../DashBoardComponent/Schedules";
+import FindProProfileSchedules from "../DashBoardComponent/FindProProfileSchedules";
 import FindProProfileDetail from "../DashBoardComponent/FindProProfileDetail";
 export const Route = createFileRoute(
   "/artisan/dashboard/dashboard-pages/FindProProfileView",
@@ -46,7 +43,7 @@ function RouteComponent() {
           </div>
         </div>
         <div className="-mt-12">
-          <Schedules />
+          <FindProProfileSchedules />
         </div>
       </div>
     </main>

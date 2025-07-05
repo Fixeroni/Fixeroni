@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute(
@@ -38,12 +36,12 @@ function FindProAllKinds({
         <ul className="w-[300px] h-[580px] p-[30px] flex flex-col rounded-2xl bg-white shadow-[0px_0px_10px_rgba(0,0,0,0.1)] absolute scale-95 overflow-x-hidden">
           <div className="flex justify-between">
             <p className="text-2xl font-bold mb-5">Kinds</p>
-            <Button
+            <button
               className="hover:scale-110 active:scale-115 cursor-pointer"
               onClick={onClose}
             >
               <img src="/images/icons/close.svg" alt="close" />
-            </Button>
+            </button>
           </div>
           {Kinds.map(({ tittle, total }, index) => (
             <li
@@ -54,7 +52,7 @@ function FindProAllKinds({
                 className="flex gap-5 items-center cursor-pointer"
                 htmlFor={tittle}
               >
-                <Input type="checkbox" id={tittle} />
+                <input type="checkbox" id={tittle} />
                 <p className="text-nowrap">{tittle}</p>
               </label>
               <span>
@@ -64,9 +62,9 @@ function FindProAllKinds({
               </span>
             </li>
           ))}
-          <Button className="mt-5 bg-[#1f1e1e] w-[240px] h-[30px] rounded-2xl flex justify-center items-center text-white text-[15px] cursor-pointer hover:bg-[#3c3c3c] active:bg-[#535353]">
+          <button className="mt-5 bg-[#1f1e1e] w-[240px] h-[30px] rounded-2xl flex justify-center items-center text-white text-[15px] cursor-pointer hover:bg-[#3c3c3c] active:bg-[#535353]">
             Apply
-          </Button>
+          </button>
         </ul>
       )}
     </>

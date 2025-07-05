@@ -2,12 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 export const Route = createFileRoute(
-  "/artisan/dashboard/DashBoardComponent/Schedules",
+  "/artisan/dashboard/DashBoardComponent/FindProProfileSchedules",
 )({
-  component: Schedules,
+  component: FindProProfileSchedules,
 });
 
-function Schedules() {
+function FindProProfileSchedules() {
   const [selectedTime, setSelectedTime] = useState<number | null>(2);
   const [scheduleDate, setScheduleDate] = useState<number | null>(2);
 
@@ -95,4 +95,4 @@ function Schedules() {
     </div>
   );
 }
-export default Schedules;
+export default FindProProfileSchedules;

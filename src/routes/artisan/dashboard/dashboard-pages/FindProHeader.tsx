@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { DashboarFeatures } from "../DashBoardComponent/DashboarFeatures";
 import FindProAllKinds from "@/routes/artisan/dashboard/DashBoardComponent/FindProAllKinds";
@@ -56,11 +56,11 @@ function RouteComponent() {
           <span>
             <button
               className="shadow-[2px_2px_5px_rgba(0,0,0,0.05)] p-[15px] pl-[17px] pr-[17px] cursor-pointer hover:bg-[#e0e0e0] active:bg-[#d0d0d0] transition-colors duration-300
-rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex items-center justify-center"
+rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex gap-[20px] items-center justify-center"
               onClick={() => toggleTab("allKinds")}
             >
               All Kinds
-              <i className="fa-solid fa-chevron-down text-sm ml-[10px]"></i>
+              <img src="/images/icons/chevron-down.svg" alt="dropdown" />
             </button>
             <div>
               <FindProAllKinds
@@ -73,12 +73,12 @@ rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex items-center justif
           </span>
           <span className="relative">
             <button
-              className="shadow-[2px_2px_5px_rgba(0,0,0,0.05)] p-[15px] pl-[17px] pr-[17px]
+              className="shadow-[2px_2px_5px_rgba(0,0,0,0.05)] p-[15px] pl-[17px] pr-[17px] gap-[20px]
 rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex items-center justify-center cursor-pointer hover:bg-[#e0e0e0] active:bg-[#d0d0d0] transition-colors duration-300"
               onClick={() => toggleTab("allDistance")}
             >
               All Distance
-              <i className="fa-solid fa-chevron-down text-sm ml-[15px]"></i>
+              <img src="/images/icons/chevron-down.svg" alt="dropdown" />
             </button>
             <div>
               <FindProAllDistances
@@ -92,11 +92,11 @@ rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex items-center justif
           <span className="relative">
             <button
               className="shadow-[2px_2px_5px_rgba(0,0,0,0.05)] p-[15px] pl-[17px] pr-[17px] cursor-pointer hover:bg-[#e0e0e0] active:bg-[#d0d0d0] transition-colors duration-300
-rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex items-center justify-center"
+rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex gap-[20px] items-center justify-center"
               onClick={() => toggleTab("allStatus")}
             >
               All Status{" "}
-              <i className="fa-solid fa-chevron-down text-sm ml-[10px]"></i>
+              <img src="/images/icons/chevron-down.svg" alt="dropdown" />
             </button>
             <div>
               <FindProAllStatus
@@ -110,11 +110,11 @@ rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex items-center justif
           <span className="relative">
             <button
               className="shadow-[2px_2px_5px_rgba(0,0,0,0.05)] p-[15px] pl-[17px] pr-[17px] cursor-pointer hover:bg-[#e0e0e0] active:bg-[#d0d0d0] transition-colors duration-300
-rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex items-center justify-center"
+rounded-tr-[20px] rounded-[26px] bg-[#fff] outline-none flex gap-[20px] items-center justify-center"
               onClick={() => toggleTab("allCities")}
             >
               All Cities
-              <i className="fa-solid fa-chevron-down text-sm ml-[10px]"></i>
+              <img src="/images/icons/chevron-down.svg" alt="dropdown" />
             </button>
             <div>
               <FindProAllCities
