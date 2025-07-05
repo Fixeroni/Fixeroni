@@ -1,10 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
+@import url("https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 /* @custom-variant dark (&:is(.dark *)); */
 
-@import 'leaflet/dist/leaflet.css';
-
+@import "leaflet/dist/leaflet.css";
 
 /* @theme {
   --color-white-dark: #f8f8f8;
@@ -14,37 +13,68 @@
   --color-primary: #0f9067;
 } */
 
-.scrollBar{
+.scrollBar {
   -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
-  scrollbar-width: none; 
+  scrollbar-width: none;
 }
-body{
-  background-color: #F8F8F8;
-  font-family: 'Poppins', sans-serif;
+body {
+  background-color: #f8f8f8;
+  font-family: "Poppins", sans-serif;
 }
 
-.box-shawdow{
+.box-shawdow {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 }
 
-.shawdow---feature{
+.shawdow---feature {
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .my-input::placeholder {
   color: #616161;
- opacity: 0.5;
+  opacity: 0.5;
 }
 
 .my-select {
   color: #616161;
- opacity: 0.5;
+  opacity: 0.5;
 }
-.backgroundBlendMode{
+.backgroundBlendMode {
   background-blend-mode: darken;
 }
-
-
+/*URBANIST FONT*/
+.urbanist {
+  font-family: "Urbanist", sans-serif;
+  font-optical-sizing: auto;
+}
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.custom-range::-moz-range-thumb {
+  appearance: none;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.custom-range::-ms-thumb {
+  appearance: none;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -77,7 +107,7 @@ body{
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0); 
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
@@ -111,7 +141,7 @@ body{
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0); 
+  --sidebar-ring: oklch(0.556 0 0);
 }
 
 /* @theme inline {
@@ -161,6 +191,6 @@ body{
   } 
 } */
 
-.profile----availablebal-shawdow{
- box-shadow: 0px 1.86391px 1.86391px rgba(0, 0, 0, 0.25);
+.profile----availablebal-shawdow {
+  box-shadow: 0px 1.86391px 1.86391px rgba(0, 0, 0, 0.25);
 }
