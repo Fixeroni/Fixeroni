@@ -7,7 +7,13 @@ export const Route = createFileRoute(
   component: ProfileDetails,
 });
 
-function ProfileDetails({name, amount, icon, date, amountColor}:ProfileDetailsProps) {
+function ProfileDetails({
+  name,
+  amount,
+  icon,
+  date,
+  amountColor,
+}: ProfileDetailsProps) {
   return (
     <div>
       <section className="flex items-center justify-between px-7 mt-5">
@@ -17,13 +23,13 @@ function ProfileDetails({name, amount, icon, date, amountColor}:ProfileDetailsPr
           </div>
           <div>
             <h2 className="text-[#1E1E1E] text-[1rem] font-medium">{name}</h2>
-            <p className="text-[#6B7280] font-normal text-[14px]">
-              {date}
-            </p>
+            <p className="text-[#6B7280] font-normal text-[14px]">{date}</p>
           </div>
         </div>
         <div>
-          <p className={`${amountColor} text-[16px] font-normal pt-1`}>{amount}</p>
+          <p className={`${amountColor} text-[16px] font-normal pt-1`}>
+            {amount}
+          </p>
         </div>
       </section>
     </div>
